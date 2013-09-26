@@ -1,0 +1,95 @@
+/*
+* LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
+*/
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
+using XPlatformCloudKit.Common;
+using XPlatformCloudKit.Helpers;
+using XPlatformCloudKit.Models;
+using XPlatformCloudKit.ViewModels;
+
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace XPlatformCloudKit.Views
+{
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summar
+    public sealed partial class ItemsShowcaseView : LayoutAwarePage
+    {
+        private ResourceLoader resourceLoader = new ResourceLoader();
+
+        public ItemsShowcaseView()
+        {
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+            this.InitializeComponent();
+            SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
+            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
+            Loaded += ItemsShowcaseView_Loaded;
+        }
+
+        private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            var deferral = request.GetDeferral();
+            request.Data.Properties.Title = resourceLoader.GetString("ApplicationName");
+            request.Data.SetText(resourceLoader.GetString("ShareMessage"));
+            //request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
+            deferral.Complete();
+        }
+
+        // Method to add the privacy policy to the settings charm
+        private void ShowPrivacyPolicy(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            SettingsCommand privacyPolicyCommand = new SettingsCommand("privacyPolicy", "Privacy Policy", (x) => { LaunchPrivacyPolicyUrl(); });
+            args.Request.ApplicationCommands.Add(privacyPolicyCommand);
+        }
+
+        // Method to launch the url of the privacy policy
+        async void LaunchPrivacyPolicyUrl()
+        {
+            Uri privacyPolicyUrl = new Uri(AppSettings.PrivacyPolicyUrl);
+            var result = await Windows.System.Launcher.LaunchUriAsync(privacyPolicyUrl);
+        }
+
+        void vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //Hack to allow Semantic Zoom to update properly
+            //WARNING this can cause strange exception on Navigation if page not cached
+            if (e.PropertyName == "ItemGroups") 
+                ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+        }
+
+        void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
+
+            //Cache loads so fast if called from constructor that property changed is not fired
+            if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
+            ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+        }
+
+        private void ZoomedInItemGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemDescriptionView));
+        }
+
+    }
+}

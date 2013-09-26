@@ -1,0 +1,63 @@
+﻿<views:MvxPhonePage
+    xmlns:views="clr-namespace:Cirrious.MvvmCross.WindowsPhone.Views;assembly=Cirrious.MvvmCross.WindowsPhone"
+    x:Class="XPlatformCloudKit.Views.ItemDescriptionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:SampleData="clr-namespace:XPlatformCloudKit.SampleData;assembly=XPlatformCloudKit.PCL"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    d:DataContext="{d:DesignInstance SampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}"
+    >
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="{Binding SelectedGroup.Key}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <!--<TextBlock Text="{Binding LocalizedResources.ItemDescriptionViewTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<Grid.RowDefinitions>
+        		<RowDefinition Height="115"/>
+        		<RowDefinition Height="29*"/>
+        		<RowDefinition Height="463*"/>
+        	</Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="Gray" Width="110" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="{Binding SelectedItem.Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding SelectedItem.Title}"/>
+            </Border>
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                <TextBlock Text="{Binding SelectedItem.Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="Wrap"/>
+            </StackPanel>
+            <TextBlock Text="{Binding SelectedItem.Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <phone:WebBrowser x:Name="WebBrowser" Grid.Row="2" Grid.ColumnSpan="2" Loaded="WireUpWebBrowser"/>
+            <!--<TextBlock Text="{Binding SelectedItem.Description}" Style="{StaticResource BodyTextStyle}" TextWrapping="Wrap" TextTrimming="None" Margin="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/> -->
+        </Grid>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar x:Name="AppBar" Mode="Default" Opacity="0.7" IsVisible="True" IsMenuEnabled="False">
+            <shell:ApplicationBarIconButton x:Name="PreviousButton" IconUri="/Assets/Icons/Previous.png" Text="previous" Click="PreviousButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="ShareButton" IconUri="/Assets/Icons/Share.png" Text="next" Click="ShareButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="NextButton" IconUri="/Assets/Icons/Next.png" Text="next" Click="NextButton_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</views:MvxPhonePage>
