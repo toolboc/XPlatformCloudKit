@@ -36,7 +36,7 @@ namespace XPlatformCloudKit.DataServices
         {
             try
             {
-                Items = await itemsTable.ToListAsync();
+                Items = await itemsTable.Take(1000).ToListAsync();
                 return Items;
             }
             catch(Exception e)
