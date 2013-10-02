@@ -10,24 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Droid", "XPlatformCloudKit.Droid\XPlatformCloudKit.Droid.csproj", "{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://wincoder.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = XPlatformCloudKit.Phone8\\XPlatformCloudKit.Phone8.csproj
-		SccProjectName1 = XPlatformCloudKit.Phone8
-		SccLocalPath1 = XPlatformCloudKit.Phone8
-		SccProjectUniqueName2 = XPlatformCloudKit.Win8\\XPlatformCloudKit.Win8.csproj
-		SccProjectName2 = XPlatformCloudKit.Win8
-		SccLocalPath2 = XPlatformCloudKit.Win8
-		SccProjectUniqueName3 = XPlatformCloudKit.PCL\\XPlatformCloudKit.PCL.csproj
-		SccProjectName3 = XPlatformCloudKit.PCL
-		SccLocalPath3 = XPlatformCloudKit.PCL
-		SccProjectUniqueName4 = XPlatformCloudKit.Droid\\XPlatformCloudKit.Droid.csproj
-		SccProjectName4 = XPlatformCloudKit.Droid
-		SccLocalPath4 = XPlatformCloudKit.Droid
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
