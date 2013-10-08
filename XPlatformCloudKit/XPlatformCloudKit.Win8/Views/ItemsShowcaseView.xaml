@@ -193,7 +193,7 @@
             </ListView.GroupStyle>
         </ListView>
 
-        <ProgressRing IsActive="{Binding IsBusy}" Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100"/>
+        <ProgressRing IsActive="{Binding IsBusy}" Grid.Row="1" Foreground="{StaticResource ApplicationForegroundThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100"/>
 
 
         <!-- Back button and page title -->
