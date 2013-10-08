@@ -32,10 +32,10 @@ namespace XPlatformCloudKit.Services
 
             var tileData = new FlipTileData()
             {
-                //BackContent = item.Subtitle,
+                //BackContent = item.Title,
                 BackTitle = item.Title,
-                Title = item.Title,
-                WideBackContent = item.Subtitle,
+                //Title = item.Title,
+                //WideBackContent = item.Title
             };
 
             if (item.Image.Length > 0)
@@ -64,8 +64,8 @@ namespace XPlatformCloudKit.Services
             else
                 wideTileContent.Image.Src = "ms-appx:///Assets/Logo.png"; //image wasn't found
 
-            wideTileContent.TextHeading.Text = item.Subtitle;
-            wideTileContent.TextBodyWrap.Text = item.Title;
+            wideTileContent.TextHeading.Text = item.Title;
+            wideTileContent.TextBodyWrap.Text = item.Subtitle;
 
             var squareTileContent = NotificationsExtensions.TileContent.TileContentFactory.CreateTileSquarePeekImageAndText02();
             squareTileContent.Image.Src = wideTileContent.Image.Src;
