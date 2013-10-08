@@ -68,6 +68,10 @@ namespace XPlatformCloudKit.Views
             var webcontent = "<HTML>" +
             "<HEAD>" +
             "<meta name=\"viewport\" content=\"width=320, user-scrollable=no\" />" +
+            //Uncomment to disable clicking of href links
+            //"<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].onclick = function() {return(false);}; }};</script>"
+            //+
+            "<style type='text/css'>a img {border: 0;}</style>" +
             "</HEAD>" +
             "<BODY style=\"background-color:" + bc + ";color:" + fc + "\">" +
             selectedItem.Description +

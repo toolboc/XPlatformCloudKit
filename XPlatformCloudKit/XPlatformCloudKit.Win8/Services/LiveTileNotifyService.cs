@@ -35,7 +35,7 @@ namespace XPlatformCloudKit.Services
                 //BackContent = item.Subtitle,
                 BackTitle = item.Title,
                 Title = item.Title,
-                WideBackContent = item.Title,
+                WideBackContent = item.Subtitle,
             };
 
             if (item.Image.Length > 0)
