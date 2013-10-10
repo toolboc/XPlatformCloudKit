@@ -63,6 +63,9 @@ namespace XPlatformCloudKit.SampleData
         #endregion Internal Methods
 
         #region Public Properties
+
+        public string ApplicationName { get { return "Application Name"; } }
+
         private List<Group<Item>> itemGroups;
         /// <summary>
         /// Gets or sets the grouping of items to display in the view.

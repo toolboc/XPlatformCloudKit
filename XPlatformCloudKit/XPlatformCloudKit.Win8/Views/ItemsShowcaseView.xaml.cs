@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
@@ -34,8 +33,7 @@ namespace XPlatformCloudKit.Views
     /// </summar
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
-        private ResourceLoader resourceLoader = new ResourceLoader();
-
+    
         public ItemsShowcaseView()
         {
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
@@ -49,8 +47,8 @@ namespace XPlatformCloudKit.Views
         {
             DataRequest request = e.Request;
             var deferral = request.GetDeferral();
-            request.Data.Properties.Title = resourceLoader.GetString("ApplicationName");
-            request.Data.SetText(resourceLoader.GetString("ShareMessage"));
+            request.Data.Properties.Title = AppSettings.ApplicationName;
+            request.Data.SetText("Check out this awesome app in the Windows Store!");
             //request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
             deferral.Complete();
         }

@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationName" xml:space="preserve">
-    <value>XPlatformCloudKit</value>
-    <comment>The Application Name used in Share Charm</comment>
-  </data>
-  <data name="ItemsShowcaseViewTitle.Text" xml:space="preserve">
-    <value>XPlatformCloudKit</value>
-    <comment>Title of ItemsShowCaseViewPage</comment>
-  </data>
-  <data name="ShareMessage" xml:space="preserve">
-    <value>Check out this cool app in the Windows 8 marketplace!</value>
-    <comment>Message used to accompany app in share charm</comment>
-  </data>
 </root>

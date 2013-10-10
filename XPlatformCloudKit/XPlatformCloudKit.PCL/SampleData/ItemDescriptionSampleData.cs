@@ -49,6 +49,9 @@ namespace XPlatformCloudKit.SampleData
         #endregion Internal Methods
 
         #region Public Properties
+
+        public string ApplicationName { get { return "ApplicationName"; } }
+
         private Group<Item> selectedGroup;
         /// <summary>
         /// Gets or sets the selected Group<see cref="Group"/>.

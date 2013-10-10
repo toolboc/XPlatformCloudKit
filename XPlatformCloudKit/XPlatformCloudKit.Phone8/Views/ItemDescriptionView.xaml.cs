@@ -64,7 +64,7 @@ namespace XPlatformCloudKit.Views
             ShareStatusTask shareStatusTask = new ShareStatusTask();
             shareStatusTask.Status = "Checking out " + 
                                      ((ItemDescriptionViewModel)DataContext).SelectedItem.Title +
-                                     " on " + AppResources.ApplicationTitle.ToString();
+                                     " on " + AppSettings.ApplicationName;
             shareStatusTask.Show();
         }
 

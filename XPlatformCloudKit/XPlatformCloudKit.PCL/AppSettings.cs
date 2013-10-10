@@ -15,6 +15,10 @@ namespace XPlatformCloudKit
     /// </summary>
     public static class AppSettings
     {
+        //The name of your applicaion, this value appears on the top of thefirst page of the Windows 8 app and at 
+        //the top of both pages in the Windows Phone app
+        public const string ApplicationName = "My Application";
+
         // <summary>
         /// Available DataServices
         /// </summary>
@@ -33,10 +37,6 @@ namespace XPlatformCloudKit
         //Be sure you have created a table named "Item" and have permission to update with app key
         //After running once, set back to false
         public const bool CreateInitialSchemaForAzureMobileService = false;
-
-        //Url to your privacy policy - default value is "http://www.freeprivacypolicy.org/generic.php"
-        //Note: This is REQUIRED for certification in the Windows 8 store
-        public const string PrivacyPolicyUrl = "http://www.freeprivacypolicy.org/generic.php";
 
         //Your Azure Mobile Service Address 
         //i.e. https://xplatformcloudkit.azure-mobile.net/
@@ -59,5 +59,13 @@ namespace XPlatformCloudKit
         //Timeframe in minutes to store data before making new request to Data Source
         //set to negative value to disable caching
         public const int CacheIntervalInMinutes = 60;
+
+        //Determines whether to use the Light theme (white background / black text) over the default Dark theme
+        //(black background / white text)
+        public const bool UseLightThemeForWindows8 = true;
+
+        //Url to your privacy policy - default value is "http://www.freeprivacypolicy.org/generic.php"
+        //Note: This is REQUIRED for certification in the Windows 8 store
+        public const string PrivacyPolicyUrl = "http://www.freeprivacypolicy.org/generic.php";
     }
 }

@@ -109,6 +109,8 @@ namespace XPlatformCloudKit.ViewModels
         #endregion Internal Methods
 
         #region Public Properties
+        public string ApplicationName { get { return AppSettings.ApplicationName; } }
+
         private List<Group<Item>> itemGroups;
         /// <summary>
         /// Gets or sets the grouping of items to display in the view.

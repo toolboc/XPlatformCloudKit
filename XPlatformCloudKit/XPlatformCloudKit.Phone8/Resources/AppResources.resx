@@ -125,16 +125,4 @@
     <value>en-US</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>XPlatformCloudKit</value>
-    <comment>The application title</comment>
-  </data>
-  <data name="ItemsShowcaseViewTitle" xml:space="preserve">
-    <value>ItemsShowcase</value>
-    <comment>The name to dispaly at the top of the ItemsShowcaseView</comment>
-  </data>
-  <data name="ItemDescriptionViewTitle" xml:space="preserve">
-    <value>ItemDescription</value>
-    <comment>The name to display at the top of the ItemDescriptionView</comment>
-  </data>
 </root>

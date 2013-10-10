@@ -41,6 +41,11 @@ namespace XPlatformCloudKit.Win8
         /// </summary>
         public App()
         {
+            if (AppSettings.UseLightThemeForWindows8)
+                this.RequestedTheme = ApplicationTheme.Light;
+            else
+                this.RequestedTheme = ApplicationTheme.Dark;
+            
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

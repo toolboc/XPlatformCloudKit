@@ -22,6 +22,8 @@ namespace XPlatformCloudKit.ViewModels
             SelectedItem = AppState.SelectedItem;
         }
 
+        public string ApplicationName { get { return AppSettings.ApplicationName; } }
+
         private Group<Item> selectedGroup;
         /// <summary>
         /// Gets or sets the selected Group<see cref="Group"/>.
