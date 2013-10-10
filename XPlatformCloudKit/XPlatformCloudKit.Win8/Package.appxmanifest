@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="XPlatformCloudKit.Win8.App">
       <VisualElements DisplayName="XPlatformCloudKit.Win8" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="XPlatformCloudKit.Win8" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
