@@ -97,7 +97,7 @@ namespace XPlatformCloudKit.Views
 
         private static bool IsBackgroundBlack()
         {
-            return (int)FetchBackGroundColor()[1] > 10;
+            return FetchBackGroundColor()[1] != 'F';
         }
 
         private static string FetchBackGroundColor()
