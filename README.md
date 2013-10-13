@@ -10,7 +10,7 @@ Examples of Applications Built with the XPlatformCloudKit
 
 Video Tutorials
 ---------------
-* [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](XPlatformCloudKit - Video Tutorial Series - Part 1 - Installing Prereqs from Dreamspark and Building for the First Time)
+* [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](http://www.youtube.com/watch?v=yKGPE95etYM)
 
 Prerequisites for all projects
 ------------------------------
