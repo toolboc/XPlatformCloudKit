@@ -4,6 +4,10 @@ XPlatformCloudKit
 A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend.
 
 
+Video Tutorials
+---------------
+* [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](XPlatformCloudKit - Video Tutorial Series - Part 1 - Installing Prereqs from Dreamspark and Building for the First Time)
+
 Prerequisites for all projects
 ------------------------------
 
