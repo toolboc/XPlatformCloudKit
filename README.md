@@ -1,7 +1,7 @@
 XPlatformCloudKit
 =================
 
-A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend.
+A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend.  
 
 Examples of Applications Built with the XPlatformCloudKit
 ---------------------------------------------------------
@@ -11,6 +11,17 @@ Examples of Applications Built with the XPlatformCloudKit
 Video Tutorials
 ---------------
 * [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](http://www.youtube.com/watch?v=yKGPE95etYM)
+
+Getting Started
+---------------
+
+After obtaining and installing the prerequisites, download the .zip of this project (link on the bottom right of [The XPlatformCloudKit Project Home](https://github.com/winappkits/XPlatformCloudKit))
+Save the .zip, then right-click=>Properties=>Unblock=>Apply  then extract the contents of the .zip file
+
+You will then want to open the XPlatformCloudKit.sln located in the XPlatformCloudKit folder   
+(If you recieve a warning about being bound to Team Foundation Server or inability to open the .Droid project, simply ignore)  
+
+Follow along with the XPlatformCloudKit.pptx lab located in the root of the XPlatformCloudKit-master folder.
 
 Prerequisites for all projects
 ------------------------------
