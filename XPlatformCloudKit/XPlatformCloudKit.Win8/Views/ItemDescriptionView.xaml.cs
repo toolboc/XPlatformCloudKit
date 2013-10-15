@@ -61,16 +61,23 @@ namespace XPlatformCloudKit.Views
         private void LoadWebContent()
         {
             var selectedItem = flipView.SelectedItem as Item;
-            var bc = FetchBackGroundColor();
 
-            var fc = FetchFontColor();
+            var bc = AppSettings.BackgroundColorOfDescription[0] == '#' ? AppSettings.BackgroundColorOfDescription : FetchBackgroundColor();
+
+            var fc = AppSettings.FontColorOfDescription[0] == '#' ? AppSettings.FontColorOfDescription : FetchFontColor();
+
+            string scriptOptions = string.Empty;
+            string disableHyperLinksJS = "<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].onclick = function() {return(false);}; }};</script>";
+
+            if (AppSettings.DisableHyperLinksInItemDescriptionView)
+                scriptOptions = scriptOptions + disableHyperLinksJS;
 
             var webcontent = "<HTML>" +
             "<HEAD>" +
-            "<meta name=\"viewport\" content=\"width=320, user-scrollable=no\" />" +
-            //Uncomment to disable clicking of href links
-            //"<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].onclick = function() {return(false);}; }};</script>"
-            //+
+            "<meta name=\"viewport\" content=\"width=320, user-scrollable=no\" />"
+            +
+                scriptOptions
+            +
             "<style type='text/css'>a img {border: 0;}</style>" +
             "</HEAD>" +
             "<BODY style=\"background-color:" + bc + ";color:" + fc + "\">" +
@@ -97,10 +104,10 @@ namespace XPlatformCloudKit.Views
 
         private static bool IsBackgroundBlack()
         {
-            return FetchBackGroundColor()[1] != 'F';
+            return FetchBackgroundColor()[1] != 'F';
         }
 
-        private static string FetchBackGroundColor()
+        private static string FetchBackgroundColor()
         {
             SolidColorBrush mc = (SolidColorBrush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"];
             string color = mc.Color.ToString();
