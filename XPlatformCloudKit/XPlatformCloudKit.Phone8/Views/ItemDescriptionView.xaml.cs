@@ -95,9 +95,12 @@ namespace XPlatformCloudKit.Views
 
             string scriptOptions = string.Empty;
             string disableHyperLinksJS = "<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].onclick = function() {return(false);}; }};</script>";
+            string disableOpeningHyperLinksInNewTabJS = "<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].target = \"_self\"; }};</script>";
 
             if (AppSettings.DisableHyperLinksInItemDescriptionView)
                 scriptOptions = scriptOptions + disableHyperLinksJS;
+            if (AppSettings.DisableOpeningHyperLinksInNewTab)
+                scriptOptions = scriptOptions + disableOpeningHyperLinksInNewTabJS;
 
             var webcontent = "<HTML>" +
             "<HEAD>" +

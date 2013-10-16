@@ -49,10 +49,12 @@ namespace XPlatformCloudKit
         //i.e. http://reddit.com/r/technology/.rss
         public static readonly RssSource [] RssAddressCollection = 
         {
-            new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Title = "Xbox"},
-            new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Title = "Microsoft"},
-            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Title = "Tesla"},
-            
+            new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Cat Photos"},
+            new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "New Movie Trailers"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Xbox One Videos"},
+            new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Xbox Products"},
+            new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Microsoft news from Reddit"},
+            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Tesla Results from Bing"},           
         };
 
         //Timeframe in minutes to store data before making new request to Data Source
@@ -61,6 +63,13 @@ namespace XPlatformCloudKit
         #endregion
 
         #region Windows8 Project options
+        //Items whose Group Name is contained in the following Dictionary will display their Description field in full screen
+        //When an item of this group is selected, it will not show it's Title, Subtitle, or Image. (Ideal for Youtube RSS feeds)
+        public static readonly string[] GroupsToDisplayInFullScreen = 
+        {
+            "Xbox One Videos","New Movie Trailers"
+        };
+
         //Determines whether to use the Light theme (white background / black text) over the default Dark theme
         //(black background / white text)
         public const bool UseLightThemeForWindows8 = true;
@@ -70,7 +79,7 @@ namespace XPlatformCloudKit
         public const string PrivacyPolicyUrl = "http://www.freeprivacypolicy.org/generic.php";
         #endregion
 
-        #region ItemDescriptionView / Webview Options for Windows 8 and Windows Phone projects
+        #region Advanced ItemDescriptionView / Webview Options for Windows 8 and Windows Phone projects
         //Determines background color of WebView Control used behind Description in ItemDescriptionView.xaml.cs
         //Set to "Auto" to determine based on theme background or override using hex color string i.e. "#FFFFFF" for white, "#000000" for black
         public const string BackgroundColorOfDescription = "Auto";
@@ -82,6 +91,10 @@ namespace XPlatformCloudKit
         //Determines whether hyperlinks can be clicked in ItemDescriptionView.xaml for both Windows 8 and Windows Phone 8 projects
         //Sometimes, store may fail apps which contain hyperlinks that navigate improperly when clicked, this disables them
         public const bool DisableHyperLinksInItemDescriptionView = false;
+
+        //Determines whether hyperlinks with target="_blank" are rewritten to target="_self"
+        //When enabled, hyperlinks will not open in a new tab
+        public const bool DisableOpeningHyperLinksInNewTab = true;
         #endregion
 
     }
