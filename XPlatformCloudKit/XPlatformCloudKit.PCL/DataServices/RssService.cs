@@ -49,12 +49,12 @@ namespace XPlatformCloudKit.DataServices
 
             XDocument Feed = XDocument.Parse(response);
 
-            string group = rssSource.Title.Length > 1 ? rssSource.Title : Feed.Descendants("channel").Select(e => (string)e.Element("title").Value).First();
+            string group = rssSource.Group.Length > 1 ? rssSource.Group : Feed.Descendants("channel").Select(e => (string)e.Element("title").Value).First();
    
             var items = from item in Feed.Descendants("item") select new Item() 
-            { Title = item.Element("title").Value,
-              Subtitle = item.Element("pubDate").Value,
-              Description = item.Element("description").Value,
+            { Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
+              Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : string.Empty,
+              Description = item.Element("description") != null ? item.Element("description").Value : string.Empty,
               Image = (string)item.Element(media + "thumbnail") != null ? item.Elements(media + "thumbnail").Select(e => (string)e.Attribute("url")).First() : "",
               Group = @group,
             };
