@@ -21,17 +21,17 @@ namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
     {
-        IDataService DataService;
+        List<IDataService> EnabledDataServices;
 
         #region Constructors
         public ItemsShowcaseViewModel()
         {
-            DataService = DataServiceFactory.GetCurrentDataService();
+            EnabledDataServices = DataServiceFactory.GetCurrentDataService();
             
-            if(DataService == null)
-                ServiceLocator.MessageService.ShowErrorAsync("Error creating DataService", "Application Error");
-
-            LoadItems();
+            if(EnabledDataServices.Count == 0)
+                ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
+            else
+                LoadItems();
         }
         #endregion // Constructors
 
@@ -47,61 +47,65 @@ namespace XPlatformCloudKit.ViewModels
             MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
             var fileStore = Mvx.Resolve<IMvxFileStore>();
 
-            bool loadedFromCache = false;
-
-            if (fileStore != null)
+            foreach (var dataService in EnabledDataServices)
             {
-                string lastRefreshText;
-                if (fileStore.TryReadTextFile("LastRefresh", out lastRefreshText))
-                {
-                    var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                List<Item> currentItems = new List<Item>();
+                bool loadedFromCache = false;
 
-                    //has cache expired?
-                    if (overrideCache || (DateTime.Now - lastRefreshTime).Minutes > AppSettings.CacheIntervalInMinutes)
+                if (fileStore != null)
+                {
+                    string lastRefreshText;
+                    if (fileStore.TryReadTextFile("LastRefresh-"+ dataService.GetType().ToString(), out lastRefreshText))
                     {
-                        items = await DataService.GetItems();
-                    }
-                    else //load from cache
-                    {
-                        string  cachedItemsText;
-                        if(fileStore.TryReadTextFile("CachedItems", out cachedItemsText))
+                        var lastRefreshTime = DateTime.Parse(lastRefreshText);
+
+                        //has cache expired?
+                        if (overrideCache || (DateTime.Now - lastRefreshTime).Minutes > AppSettings.CacheIntervalInMinutes)
                         {
-                            items = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
-                            loadedFromCache = true;
+                            currentItems = await dataService.GetItems();
+                        }
+                        else //load from cache
+                        {
+                            string cachedItemsText;
+                            if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
+                            {
+                                currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
+                                loadedFromCache = true;
+                            }
                         }
                     }
+                    else
+                    {
+                        currentItems = await dataService.GetItems();
+                    }
                 }
-                else 
+
+                try
                 {
-                    items = await DataService.GetItems();
+                    if (!loadedFromCache && currentItems.Count > 0)
+                    {
+                        if (fileStore.Exists("CachedItems-" + dataService.GetType().ToString()))
+                            fileStore.DeleteFile("CachedItems-" + dataService.GetType().ToString());
+
+                        if (fileStore.Exists("LastRefresh-" + dataService.GetType().ToString()))
+                            fileStore.DeleteFile("LastRefresh-" + dataService.GetType().ToString());
+
+                        fileStore.WriteFile("CachedItems-" + dataService.GetType().ToString(), mvxJsonConverter.SerializeObject(currentItems));
+                        fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
+                    }
+
+                    items.AddRange(currentItems);
                 }
-            }
-
-            if (items != null && items.Count > 0)
-            {
-
-                ItemGroups = new List<Group<Item>>(from item in items
-                              group item by item.Group into grp
-                              orderby grp.Key
-                              select new Group<Item>(grp.Key, grp)).ToList();
-
-                if (!loadedFromCache)
+                catch
                 {
-                    if (fileStore.Exists("CachedItems"))
-                        fileStore.DeleteFile("CachedItems");
-
-                    if (fileStore.Exists("LastRefresh"))
-                        fileStore.DeleteFile("LastRefresh");
-
-                    fileStore.WriteFile("CachedItems", mvxJsonConverter.SerializeObject(items));
-                    fileStore.WriteFile("LastRefresh", DateTime.Now.ToString());
+                    ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from Remote Service. \n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
                 }
             }
-            else
-            {
-                await ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from Remote Service. \n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
-            }
 
+            ItemGroups = new List<Group<Item>>(from item in items
+                                               group item by item.Group into grp
+                                               orderby grp.Key
+                                               select new Group<Item>(grp.Key, grp)).ToList();
 
             IsBusy = false;
         }

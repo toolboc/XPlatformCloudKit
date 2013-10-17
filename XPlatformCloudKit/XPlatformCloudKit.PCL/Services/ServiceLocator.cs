@@ -19,5 +19,6 @@ namespace XPlatformCloudKit.Services
         public static IMessageService MessageService { get; set; }
         public static INavigationService NavigationService { get; set; }
         public static IDataService AzureMobileService { get; set; }
+        public static IResourceFileService ResourceFileService { get; set; }
     }
 }

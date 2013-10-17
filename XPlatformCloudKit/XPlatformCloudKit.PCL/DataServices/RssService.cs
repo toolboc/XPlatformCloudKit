@@ -36,6 +36,7 @@ namespace XPlatformCloudKit.DataServices
             }
             catch
             {
+                ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
                 return RssData;
             }
         }

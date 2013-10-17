@@ -30,6 +30,7 @@ namespace XPlatformCloudKit
         {
             base.InitializeLastChance();
             ServiceLocator.AzureMobileService = new AzureMobileService();
+            ServiceLocator.ResourceFileService = new ResourceFileService();
             Cirrious.MvvmCross.Plugins.File.PluginLoader.Instance.EnsureLoaded();
             Cirrious.MvvmCross.Plugins.DownloadCache.PluginLoader.Instance.EnsureLoaded();
         }

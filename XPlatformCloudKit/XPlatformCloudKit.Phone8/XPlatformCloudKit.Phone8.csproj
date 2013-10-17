@@ -110,6 +110,9 @@
     <Compile Include="..\XPlatformCloudKit.Win8\Services\NavigationService.cs">
       <Link>Services\NavigationService.cs</Link>
     </Compile>
+    <Compile Include="..\XPlatformCloudKit.Win8\Services\ResourceFileService.cs">
+      <Link>Services\ResourceFileService.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\XPlatformCloudKit.Win8\LocalItemsFile.xml">
+      <Link>LocalItemsFile.xml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

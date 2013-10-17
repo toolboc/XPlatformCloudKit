@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XPlatformCloudKit.DataServices;
 using XPlatformCloudKit.Models;
 
 namespace XPlatformCloudKit
@@ -19,23 +20,18 @@ namespace XPlatformCloudKit
         //The name of your applicaion, this value appears at the top of your app
         public const string ApplicationName = "My Application";
 
-        // Available DataServices
-        // Setting CurrentDataService below to one of these values allows us to configure where our application's data comes from
-        public enum DataService       
-        {
-            AzureMobileService,  //Use Mobile Service located @ MobileServiceAddress with Key set to MobileServiceApplicationKey
-            RssService, //Use RssAddressCollection only
-            RssAzureHybrid //Use both RssAddressCollection and Mobile Service located @ MobileServiceAddress with key set to MobileServiceApplicationKey
-        };
+        //Timeframe in minutes to store data before making new request to Data Source
+        //set to negative value to disable caching
+        public const int CacheIntervalInMinutes = 60;
+        #endregion
 
-        //Determines which Data Service to populate items from 
-        //i.e. change to DataService.RssService to use RssAddress as data source for items
-        public const DataService CurrentDataService = DataService.RssAzureHybrid;
-
+        #region AzureMobileService Settings
+        public const bool EnableAzureMobileService = true;  //Use Mobile Service located @ MobileServiceAddress with Key set to MobileServiceApplicationKey
+        
         //Mark true to create the Initial Schema if you are running for the first time against a brand new Mobile Service
         //Be sure you have created a table named "Item" and have permission to update with app key
         //After running once, set back to false
-        public const bool CreateInitialSchemaForAzureMobileService = false;
+        public const bool CreateInitialSchemaForAzureMobileService = true;
 
         //Your Azure Mobile Service Address 
         //i.e. https://xplatformcloudkit.azure-mobile.net/
@@ -44,10 +40,15 @@ namespace XPlatformCloudKit
         //You Azure Mobile Service Key 
         //i.e. UYZnUrrabofKBELSRdRsmCGboyDGMJ15
         public const string MobileServiceApplicationKey = "UYZnUrrabofKBELSRdRsmCGboyDGMJ15";
-   
+
+        #endregion
+
+        #region RssService Settings
+        public const bool EnableRssService = true;//Use RssAddressCollection 
+
         //Urls to an RSS Data Source 
         //i.e. http://reddit.com/r/technology/.rss
-        public static readonly RssSource [] RssAddressCollection = 
+        public static readonly RssSource[] RssAddressCollection = 
         {
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Cat Photos"},
             new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "New Movie Trailers"},
@@ -56,10 +57,10 @@ namespace XPlatformCloudKit
             new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Microsoft news from Reddit"},
             new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Tesla Results from Bing"},           
         };
+        #endregion
 
-        //Timeframe in minutes to store data before making new request to Data Source
-        //set to negative value to disable caching
-        public const int CacheIntervalInMinutes = 60;
+        #region LocalItemsFileService Settings 
+        public const bool EnableLocalItemsFileService = true; //Use Items contained in LocalItemsFile.xml
         #endregion
 
         #region Windows8 Project options

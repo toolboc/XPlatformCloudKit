@@ -91,6 +91,7 @@
                         <DataTemplate>
                             <TextBlock
                                 Text="{Binding Group.Key}"
+                                TextTrimming="CharacterEllipsis"
                                 FontFamily="Segoe UI Light"
                                 FontSize="24" />
                         </DataTemplate>

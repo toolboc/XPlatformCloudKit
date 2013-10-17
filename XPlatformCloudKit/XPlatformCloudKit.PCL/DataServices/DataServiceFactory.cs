@@ -12,17 +12,20 @@ namespace XPlatformCloudKit.DataServices
 {
     public static class DataServiceFactory
     {
-        internal static IDataService GetCurrentDataService()
+        internal static List<IDataService> GetCurrentDataService()
         {
-            switch(AppSettings.CurrentDataService)
-            {
-                case AppSettings.DataService.AzureMobileService:
-                    return ServiceLocator.AzureMobileService;
-                case AppSettings.DataService.RssService:
-                    return new RssService();
-                case AppSettings.DataService.RssAzureHybrid:
-                    return new RssAzureHybridService();
-            }
+            var enabledDataServices = new List<IDataService>();
+
+            if (AppSettings.EnableAzureMobileService)
+                enabledDataServices.Add(ServiceLocator.AzureMobileService);
+
+            if (AppSettings.EnableRssService)
+                enabledDataServices.Add(new RssService());
+
+            if (AppSettings.EnableLocalItemsFileService)
+                enabledDataServices.Add(new LocalItemsFileService());
+
+            return enabledDataServices;
         }
     }
 }

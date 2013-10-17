@@ -32,7 +32,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
@@ -117,6 +117,9 @@
     <Compile Include="..\XPlatformCloudKit.Win8\DataServices\AzureMobileService.cs">
       <Link>DataServices\AzureMobileService.cs</Link>
     </Compile>
+    <Compile Include="..\XPlatformCloudKit.Win8\Services\ResourceFileService.cs">
+      <Link>Services\ResourceFileService.cs</Link>
+    </Compile>
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
@@ -154,6 +157,11 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="..\XPlatformCloudKit.Win8\LocalItemsFile.xml">
+      <Link>Assets\LocalItemsFile.xml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
     <Content Include="lib\Microsoft.WindowsAzure.MobileServices.Android.dll" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\SplashStyle.xml" />

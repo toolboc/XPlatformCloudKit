@@ -41,6 +41,7 @@ namespace XPlatformCloudKit.DataServices
             }
             catch(Exception e)
             {
+                ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from AzureMobileService", "Application Error");
                 return Items;
             }
         }

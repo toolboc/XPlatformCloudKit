@@ -27,7 +27,8 @@
         <DataTemplate x:Key="groupHeaderTemplate">
             <Border HorizontalAlignment="Left" Margin="6">
                 <TextBlock Text="{Binding Key}"
-        			FontSize="40" Padding="6"
+                    TextTrimming="WordEllipsis"
+        			FontSize="40" 
         			VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Border>
         </DataTemplate>
@@ -54,7 +55,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <TextBlock  Text="{Binding Key}" FontSize="48" />
+                        <TextBlock  Text="{Binding Key}" TextTrimming="WordEllipsis" FontSize="48" />
                     </DataTemplate>
                 </Setter.Value>
             </Setter>

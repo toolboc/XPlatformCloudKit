@@ -82,6 +82,7 @@ namespace XPlatformCloudKit.Phone8
             ServiceLocator.LiveTileNotifyService = new LiveTileNotifyService();
             ServiceLocator.NavigationService = new XPlatformCloudKit.Services.NavigationService();
             ServiceLocator.AzureMobileService = new AzureMobileService();
+            ServiceLocator.ResourceFileService = new ResourceFileService();
 
             //Using MVVM Cross IOCContainer
             var iocProvider = MvxSimpleIoCContainer.Initialise();
