@@ -1,7 +1,7 @@
 XPlatformCloudKit
 =================
 
-A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. 
+A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. Simply follow along with the included Powerpoint file located in the root of the project.
 More specifically, the XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application (Android supported only if you have Xamarin Studio license).  
 The value of the Description property is rendered as HTML, meaning you can do some rather interesting things, for example see: 
 * [The Daily Laugh App] (http://apps.microsoft.com/windows/en-us/app/d4479251-d5e2-458c-bab7-530c38518fbc)
