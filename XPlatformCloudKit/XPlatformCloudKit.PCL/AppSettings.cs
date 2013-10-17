@@ -31,7 +31,7 @@ namespace XPlatformCloudKit
         //Mark true to create the Initial Schema if you are running for the first time against a brand new Mobile Service
         //Be sure you have created a table named "Item" and have permission to update with app key
         //After running once, set back to false
-        public const bool CreateInitialSchemaForAzureMobileService = true;
+        public const bool CreateInitialSchemaForAzureMobileService = false;
 
         //Your Azure Mobile Service Address 
         //i.e. https://xplatformcloudkit.azure-mobile.net/
