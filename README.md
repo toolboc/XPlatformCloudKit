@@ -8,7 +8,8 @@ The value of the Description property is rendered as HTML, meaning you can do so
 
 Examples of Applications Built with the XPlatformCloudKit
 ---------------------------------------------------------
-* Minecraft Minions [Windows 8](http://apps.microsoft.com/windows/en-us/app/ca936bcc-f665-4694-844b-afe6ed836e14) | [Windows Phone](http://www.windowsphone.com/en-us/store/app/minecraft-minions/c81a20b6-481f-472f-99c6-8f25b989a50a)
+* Starbucks Menu [Windows 8](http://apps.microsoft.com/windows/en-us/app/starbucks-menu/ad9e782f-9f89-46b9-ae5d-fcc296e43118)  
+  ![Windows 8 Screenshot] (http://i.imgur.com/cfGT3m5.gif)
 * Super Street Fighter 2 - Strategy Guide [Windows 8](http://apps.microsoft.com/windows/en-us/app/655e0b21-6a5f-455e-bc7f-01845c1198f9) | [Windows Phone 8](http://www.windowsphone.com/en-us/store/app/super-street-fighter-2/fe3dbbce-7770-4a41-b395-f42e3819141d)
   ![Windows 8 Screenshot] (http://i.imgur.com/vSnRm1s.gif)
   ![Windows Phone 8 Screenshot1] (http://cdn.marketplaceimages.windowsphone.com/v8/images/9cbb40b5-3d50-4939-a9b9-0447ba9112fb?imageType=ws_screenshot_large&rotation=0)
