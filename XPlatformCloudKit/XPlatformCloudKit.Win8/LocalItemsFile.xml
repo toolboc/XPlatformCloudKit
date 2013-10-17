@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<item>
-		<title>If you see me, "UseLocalItemsFile" is enabled!</title>
+		<title>If you see me, "LocalItemsFile" is enabled!</title>
 		<subtitle>Warning</subtitle>
     <description>To disable, set "EnableLocalItemsFile = false" in AppSettings.cs &lt;/br&gt;&lt;a href=&quot;http://bing.com&quot;&gt;By the way, I am html, click me and I&#039;ll take you to Bing&lt;/a&gt;</description>
 		<image>http://media.idownloadblog.com/wp-content/uploads/2011/12/Warning.png</image>
