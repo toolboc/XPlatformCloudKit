@@ -3,7 +3,7 @@
 	<item>
 		<title>If you see me, "UseLocalItemsFile" is enabled!</title>
 		<subtitle>Warning</subtitle>
-		<description>To disable, set "EnableLocalItemsFile = false" in AppSettings.cs</description>
+    <description>To disable, set "EnableLocalItemsFile = false" in AppSettings.cs &lt;/br&gt;&lt;a href=&quot;http://bing.com&quot;&gt;By the way, I am html, click me and I&#039;ll take you to Bing&lt;/a&gt;</description>
 		<image>http://media.idownloadblog.com/wp-content/uploads/2011/12/Warning.png</image>
 		<group>Local Data</group>
 	</item>
@@ -12,6 +12,6 @@
 		<subtitle>small</subtitle>
 		<description>A shih tzu is a toy dog breed weighing 5–7.25 kilograms with long silky hair. The breed originated in China. Shih Tzu were officially recognized by the American Kennel Club in 1969. The name is both singular and plural.</description>
 		<image>http://us.123rf.com/400wm/400/400/isselee/isselee0906/isselee090600219/5085394-grey-shih-tzu-6-years-old-in-front-of-a-white-background.jpg</image>
-		<group>Dog ff</group>
+		<group>Dog</group>
 	</item>
 </items>
