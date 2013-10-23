@@ -24,6 +24,7 @@ Examples of Applications Built with the XPlatformCloudKit
 Video Tutorials
 ---------------
 * [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](http://www.youtube.com/watch?v=yKGPE95etYM)
+* [Part 2 - Use Youtube Playlists to create a Video App (Legend of Zelda - Video Strategy Guide)](http://www.youtube.com/watch?v=gnMgM1z0EHg)
 
 Getting Started
 ---------------
