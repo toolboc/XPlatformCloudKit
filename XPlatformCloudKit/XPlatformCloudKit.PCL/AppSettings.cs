@@ -69,7 +69,7 @@ namespace XPlatformCloudKit
         //When an item of this group is selected, it will not show it's Title, Subtitle, or Image. (Ideal for Youtube RSS feeds)
         public static readonly string[] GroupsToDisplayInFullScreen = 
         {
-            "Youtube Playlist Example","Xbox One Videos","New Movie Trailers"
+            "Youtube Playlist Example","Xbox One Videos"
         };
 
         //Determines whether to use the Light theme (white background / black text) over the default Dark theme
@@ -81,11 +81,17 @@ namespace XPlatformCloudKit
         public const string PrivacyPolicyUrl = "http://www.freeprivacypolicy.org/generic.php";
         #endregion
 
-        #region Advanced ItemDescriptionView / Webview Options for Windows 8 and Windows Phone projects
+        #region Youtube Video Link Options
         //Forces Youtube links to be rewritten so that they load the video only in full screen
         //This produces a very clean look as the related videos etc. are not visible
         public const bool ForceYoutubeVideosToLoadFullScreen = true;
 
+        //When a Youtube Video link exists for an item it will begin playing that video when the item is selected
+        //This will only Display the Youtube video, all other data in the description is ignored - Effects Win8 only
+        public const bool AutoPlayYoutubeVideos = true;
+        #endregion
+
+        #region Advanced ItemDescriptionView / Webview Options for Windows 8 and Windows Phone projects
         //Determines background color of WebView Control used behind Description in ItemDescriptionView.xaml.cs
         //Set to "Auto" to determine based on theme background or override using hex color string i.e. "#FFFFFF" for white, "#000000" for black
         public const string BackgroundColorOfDescription = "Auto";

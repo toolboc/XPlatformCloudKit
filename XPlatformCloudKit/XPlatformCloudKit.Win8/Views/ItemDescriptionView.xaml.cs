@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -73,6 +74,17 @@ namespace XPlatformCloudKit.Views
         {
             var selectedItem = flipView.SelectedItem as Item;
 
+            if (AppSettings.AutoPlayYoutubeVideos)
+            {
+                    var youtubeLink = Regex.Match(selectedItem.Description, @"(https?:)?//w*\.?youtube.com/watch[^'\""<>]+").Value;
+
+                    if (youtubeLink.Length > 0)
+                    {
+                        browser.Navigate(new Uri(youtubeLink));
+                        return;
+                    }
+            }
+               
             var bc = AppSettings.BackgroundColorOfDescription[0] == '#' ? AppSettings.BackgroundColorOfDescription : FetchBackgroundColor();
 
             var fc = AppSettings.FontColorOfDescription[0] == '#' ? AppSettings.FontColorOfDescription : FetchFontColor();
