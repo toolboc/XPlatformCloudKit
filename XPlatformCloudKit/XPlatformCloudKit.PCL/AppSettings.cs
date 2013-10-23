@@ -82,6 +82,10 @@ namespace XPlatformCloudKit
         #endregion
 
         #region Advanced ItemDescriptionView / Webview Options for Windows 8 and Windows Phone projects
+        //Forces Youtube links to be rewritten so that they load the video only in full screen
+        //This produces a very clean look as the related videos etc. are not visible
+        public const bool ForceYoutubeVideosToLoadFullScreen = true;
+
         //Determines background color of WebView Control used behind Description in ItemDescriptionView.xaml.cs
         //Set to "Auto" to determine based on theme background or override using hex color string i.e. "#FFFFFF" for white, "#000000" for black
         public const string BackgroundColorOfDescription = "Auto";
