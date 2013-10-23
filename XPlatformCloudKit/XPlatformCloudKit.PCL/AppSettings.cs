@@ -50,6 +50,7 @@ namespace XPlatformCloudKit
         //i.e. http://reddit.com/r/technology/.rss
         public static readonly RssSource[] RssAddressCollection = 
         {
+            new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PLqBTiHv6qMa5eeCx6ZDUAk1ATcep5FFUA?alt=rss", Group = "Youtube Playlist Example"},
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Cat Photos"},
             new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "New Movie Trailers"},
             new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Xbox One Videos"},
@@ -68,7 +69,7 @@ namespace XPlatformCloudKit
         //When an item of this group is selected, it will not show it's Title, Subtitle, or Image. (Ideal for Youtube RSS feeds)
         public static readonly string[] GroupsToDisplayInFullScreen = 
         {
-            "Xbox One Videos","New Movie Trailers"
+            "Youtube Playlist Example","Xbox One Videos","New Movie Trailers"
         };
 
         //Determines whether to use the Light theme (white background / black text) over the default Dark theme
