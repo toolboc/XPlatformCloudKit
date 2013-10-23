@@ -132,12 +132,12 @@ namespace XPlatformCloudKit.Views
 
         private string FetchBackgroundColor()
         {
-            return IsBackgroundBlack() ? "#000;" : "#fff";
+            return IsBackgroundBlack() ? "#000" : "#fff";
         }
 
         private string FetchFontColor()
         {
-            return IsBackgroundBlack() ? "#fff;" : "#000";
+            return IsBackgroundBlack() ? "#fff" : "#000";
         }
 
         private static bool IsBackgroundBlack()
