@@ -28,24 +28,28 @@ namespace XPlatformCloudKit.Services
 #endif
 
 #if WINDOWS_PHONE
-            ShellTile appTile = ShellTile.ActiveTiles.First();
-
-            var tileData = new FlipTileData()
+            try
             {
-                //BackContent = item.Title,
-                BackTitle = item.Title,
-                //Title = item.Title,
-                //WideBackContent = item.Title
-            };
+                ShellTile appTile = ShellTile.ActiveTiles.First();
 
-            if (item.Image.Length > 0)
-            {
-                tileData.BackBackgroundImage = new Uri(item.Image);
-                tileData.SmallBackgroundImage = new Uri(item.Image);
-                tileData.WideBackBackgroundImage = new Uri(item.Image);
+                var tileData = new FlipTileData()
+                {
+                    //BackContent = item.Title,
+                    BackTitle = item.Title,
+                    //Title = item.Title,
+                    //WideBackContent = item.Title
+                };
+
+                if (item.Image.Length > 0)
+                {
+                    tileData.BackBackgroundImage = new Uri(item.Image);
+                    tileData.SmallBackgroundImage = new Uri(item.Image);
+                    tileData.WideBackBackgroundImage = new Uri(item.Image);
+                }
+
+                appTile.Update(tileData);
             }
-
-            appTile.Update(tileData);
+            catch { };
 #endif
         }
 
