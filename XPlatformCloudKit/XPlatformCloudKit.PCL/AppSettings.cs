@@ -50,13 +50,14 @@ namespace XPlatformCloudKit
         //i.e. http://reddit.com/r/technology/.rss
         public static readonly RssSource[] RssAddressCollection = 
         {
+                        new RssSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
             new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PLqBTiHv6qMa5eeCx6ZDUAk1ATcep5FFUA?alt=rss&max-results=50", Group = "Youtube Playlist Example"},
-            new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Cat Photos"},
-            new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "New Movie Trailers"},
-            new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Xbox One Videos"},
-            new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Xbox Products"},
-            new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Microsoft news from Reddit"},
-            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Tesla Results from Bing"},           
+            new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
+            new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "Yahoo Pipes example"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
+            new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
+            new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Bing example"},
+            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Reddit example"},           
         };
         #endregion
 
@@ -69,7 +70,7 @@ namespace XPlatformCloudKit
         //When an item of this group is selected, it will not show it's Title, Subtitle, or Image. (Ideal for Youtube RSS feeds)
         public static readonly string[] GroupsToDisplayInFullScreen = 
         {
-            "Youtube Playlist Example","Xbox One Videos"
+            "Youtube Playlist Example","Youtube query example"
         };
 
         //Determines whether to use the Light theme (white background / black text) over the default Dark theme
