@@ -52,6 +52,16 @@ namespace XPlatformCloudKit.Views
         }
 
         private WebView browser;
+        
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                browser.NavigateToString("<HTML></HTML>");//navigate to blank page
+            }
+            base.OnNavigatingFrom(e);
+        }
+
         private void WireUpWebBrowser(object sender, RoutedEventArgs e)
         {
             browser = sender as WebView;
