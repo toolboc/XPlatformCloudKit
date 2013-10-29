@@ -43,6 +43,10 @@ namespace XPlatformCloudKit.DataServices
 
         public async Task Parse(RssSource rssSource)
         {
+
+            var _UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
+            httpClient.DefaultRequestHeaders.Add("user-agent", _UserAgent);
+
             var response = await httpClient.GetStringAsync(rssSource.Url);
 
             XNamespace xmlns = "http://www.w3.org/2005/Atom";
