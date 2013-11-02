@@ -27,7 +27,7 @@ namespace XPlatformCloudKit
 
         #region AzureMobileService Settings
         public const bool EnableAzureMobileService = true;  //Use Mobile Service located @ MobileServiceAddress with Key set to MobileServiceApplicationKey
-        
+
         //Mark true to create the Initial Schema if you are running for the first time against a brand new Mobile Service
         //Be sure you have created a table named "Item" and have permission to update with app key
         //After running once, set back to false
@@ -61,7 +61,7 @@ namespace XPlatformCloudKit
         };
         #endregion
 
-        #region LocalItemsFileService Settings 
+        #region LocalItemsFileService Settings
         public const bool EnableLocalItemsFileService = true; //Use Items contained in LocalItemsFile.xml
         #endregion
 
@@ -99,7 +99,7 @@ namespace XPlatformCloudKit
 
         //Determines Font color of WebView Control used to display Description in ItemDescriptionView.xaml.cs
         //Set to "Auto" to determine based on theme background or override using hex color string i.e. "#FFFFFF" for white, "#000000" for black
-        public const string FontColorOfDescription = "Auto"; 
+        public const string FontColorOfDescription = "Auto";
 
         //Determines whether hyperlinks can be clicked in ItemDescriptionView.xaml for both Windows 8 and Windows Phone 8 projects
         //Sometimes, store may fail apps which contain hyperlinks that navigate improperly when clicked, this disables them
