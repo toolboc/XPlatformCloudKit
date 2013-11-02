@@ -68,10 +68,12 @@ namespace XPlatformCloudKit.DataServices
                         {
                             Title = item.Element("title").Value,
                             Subtitle = item.Element("pubDate").Value,
-                            Description = string.Format(youtubeHtmlTemplate, item.Element("link").Value, item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(), item.Element("title").Value, item.Element("description").Value.Substring(0, Math.Min(580, item.Element("description").Value.Length))),
-                            Image = item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(),
+                            Description = item.Descendants(media + "thumbnail").Count() > 0 ? string.Format(youtubeHtmlTemplate, item.Element("link").Value, item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(), item.Element("title").Value, item.Element("description").Value.Substring(0, Math.Min(580, item.Element("description").Value.Length))):string.Empty,
+                            Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : string.Empty,
                             Group = @group,
                         };
+
+                items = items.Where(x => x.Description != string.Empty);
             }
             else
             {
