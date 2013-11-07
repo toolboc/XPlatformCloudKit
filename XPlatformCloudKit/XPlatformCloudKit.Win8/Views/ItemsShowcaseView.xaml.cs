@@ -84,10 +84,5 @@ namespace XPlatformCloudKit.Views
             ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
 
-        private void ZoomedInItemGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ItemDescriptionView));
-        }
-
     }
 }
