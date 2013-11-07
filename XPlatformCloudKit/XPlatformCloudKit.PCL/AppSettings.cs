@@ -50,10 +50,10 @@ namespace XPlatformCloudKit
         //i.e. http://reddit.com/r/technology/.rss
         public static readonly RssSource[] RssAddressCollection = 
         {
-                        new RssSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
-            new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PLqBTiHv6qMa5eeCx6ZDUAk1ATcep5FFUA?alt=rss&max-results=50", Group = "Youtube Playlist Example"},
+            new RssSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50", Group = "Youtube Playlist Example"},
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
-            new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=9KUs2CRI3hGF2JCZ3rVd_w&_render=rss", Group = "Yahoo Pipes example"},
+            new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
             new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
             new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
             new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Bing example"},
@@ -77,9 +77,9 @@ namespace XPlatformCloudKit
         //(black background / white text)
         public const bool UseLightThemeForWindows8 = true;
 
-        //Url to your privacy policy - default value is "http://www.freeprivacypolicy.org/generic.php"
+        //Url to your privacy policy - default value is "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html"
         //Note: This is REQUIRED for certification in the Windows 8 store
-        public const string PrivacyPolicyUrl = "http://www.freeprivacypolicy.org/generic.php";
+        public const string PrivacyPolicyUrl = "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html";
         #endregion
 
         #region Youtube Video Link Options
