@@ -175,8 +175,7 @@
 			    SelectionMode="None"
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
 			    IsSwipeEnabled="false"
-                IsItemClickEnabled="True"
-                ItemClick="ZoomedInItemGridView_ItemClick">
+                IsItemClickEnabled="True">
 
             <ListView.GroupStyle>
                 <GroupStyle>
