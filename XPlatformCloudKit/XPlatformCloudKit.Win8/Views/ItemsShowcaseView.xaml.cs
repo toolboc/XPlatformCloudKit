@@ -49,6 +49,12 @@ namespace XPlatformCloudKit.Views
         {
             SearchButton.Command.Execute(sender.QueryText);
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+            base.OnNavigatedTo(e);
+        }
         
         private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {

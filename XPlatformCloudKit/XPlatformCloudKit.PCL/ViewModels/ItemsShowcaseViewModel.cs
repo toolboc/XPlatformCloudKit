@@ -256,7 +256,7 @@ namespace XPlatformCloudKit.ViewModels
                     searchCommand = new RelayCommand<string>(
                         (searchTerm) =>
                         {
-                            if (searchTerm!=null && !searchTerm.Equals(""))
+                            if (searchTerm!=null && !searchTerm.Equals("") && ItemGroups!=null && ItemGroups.Count>0)
                             {
                                 IsSearch = true;
                                 if (tempApplicationName == null)
