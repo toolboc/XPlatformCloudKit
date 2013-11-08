@@ -27,6 +27,7 @@
         <Extension Category="windows.protocol">
           <Protocol Name="xplatformcloudkit" />
         </Extension>
+        <Extension Category="windows.search" />
       </Extensions>
     </Application>
   </Applications>

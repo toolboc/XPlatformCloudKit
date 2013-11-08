@@ -18,7 +18,7 @@ namespace XPlatformCloudKit
     {
         #region Global Options
         //The name of your applicaion, this value appears at the top of your app
-        public const string ApplicationName = "My Application";
+        public static string ApplicationName = "My Application";
 
         //Timeframe in minutes to store data before making new request to Data Source
         //set to negative value to disable caching

@@ -33,7 +33,6 @@ namespace XPlatformCloudKit.Views
     /// </summar
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
-    
         public ItemsShowcaseView()
         {
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
@@ -41,8 +40,16 @@ namespace XPlatformCloudKit.Views
             SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemsShowcaseView_Loaded;
-        }
 
+            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
+            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+        }
+        
+        void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)
+        {
+            SearchButton.Command.Execute(sender.QueryText);
+        }
+        
         private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
@@ -77,7 +84,7 @@ namespace XPlatformCloudKit.Views
 
         void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
         {
-            ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
+            ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged; 
 
             //Cache loads so fast if called from constructor that property changed is not fired
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)

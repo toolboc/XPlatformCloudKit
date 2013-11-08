@@ -113,6 +113,7 @@
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBox x:Name="SearchBox" Visibility="Collapsed" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
             <TextBlock Text="{Binding ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
             <!--<TextBlock Text="{Binding LocalizedResources.ItemsShowcaseViewTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
         </StackPanel>
@@ -132,12 +133,14 @@
         </Grid>
 
         <ProgressBar Grid.RowSpan="2" IsIndeterminate="True" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
 
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar Mode="Minimized" Opacity="0.7" IsVisible="True" IsMenuEnabled="False">
             <shell:ApplicationBarIconButton  IconUri="/Assets/Icons/Reload.png" Text="refresh" Click="RefreshButton_Click"/>
+            <shell:ApplicationBarIconButton  IconUri="/Assets/Icons/feature.search.png" Text="search" Click="SearchButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -167,6 +167,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\feature.search.png" />
     <Content Include="Assets\Icons\Next.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Reload.png" />
