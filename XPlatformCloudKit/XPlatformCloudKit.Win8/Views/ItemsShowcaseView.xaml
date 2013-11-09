@@ -203,7 +203,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" IsEnabled="{Binding IsSearch}" Style="{StaticResource BackButtonStyle}" Command="{Binding ClearSearch, Mode=OneWay}"/>
+            <Button x:Name="backButton" IsEnabled="{Binding IsSearch}" Style="{StaticResource BackButtonStyle}" Command="{Binding ClearSearch, Mode=OneWay}" />
             <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
             <Button x:Name="SearchButton" Visibility="Collapsed" AutomationProperties.Name="Search" Content="Search"  Command="{Binding SearchCommand, Mode=OneWay}" />
         </Grid>
