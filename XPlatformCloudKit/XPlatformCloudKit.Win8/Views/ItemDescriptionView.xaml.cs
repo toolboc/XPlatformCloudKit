@@ -43,6 +43,8 @@ namespace XPlatformCloudKit.Views
             this.InitializeComponent();
             Loaded += ItemDescriptionView_Loaded;
             //DataContext = new ItemDescriptionViewModel(); MVVMCross does not need to set DataContext!
+
+            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
         }
 
         void ItemDescriptionView_Loaded(object sender, RoutedEventArgs e)
@@ -56,6 +58,10 @@ namespace XPlatformCloudKit.Views
             base.OnNavigatedTo(e);
         }
 
+        void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)
+        {
+            Frame.Navigate(typeof(ItemsShowcaseView));
+        }
 
         private WebView browser;
         
