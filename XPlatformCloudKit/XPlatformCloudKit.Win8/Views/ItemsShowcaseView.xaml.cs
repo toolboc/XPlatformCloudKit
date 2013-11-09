@@ -49,13 +49,7 @@ namespace XPlatformCloudKit.Views
         {
             SearchButton.Command.Execute(sender.QueryText);
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
-            base.OnNavigatedTo(e);
-        }
-        
+                
         private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
@@ -96,6 +90,7 @@ namespace XPlatformCloudKit.Views
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
             ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
+
 
     }
 }
