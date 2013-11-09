@@ -29,6 +29,25 @@ namespace XPlatformCloudKit
             DataContext = new ItemsShowcaseViewModel();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+            SearchBox.TextChanged += SearchBox_TextChanged;
+        }
+
+        void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((ItemsShowcaseViewModel)DataContext).SearchCommand.Execute(SearchBox.Text.ToString());
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (SearchBox.Visibility == Visibility.Visible)
+            {
+                SearchBox.Visibility = Visibility.Collapsed;
+                SearchBox.Text = "";
+                ((ItemsShowcaseViewModel)DataContext).ClearSearch.Execute(null);
+                e.Cancel = true;
+            }
+            else
+                base.OnBackKeyPress(e);
         }
 
         private void longListSelector_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -48,6 +67,12 @@ namespace XPlatformCloudKit
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             ((ItemsShowcaseViewModel)DataContext).RefreshCommand.Execute(new object());
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            SearchBox.Visibility = Visibility.Visible;
+            SearchBox.Focus();
         }
 
 

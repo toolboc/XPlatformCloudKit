@@ -32,7 +32,6 @@ namespace XPlatformCloudKit.Views
     /// </summary>
     public sealed partial class ItemDescriptionView : LayoutAwarePage
     {
-
         public new ItemDescriptionViewModel ViewModel
         {
             get { return (ItemDescriptionViewModel)base.ViewModel; }
@@ -50,6 +49,13 @@ namespace XPlatformCloudKit.Views
         {
             flipView.SelectedItem = AppState.SelectedItem;
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+            base.OnNavigatedTo(e);
+        }
+
 
         private WebView browser;
         

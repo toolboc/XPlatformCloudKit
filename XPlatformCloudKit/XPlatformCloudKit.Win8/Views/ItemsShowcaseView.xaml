@@ -175,7 +175,8 @@
 			    SelectionMode="None"
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
 			    IsSwipeEnabled="false"
-                IsItemClickEnabled="True">
+                IsItemClickEnabled="True"
+                >
 
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -202,8 +203,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <Button x:Name="backButton" IsEnabled="{Binding IsSearch}" Style="{StaticResource BackButtonStyle}" Command="{Binding ClearSearch, Mode=OneWay}"/>
             <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <Button x:Name="SearchButton" Visibility="Collapsed" AutomationProperties.Name="Search" Content="Search"  Command="{Binding SearchCommand, Mode=OneWay}" />
         </Grid>
     </Grid>
     <common:LayoutAwarePage.BottomAppBar>
