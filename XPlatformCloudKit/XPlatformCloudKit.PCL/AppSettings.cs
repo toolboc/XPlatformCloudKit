@@ -50,7 +50,7 @@ namespace XPlatformCloudKit
         //i.e. http://reddit.com/r/technology/.rss
         public static readonly RssSource[] RssAddressCollection = 
         {
-            new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=0", Group = "Youtube Playlist Example"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=1", Group = "Youtube Playlist Example"},
             new RssSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
             new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
