@@ -30,7 +30,7 @@ namespace XPlatformCloudKit.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summar
+    /// </summary>
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
         public ItemsShowcaseView()
