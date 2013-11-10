@@ -88,7 +88,7 @@ namespace XPlatformCloudKit.Views
 
             //Cache loads so fast if called from constructor that property changed is not fired
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
-            ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+                ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
 
 
