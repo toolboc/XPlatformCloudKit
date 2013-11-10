@@ -30,7 +30,7 @@ namespace XPlatformCloudKit.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summar
+    /// </summary>
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
         public ItemsShowcaseView()
@@ -88,7 +88,7 @@ namespace XPlatformCloudKit.Views
 
             //Cache loads so fast if called from constructor that property changed is not fired
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
-            ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+                ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
 
 
