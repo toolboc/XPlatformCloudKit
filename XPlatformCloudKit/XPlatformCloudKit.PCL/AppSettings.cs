@@ -83,6 +83,15 @@ namespace XPlatformCloudKit
         public const string PrivacyPolicyUrl = "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html";
         #endregion
 
+        #region Windows Phone 8 Project options      
+        //Set to true if you wish to employ a trial experience when submitting your app to the marketplace
+        public const bool TrialModeEnabled = false;
+        //Use to test app behavior as though Trial Mode has been enabled in the marketplace, SET TO FALSE BEFORE SUBMITTING TO MARKETPLACE
+        public const bool SimulateTrialMode = false;
+        //The amount of days to run the app unrestriced if Trial Mode is enforced, Set to negative value to simulate expiration
+        public const int TrialPeriodInDays = 7;
+        #endregion
+
         #region Youtube Video Link Options
         //Forces Youtube links to be rewritten so that they load the video only in full screen
         //This produces a very clean look as the related videos etc. are not visible
