@@ -16,20 +16,71 @@ using XPlatformCloudKit.Models;
 using XPlatformCloudKit.Services;
 using XPlatformCloudKit.Helpers;
 using Cirrious.MvvmCross.WindowsPhone.Views;
+using Cirrious.MvvmCross.Plugins.File;
+using Cirrious.CrossCore;
+using Microsoft.Phone.Marketplace;
+using Microsoft.Phone.Tasks;
 
 namespace XPlatformCloudKit
 {
     public partial class ItemsShowcaseView : MvxPhonePage
     {
+        private static LicenseInformation licenseInfo = new LicenseInformation();
 
         // Constructor
         public ItemsShowcaseView()
         {
             InitializeComponent();
+            
             DataContext = new ItemsShowcaseViewModel();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
             SearchBox.TextChanged += SearchBox_TextChanged;
+            Loaded += ItemsShowcaseView_Loaded;
+        }
+
+        void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(AppSettings.TrialModeEnabled)
+            CheckTrial();
+        }
+
+        private void CheckTrial()
+        {
+            //Set up trial mode logic based on first run of app
+            var fileStore = Mvx.Resolve<IMvxFileStore>();
+
+            if (licenseInfo.IsTrial() || AppSettings.SimulateTrialMode)
+            {
+                if (fileStore.Exists("FirstLaunch"))
+                {
+                    string firstLaunch;
+                    if (fileStore.TryReadTextFile("FirstLaunch", out firstLaunch))
+                    {
+                        var dateTimeOfFirstLaunch = DateTime.Parse(firstLaunch);
+                        if ((DateTime.Now - dateTimeOfFirstLaunch).Days > AppSettings.TrialPeriodInDays)
+                        {
+                            TrialBlocker.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+                else
+                {
+                    fileStore.WriteFile("FirstLaunch", DateTime.Now.ToString());
+                }
+            }
+
+        }
+
+        private void TrialBlocker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+           var button = MessageBox.Show("Press \"ok\" to view this app in the marketplace","Trial Expired", MessageBoxButton.OKCancel);
+
+           if (button == MessageBoxResult.OK)
+           {
+               MarketplaceDetailTask marketPlaceDetailTask = new MarketplaceDetailTask();
+               marketPlaceDetailTask.Show();
+           }
         }
 
         void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -74,7 +125,6 @@ namespace XPlatformCloudKit
             SearchBox.Visibility = Visibility.Visible;
             SearchBox.Focus();
         }
-
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()

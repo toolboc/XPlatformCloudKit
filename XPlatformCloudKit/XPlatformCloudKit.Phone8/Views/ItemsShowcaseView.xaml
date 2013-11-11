@@ -134,6 +134,7 @@
 
         <ProgressBar Grid.RowSpan="2" IsIndeterminate="True" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}"/>
         
+        <Grid x:Name="TrialBlocker" Grid.RowSpan="2" Opacity=".7" Background="Black" Visibility="Collapsed" Tap="TrialBlocker_Tap" />
 
     </Grid>
 
