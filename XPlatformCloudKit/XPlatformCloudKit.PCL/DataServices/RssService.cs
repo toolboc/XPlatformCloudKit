@@ -77,12 +77,20 @@ namespace XPlatformCloudKit.DataServices
             }
             else
             {
+                string audio_template = "<audio src=\"{0}\" controls autoplay>Your browser does not support the <code>audio</code> element.</audio><br/>";
                 items = from item in Feed.Descendants("item")
                         select new Item()
                         {
                             Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
                             Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : string.Empty,
-                            Description = item.Element("description") != null ? item.Element("description").Value : string.Empty,
+                            Description =
+                                // TODO: perhaps this needs to use the url's MIME type to determine the tag for audio, video, PDFs, etc.?
+                                  ( item.Element("enclosure") != null
+                                    ? string.Format(audio_template, (string)(item.Element("enclosure").Attribute("url")))
+                                    : string.Empty )
+                                + ( item.Element("description") != null
+                                    ? (string)(item.Element("description").Value)
+                                    : string.Empty ),
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : "",
                             Group = @group,
                         };

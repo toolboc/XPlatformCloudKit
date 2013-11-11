@@ -58,7 +58,8 @@ namespace XPlatformCloudKit
             new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
             new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
             new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
-            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},           
+            new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
+            new RssSource{Url = "http://changelogshow.com/105.rss", Group = "Podcast example"},
         };
         #endregion
 
