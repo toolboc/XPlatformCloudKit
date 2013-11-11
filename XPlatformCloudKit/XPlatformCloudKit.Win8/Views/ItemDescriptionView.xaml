@@ -28,7 +28,7 @@
     <Grid
         Style="{StaticResource LayoutRootStyle}"
         DataContext="{Binding SelectedItem}"
-        d:DataContext="{Binding SelectedItem, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}">
+        d:DataContext="{Binding SelectedItem, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}" >
       	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="50*"/>
     		<ColumnDefinition Width="50*"/>
@@ -50,7 +50,7 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Grid.ColumnSpan="2">
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Grid.ColumnSpan="2" Background="{Binding BackgroundColor}">
 
             <FlipView.ItemContainerStyle>
                 <Style TargetType="FlipViewItem">
@@ -71,7 +71,7 @@
                             <!-- Content is allowed to flow across as many columns as needed -->
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
-                                    <Paragraph>
+                                    <Paragraph Foreground="{Binding FontColor}">
                                         <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
                                         <LineBreak/>
                                         <LineBreak/>
@@ -139,7 +139,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}" Foreground="{Binding FontColor}"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

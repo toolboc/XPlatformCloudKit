@@ -23,6 +23,8 @@ namespace XPlatformCloudKit.ViewModels
         }
 
         public string ApplicationName { get { return AppSettings.ApplicationName; } }
+        public string BackgroundColor { get { return AppSettings.BackgroundColorOfDescription; } }
+        public string FontColor { get { return AppSettings.FontColorOfDescription; } }
 
         private Group<Item> selectedGroup;
         /// <summary>

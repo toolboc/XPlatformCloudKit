@@ -15,7 +15,7 @@
 
     <common:LayoutAwarePage.Resources>
 
-    <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!--
             Collection of grouped items displayed by this page, bound to a subset
@@ -86,7 +86,8 @@
                     x:Name="ZoomedOutGroupGridView"
                     ScrollViewer.IsHorizontalScrollChainingEnabled="False"
                     SelectionMode="None"
-			        IsSwipeEnabled="false" IsItemClickEnabled="True" >
+			        IsSwipeEnabled="false" IsItemClickEnabled="True"
+                    Background="{Binding BackgroundColor}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock
@@ -129,7 +130,8 @@
 			    SelectionMode="None"
 			    IsSwipeEnabled="false" IsItemClickEnabled="True"          
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
-                ItemTemplate="{StaticResource Standard250x250ItemTemplate}" >
+                ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
+                Background="{Binding BackgroundColor}" >
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -141,10 +143,10 @@
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid Margin="1,0,0,6">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
-                                                <TextBlock Text="{StaticResource ChevronGlyph}" Visibility="Collapsed" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
-                                            </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" Foreground="{Binding FontColor}" />
+                                            <TextBlock Text="{StaticResource ChevronGlyph}" Visibility="Collapsed" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
@@ -176,6 +178,7 @@
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
 			    IsSwipeEnabled="false"
                 IsItemClickEnabled="True"
+                Background="{Binding BackgroundColor}"
                 >
 
             <ListView.GroupStyle>
@@ -183,10 +186,10 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="7,7,0,0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
-                                        <!--<TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>-->
-                                    </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Foreground="{Binding FontColor}" Style="{StaticResource GroupHeaderTextStyle}" />
+                                    <!--<TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>-->
+                                </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
@@ -204,7 +207,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" IsEnabled="{Binding IsSearch}" Style="{StaticResource BackButtonStyle}" Command="{Binding ClearSearch, Mode=OneWay}" />
-            <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" Foreground="{Binding FontColor}"/>
             <Button x:Name="SearchButton" Visibility="Collapsed" AutomationProperties.Name="Search" Content="Search"  Command="{Binding SearchCommand, Mode=OneWay}" />
         </Grid>
     </Grid>
