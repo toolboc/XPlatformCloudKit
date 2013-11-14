@@ -28,10 +28,5 @@ namespace XPlatformCloudKit.Models
             get;
             set;
         }
-
-        public string FontColor
-        {
-            get { return AppSettings.FontColorOfDescription; }
-        }
     }
 }
