@@ -19,8 +19,6 @@
             Source="{Binding SelectedGroup}"
             d:Source="{Binding SelectedGroup, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
-    
-    
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
