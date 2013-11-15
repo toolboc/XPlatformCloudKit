@@ -126,14 +126,7 @@ namespace XPlatformCloudKit.ViewModels
             set { AppSettings.ApplicationName = value; RaisePropertyChanged(() => ApplicationName); }
             get { return AppSettings.ApplicationName; }
         }
-        public string BackgroundColor
-        {
-            get { return AppSettings.BackgroundColorOfDescription; }
-        }
-        public string FontColor
-        {
-            get { return AppSettings.FontColorOfDescription; }
-        }
+        
 
         private Boolean isSearch;
         public Boolean IsSearch

@@ -50,7 +50,7 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Grid.ColumnSpan="2" Background="{Binding BackgroundColor}">
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Grid.ColumnSpan="2" >
 
             <FlipView.ItemContainerStyle>
                 <Style TargetType="FlipViewItem">
@@ -71,7 +71,7 @@
                             <!-- Content is allowed to flow across as many columns as needed -->
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
-                                    <Paragraph Foreground="{Binding FontColor}">
+                                    <Paragraph >
                                         <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
                                         <LineBreak/>
                                         <LineBreak/>
@@ -139,7 +139,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}" Foreground="{Binding FontColor}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
