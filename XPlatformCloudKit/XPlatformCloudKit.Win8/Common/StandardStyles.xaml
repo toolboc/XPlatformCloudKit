@@ -28,6 +28,33 @@
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 
+<!-- Theme Overrides -->
+    <!-- App Background -->
+    <!--<SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFFFFF"/>-->
+
+    <!-- App Title & Groups-->
+    <!--<SolidColorBrush x:Key="ApplicationForegroundThemeBrush" Color="Aquamarine"/>-->
+
+    <!-- Titles -->
+    <!--<SolidColorBrush x:Key="ListViewItemOverlayForegroundThemeBrush" Color="#FF991100"/>-->
+    <!--<SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush" Color="#FF991100"/>-->
+
+    <!-- Subtitles -->
+    <!--<SolidColorBrush x:Key="ListViewItemOverlaySecondaryForegroundThemeBrush" Color="#FF991100"/>-->
+
+    <!--<SolidColorBrush x:Key="ApplicationPointerOverForegroundThemeBrush" Color="#AAAAAA"/>-->
+
+    <!--<SolidColorBrush x:Key="BackButtonBackgroundThemeBrush" Color="#00000000"/>-->
+
+    <!--<SolidColorBrush x:Key="BackButtonForegroundThemeBrush" Color="#FFFFFF"/>-->
+
+    <!--<SolidColorBrush x:Key="BackButtonPressedBackgroundThemeBrush" Color="#00000000"/>-->
+
+    <!--<SolidColorBrush x:Key="BackButtonPressedForegroundThemeBrush" Color="#CCCCCC"/>-->
+
+    <!--<SolidColorBrush x:Key="BackButtonPointerOverBackgroundThemeBrush" Color="#00000000"/>-->
+<!-- Theme Overrides -->
+
     <!-- RichTextBlock styles -->
 
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
@@ -124,6 +151,7 @@
     </Style>
 
     <Style x:Key="GroupHeaderTextStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />
         <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
