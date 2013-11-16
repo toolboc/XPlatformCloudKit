@@ -81,6 +81,9 @@ namespace XPlatformCloudKit
         //Determines whether to use the Light theme (white background / black text) over the default Dark theme
         //(black background / white text)
         public const bool UseLightThemeForWindows8 = true;
+        //To change specifics value of the chosen theme, i.e. Font Color throughout the Windows 8 application
+        //Open XPlatformCloudKit.Win8/Common/StandardStyles.xaml and look for the <!-- Theme Overrides --> Section
+        //Uncomment the portion(s) of the theme you wish to override
 
         //Url to your privacy policy - default value is "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html"
         //Note: This is REQUIRED for certification in the Windows 8 store
