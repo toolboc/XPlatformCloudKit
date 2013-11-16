@@ -13,8 +13,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Non-brush values that vary across themes -->
-    
-    
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
@@ -29,7 +27,6 @@
     </ResourceDictionary.ThemeDictionaries>
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-    
 
     <!-- RichTextBlock styles -->
 

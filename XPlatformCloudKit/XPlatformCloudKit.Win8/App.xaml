@@ -2,8 +2,7 @@
     x:Class="XPlatformCloudKit.Win8.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:XPlatformCloudKit.Win8"
-    xmlns:theme="using:XPlatformCloudKit.Theme">
+    xmlns:local="using:XPlatformCloudKit.Win8">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -14,7 +13,6 @@
                     Required by Visual Studio project and item templates
                  -->
                 <ResourceDictionary Source="Common/StandardStyles.xaml"/>
-                <ResourceDictionary Source="Theme/ThemeDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

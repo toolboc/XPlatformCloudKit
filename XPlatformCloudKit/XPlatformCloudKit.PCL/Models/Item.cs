@@ -83,6 +83,9 @@ namespace XPlatformCloudKit.Models
             get { return group; }
             set { Set(ref group, value); }
         }
+
+        public string BackgroundColor { get { return AppSettings.BackgroundColorOfDescription; } }
+        public string FontColor { get { return AppSettings.FontColorOfDescription; } }
         
     }
 }

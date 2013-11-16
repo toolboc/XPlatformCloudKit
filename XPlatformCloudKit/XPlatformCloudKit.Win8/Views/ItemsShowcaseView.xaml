@@ -87,15 +87,14 @@
                     ScrollViewer.IsHorizontalScrollChainingEnabled="False"
                     SelectionMode="None"
 			        IsSwipeEnabled="false" IsItemClickEnabled="True"
-                    >
+                    Background="{Binding BackgroundColor}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock
                                 Text="{Binding Group.Key}"
                                 TextTrimming="WordEllipsis"
                                 FontFamily="Segoe UI Light"
-                                FontSize="24"
-                                Style="{StaticResource BasicTextStyle}"/>
+                                FontSize="24" />
                         </DataTemplate>
                     </GridView.ItemTemplate>
                     <GridView.ItemsPanel>
@@ -132,7 +131,7 @@
 			    IsSwipeEnabled="false" IsItemClickEnabled="True"          
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
                 ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
-                 >
+                Background="{Binding BackgroundColor}" >
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -145,7 +144,7 @@
                                 <DataTemplate>
                                     <Grid Margin="1,0,0,6">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}"  />
+                                            <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" Foreground="{Binding FontColor}" />
                                             <TextBlock Text="{StaticResource ChevronGlyph}" Visibility="Collapsed" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                         </StackPanel>
                                     </Grid>
@@ -179,7 +178,7 @@
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
 			    IsSwipeEnabled="false"
                 IsItemClickEnabled="True"
-                
+                Background="{Binding BackgroundColor}"
                 >
 
             <ListView.GroupStyle>
@@ -188,7 +187,7 @@
                         <DataTemplate>
                             <Grid Margin="7,7,0,0">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Key}" Margin="3,-7,10,10"  Style="{StaticResource GroupHeaderTextStyle}" />
+                                    <TextBlock Text="{Binding Key}" Margin="3,-7,10,10" Foreground="{Binding FontColor}" Style="{StaticResource GroupHeaderTextStyle}" />
                                     <!--<TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>-->
                                 </StackPanel>
                             </Grid>
@@ -208,7 +207,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" IsEnabled="{Binding IsSearch}" Style="{StaticResource BackButtonStyle}" Command="{Binding ClearSearch, Mode=OneWay}" />
-            <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" />
+            <TextBlock x:Name="pageTitle" Text="{Binding ApplicationName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" Foreground="{Binding FontColor}"/>
             <Button x:Name="SearchButton" Visibility="Collapsed" AutomationProperties.Name="Search" Content="Search"  Command="{Binding SearchCommand, Mode=OneWay}" />
         </Grid>
     </Grid>
