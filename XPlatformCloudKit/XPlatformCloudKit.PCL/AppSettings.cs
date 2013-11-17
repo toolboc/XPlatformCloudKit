@@ -60,7 +60,7 @@ namespace XPlatformCloudKit
             new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
             new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
             new RssSource{Url = "http://changelogshow.com/105.rss", Group = "Podcast example"},
-            new RssSource{Url = "http://futuretechreport.tumblr.com/rss", Group = "Tumblr Example"},
+            new RssSource{Url = "http://blog.designersofthings.com/rss", Group = "Tumblr Example"},
             new RssSource{Url = "http://pinterest.com/happylynnifer/feed.rss", Group = "Pinterest User Example"},
             new RssSource{Url = "http://www.pinterest.com/happylynnifer/human-tech-advances.rss", Group = "Pinterest User Board Example"},
         };
