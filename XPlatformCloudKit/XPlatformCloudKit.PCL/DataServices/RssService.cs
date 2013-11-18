@@ -23,22 +23,19 @@ namespace XPlatformCloudKit.DataServices
 
         public async Task<List<Item>> GetItems()
         {
-            try
+            RssData = new List<Item>();
+            Boolean error = false;
+            foreach (var rssSource in AppSettings.RssAddressCollection)
             {
-                RssData = new List<Item>();
-
-                foreach (var rssSource in AppSettings.RssAddressCollection)
+                try
                 {
                     await Parse(rssSource);
                 }
-
-                return RssData;
+                catch { error = true; }
             }
-            catch
-            {
+            if (error)
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
-                return RssData;
-            }
+            return RssData;
         }
 
         public async Task Parse(RssSource rssSource)
@@ -68,7 +65,7 @@ namespace XPlatformCloudKit.DataServices
                         {
                             Title = item.Element("title").Value,
                             Subtitle = item.Element("pubDate").Value,
-                            Description = item.Descendants(media + "thumbnail").Count() > 0 ? string.Format(youtubeHtmlTemplate, item.Element("link").Value, item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(), item.Element("title").Value, item.Element("description").Value.Substring(0, Math.Min(580, item.Element("description").Value.Length))):string.Empty,
+                            Description = item.Descendants(media + "thumbnail").Count() > 0 ? string.Format(youtubeHtmlTemplate, item.Element("link").Value, item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(), item.Element("title").Value, item.Element("description").Value.Substring(0, Math.Min(580, item.Element("description").Value.Length))) : string.Empty,
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : string.Empty,
                             Group = @group,
                         };
@@ -85,12 +82,12 @@ namespace XPlatformCloudKit.DataServices
                             Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : string.Empty,
                             Description =
                                 // TODO: perhaps this needs to use the url's MIME type to determine the tag for audio, video, PDFs, etc.?
-                                  ( item.Element("enclosure") != null
+                                  (item.Element("enclosure") != null
                                     ? string.Format(audio_template, (string)(item.Element("enclosure").Attribute("url")))
-                                    : string.Empty )
-                                + ( item.Element("description") != null
+                                    : string.Empty)
+                                + (item.Element("description") != null
                                     ? (string)(item.Element("description").Value)
-                                    : string.Empty ),
+                                    : string.Empty),
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : "",
                             Group = @group,
                         };
