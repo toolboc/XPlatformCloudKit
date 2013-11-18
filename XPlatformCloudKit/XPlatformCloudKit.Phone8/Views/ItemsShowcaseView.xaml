@@ -77,9 +77,9 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/Background.png"/>
-        </Grid.Background>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="/Assets/Wallpaper.png" Opacity=".5"/>
+        </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

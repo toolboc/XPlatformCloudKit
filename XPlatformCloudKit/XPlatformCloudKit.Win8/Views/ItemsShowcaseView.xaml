@@ -37,6 +37,9 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Wallpaper.png"/>
+        </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>

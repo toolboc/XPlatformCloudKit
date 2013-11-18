@@ -29,7 +29,10 @@
         Style="{StaticResource LayoutRootStyle}"
         DataContext="{Binding SelectedItem}"
         d:DataContext="{Binding SelectedItem, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}">
-      	<Grid.ColumnDefinitions>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Wallpaper.png"/>
+        </Grid.Background>-->
+        <Grid.ColumnDefinitions>
     		<ColumnDefinition Width="50*"/>
     		<ColumnDefinition Width="50*"/>
     	</Grid.ColumnDefinitions>
