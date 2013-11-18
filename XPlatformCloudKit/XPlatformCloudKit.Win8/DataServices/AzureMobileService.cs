@@ -21,15 +21,25 @@ namespace XPlatformCloudKit.DataServices
 
         public AzureMobileService()
         {
-            MobileServiceClient = new MobileServiceClient(
-                             AppSettings.MobileServiceAddress,
-                             AppSettings.MobileServiceApplicationKey
-                    );
+            if (AppSettings.EnableAzureMobileService)
+            {
+                try
+                {
+                    MobileServiceClient = new MobileServiceClient(
+                                     AppSettings.MobileServiceAddress,
+                                     AppSettings.MobileServiceApplicationKey
+                            );
 
-            itemsTable = MobileServiceClient.GetTable<Item>();
-            
-            if(AppSettings.CreateInitialSchemaForAzureMobileService)
-                CreateInitialSchema();
+                    itemsTable = MobileServiceClient.GetTable<Item>();
+
+                    if (AppSettings.CreateInitialSchemaForAzureMobileService)
+                        CreateInitialSchema();
+                }
+                catch
+                {
+                    ServiceLocator.MessageService.ShowErrorAsync("Error connecting to Azure Movile Service. Make sure the Service Address and Application Key are correct.", "Application Error");
+                }
+            }
         }
 
         public async Task<List<Item>> GetItems()
