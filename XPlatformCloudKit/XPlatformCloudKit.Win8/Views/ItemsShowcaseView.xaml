@@ -92,11 +92,19 @@
 			        IsSwipeEnabled="false" IsItemClickEnabled="True" >
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock
+                            <Grid Height="250" Width="250">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/> 
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                Margin="6,0,12,0"
                                 Text="{Binding Group.Key}"
                                 TextTrimming="WordEllipsis"
                                 FontFamily="Segoe UI Light"
                                 FontSize="24" />
+                                <Image Source="{Binding Group[0].Image}" Grid.Row="1"/>
+                            </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                     <GridView.ItemsPanel>
