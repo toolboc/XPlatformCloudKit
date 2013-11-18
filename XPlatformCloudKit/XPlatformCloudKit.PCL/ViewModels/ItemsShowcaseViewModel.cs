@@ -16,6 +16,7 @@ using Cirrious.MvvmCross.Plugins.File;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Plugins.Json;
+using System.Diagnostics;
 
 namespace XPlatformCloudKit.ViewModels
 {
@@ -31,7 +32,10 @@ namespace XPlatformCloudKit.ViewModels
             if (EnabledDataServices.Count == 0)
                 ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
             else
-                LoadItems();
+                // If we are running in the debugger, tell LoadItems() to ignore the cache in case we modified
+                //  the RSS feeds or other content elements.  This way we are sure to see the desired content
+                //  when iterating program changes in the debugger.
+                LoadItems(Debugger.IsAttached);
         }
 
         #endregion // Constructors
