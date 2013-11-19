@@ -18,6 +18,18 @@
             x:Name="itemsViewSource"
             Source="{Binding SelectedGroup}"
             d:Source="{Binding SelectedGroup, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}"/>
+        <Storyboard x:Name="WebViewMinimized">
+        	<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        </Storyboard>
+        <Storyboard x:Name="WebViewMaximized">
+        	<DoubleAnimation Duration="0:0:1" To="2.25" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="-345" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="1.10" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:1" To="-15" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="webView" d:IsOptimized="True"/>
+        </Storyboard>
     </Page.Resources>
 
     <!--
@@ -133,8 +145,20 @@
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
-        <WebView x:Name="webView" Grid.Row="1" Grid.Column="1" Loaded="WireUpWebBrowser" Margin="70,30,70,47"/>
-
+        <WebView x:Name="webView" Grid.Row="1" Grid.Column="1" Loaded="WireUpWebBrowser" Margin="70,30,70,47" RenderTransformOrigin="0.5,0.5">
+        	<WebView.RenderTransform>
+        		<CompositeTransform/>
+        	</WebView.RenderTransform>
+        </WebView>
+        <Button x:Name="WebViewFullScreenToggleButton" 
+                Content="Full Screen" 
+                Grid.Row="0" Grid.Column="1" 
+                Height="50" Width="200" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="0,0,70,27"
+                Tapped="WebViewFullScreenToggleButton_Tapped"
+                />
         <!-- Back button and page title -->
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -142,7 +166,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Group}" Style="{StaticResource PageHeaderTextStyle}" Margin="0,0,300,40"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
