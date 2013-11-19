@@ -88,11 +88,24 @@ namespace XPlatformCloudKit.Views
             LoadWebContent();
         }
 
+        private bool isWebViewMaximized = false;
+
         private void MaximizeWebView()
         {
             browser.SetValue(Grid.ColumnProperty, 0);
             browser.SetValue(Grid.ColumnSpanProperty, 2);
             browser.Margin = new Thickness(70, 0, 70, 47);
+            isWebViewMaximized = true;
+            WebViewFullScreenToggleButton.Content = "Minimize";
+        }
+
+        private void MiniMizeWebView()
+        {
+            browser.SetValue(Grid.ColumnProperty, 1);
+            browser.SetValue(Grid.ColumnSpanProperty, 1);
+            browser.Margin = new Thickness(70, 30, 70, 47);
+            isWebViewMaximized = false;
+            WebViewFullScreenToggleButton.Content = "Full Screen";
         }
 
         private void LoadWebContent()
@@ -163,6 +176,18 @@ namespace XPlatformCloudKit.Views
             SolidColorBrush mc = (SolidColorBrush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"];
             string color = mc.Color.ToString();
             return color.Remove(1, 2);
+        }
+
+        private void WebViewFullScreenToggleButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (isWebViewMaximized)
+            {
+                MiniMizeWebView();
+            }
+            else
+            {
+                MaximizeWebView();
+            }
         }
 
 
