@@ -28,6 +28,7 @@
             <Border HorizontalAlignment="Left" Margin="6">
                 <TextBlock Text="{Binding Key}"
                     TextTrimming="WordEllipsis"
+                    TextWrapping="Wrap"
         			FontSize="40" 
         			VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Border>
