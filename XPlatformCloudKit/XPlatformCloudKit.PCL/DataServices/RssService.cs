@@ -101,6 +101,11 @@ namespace XPlatformCloudKit.DataServices
                     if (item.Image == null) //Attempt to parse an image out of the description if one is not returned in the RSS
                         item.Image = Regex.Match(item.Description, "(https?:)?//?[^'\"<>]+?.(jpg|jpeg|gif|png)").Value;
 
+                    //Format dates to look cleaner
+                    DateTime dateTimeResult = new DateTime();
+                    if (DateTime.TryParse(item.Subtitle, out dateTimeResult))
+                        item.Subtitle = dateTimeResult.ToString("ddd, d MMM yyyy");
+
                     RssData.Add(item);
                 };
             }
