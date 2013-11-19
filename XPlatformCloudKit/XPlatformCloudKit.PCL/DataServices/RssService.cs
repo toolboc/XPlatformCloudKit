@@ -64,11 +64,9 @@ namespace XPlatformCloudKit.DataServices
         {
             RssData = new List<Item>();
             Boolean error = false;
-            foreach (var rssSource in AppSettings.RssAddressCollection)
+           
+            try
             {
-<<<<<<< HEAD
-                try
-=======
                 RssData = new List<Item>();
 
                 // Copy the RSS feeds in the AppSettings.RssAddressCollection into a local list.
@@ -106,12 +104,12 @@ namespace XPlatformCloudKit.DataServices
                 }
 
                 foreach (var rssSource in listRssSources)
->>>>>>> 14805d4d3ab62551324437637231168206d5b541
                 {
                     await Parse(rssSource);
                 }
-                catch { error = true; }
             }
+            catch { error = true; }
+            
             if (error)
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
             return RssData;
