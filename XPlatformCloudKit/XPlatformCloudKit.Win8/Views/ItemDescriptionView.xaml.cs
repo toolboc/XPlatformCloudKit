@@ -92,18 +92,14 @@ namespace XPlatformCloudKit.Views
 
         private void MaximizeWebView()
         {
-            browser.SetValue(Grid.ColumnProperty, 0);
-            browser.SetValue(Grid.ColumnSpanProperty, 2);
-            browser.Margin = new Thickness(70, 0, 70, 47);
+            WebViewMaximized.Begin();
             isWebViewMaximized = true;
             WebViewFullScreenToggleButton.Content = "Minimize";
         }
 
         private void MiniMizeWebView()
         {
-            browser.SetValue(Grid.ColumnProperty, 1);
-            browser.SetValue(Grid.ColumnSpanProperty, 1);
-            browser.Margin = new Thickness(70, 30, 70, 47);
+            WebViewMinimized.Begin();
             isWebViewMaximized = false;
             WebViewFullScreenToggleButton.Content = "Full Screen";
         }
