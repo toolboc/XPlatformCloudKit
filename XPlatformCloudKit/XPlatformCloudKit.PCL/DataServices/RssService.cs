@@ -24,42 +24,6 @@ namespace XPlatformCloudKit.DataServices
         HttpClient httpClient = new HttpClient();
         List<Item> RssData;
 
-        /// <summary>
-        /// Remove any whitespace or quotes from an RssSource field.
-        /// </summary>
-        private string cleanField(string strFld)
-        {
-            return (strFld.Trim().Trim('"'));
-        }
-
-        /// <summary>
-        /// Parse a string that should contain a URL/group name pair into an RssSource object.
-        /// </summary>
-        private RssSource stringToRssSource(string str)
-        {
-            string[] fields = str.Split(',');
-
-            if (fields.Length != 2)
-                // Invalid remote RSS source line.
-                throw new FormatException("The following line is not a valid RSS source line (invalid field count): " + str);
-
-            string theUrl = cleanField(fields[0]);
-            string theGroup = cleanField(fields[1]);
-
-            if (String.IsNullOrWhiteSpace(theUrl))
-                throw new FormatException("The following line is not a valid RSS source line (URL field is empty): " + str);
-
-            if (String.IsNullOrWhiteSpace(theGroup))
-                throw new FormatException("The following line is not a valid RSS source line (Group field is empty): " + str);
-
-            // YouTube gdata feeds are in ATOM format by default, which we can not parse.  If the RSS URL argument is missing,
-            //  flag the error.
-            if (theUrl.Contains("gdata.youtube.com") && (!theUrl.ContainsIgnoreCase("alt=rss")))
-                throw new FormatException("Found a YouTube API feed that returns the default ATOM format, which we can not parse.  Append 'alt=rss' (lowercase) to the URL to fix this problem if applicable.");
-
-            return new RssSource() { Url = theUrl, Group = theGroup };
-        }
-
         public async Task<List<Item>> GetItems()
         {
             RssData = new List<Item>();
@@ -190,6 +154,42 @@ namespace XPlatformCloudKit.DataServices
             {
                 await ServiceLocator.MessageService.ShowErrorAsync("Zero items retrieved from " + rssSource.Url, "Application Error");
             }
+        }
+
+        /// <summary>
+        /// Remove any whitespace or quotes from an RssSource field.
+        /// </summary>
+        private string cleanField(string strFld)
+        {
+            return (strFld.Trim().Trim('"'));
+        }
+
+        /// <summary>
+        /// Parse a string that should contain a URL/group name pair into an RssSource object.
+        /// </summary>
+        private RssSource stringToRssSource(string str)
+        {
+            string[] fields = str.Split(',');
+
+            if (fields.Length != 2)
+                // Invalid remote RSS source line.
+                throw new FormatException("The following line is not a valid RSS source line (invalid field count): " + str);
+
+            string theUrl = cleanField(fields[0]);
+            string theGroup = cleanField(fields[1]);
+
+            if (String.IsNullOrWhiteSpace(theUrl))
+                throw new FormatException("The following line is not a valid RSS source line (URL field is empty): " + str);
+
+            if (String.IsNullOrWhiteSpace(theGroup))
+                throw new FormatException("The following line is not a valid RSS source line (Group field is empty): " + str);
+
+            // YouTube gdata feeds are in ATOM format by default, which we can not parse.  If the RSS URL argument is missing,
+            //  flag the error.
+            if (theUrl.Contains("gdata.youtube.com") && (!theUrl.ContainsIgnoreCase("alt=rss")))
+                throw new FormatException("Found a YouTube API feed that returns the default ATOM format, which we can not parse.  Append 'alt=rss' (lowercase) to the URL to fix this problem if applicable.");
+
+            return new RssSource() { Url = theUrl, Group = theGroup };
         }
     }
 }
