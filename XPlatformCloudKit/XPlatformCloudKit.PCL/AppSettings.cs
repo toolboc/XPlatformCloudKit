@@ -45,7 +45,7 @@ namespace XPlatformCloudKit
 
         #region RssService Settings
         public const bool EnableRssService = true;//Use RssAddressCollection 
-        public const int RssMaxItemsPerFeed = 10; //The Maximum number of items to fetch for each feed. Enter Negative value to fetch all.
+        public const int RssMaxItemsPerFeed = -1; //The Maximum number of items to fetch for each feed. Enter Negative value to fetch all.
 
         //Urls to an RSS Data Source 
         //i.e. http://reddit.com/r/technology/.rss
