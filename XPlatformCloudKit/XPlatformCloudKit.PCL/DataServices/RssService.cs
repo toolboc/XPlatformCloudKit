@@ -115,8 +115,11 @@ namespace XPlatformCloudKit.DataServices
             }
             else
             {
-                string audio_template = "<audio src=\"{0}\" controls autoplay>Your browser does not support the <code>audio</code> element.</audio><br/>";
-                items = from item in Feed.Descendants("item")
+                string audio_template = "<audio src=\"{0}\" controls autoplay>Your browser does not support the <code>audio</code> element.<br/><a href=\"{0}\">Link to file</a>.</audio><br/>";
+                var feeditems = AppSettings.RssMaxItemsPerFeed < 0
+                    ? Feed.Descendants("item")
+                    : Feed.Descendants("item").Take(AppSettings.RssMaxItemsPerFeed);
+                items = from item in feeditems
                         select new Item()
                         {
                             Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
