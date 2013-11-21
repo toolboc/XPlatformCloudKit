@@ -82,7 +82,7 @@ namespace XPlatformCloudKit
          *  not be accessed.  Leave RemoteRssSourceUrl blank if you do not want to use the remote RSS
          *  feature.
          */
-        //The value below can be used to test RemoteRssSourceUrl
+        //The value below can be used to test RemoteRssSourceUrl, but please don't leave it active in your published app.
         //public const string RemoteRssSourceUrl = "http://robodance.com/xplatformcloudkit/remote-rss-feed-sample.txt";
         public const string RemoteRssSourceUrl = "";
 
