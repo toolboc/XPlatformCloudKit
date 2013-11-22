@@ -67,16 +67,33 @@ namespace XPlatformCloudKit.DataServices
                     }
                 }
 
-                foreach (var rssSource in listRssSources)
-                {
-                    await Parse(rssSource);
-                }
+                // Now get retrieve and parse all the RSS feeds.
+                DoFetchRssFeeds(listRssSources);
             }
             catch { error = true; }
             
             if (error)
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
+
             return RssData;
+        }
+
+        /// <summary>
+        /// Retrieve and parse a list of RSS feeds in parallel and wait for them all to complete.
+        /// </summary>
+        private void DoFetchRssFeeds(List<RssSource> listRssSources)
+        {
+            // Create a list of tasks, one per RSS feed to retrieve.
+            IList<Task> tasks = new List<Task>();
+
+            // Add the parsing and retrieval of each RSS source as a separate task.
+            foreach (var rssSource in listRssSources)
+            {
+                tasks.Add(
+                    Task.Run(async () => await Parse(rssSource)));
+            }
+
+            Task.WaitAll(tasks.ToArray());
         }
 
         public async Task Parse(RssSource rssSource)
