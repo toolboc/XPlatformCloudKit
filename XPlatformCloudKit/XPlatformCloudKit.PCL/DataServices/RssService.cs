@@ -68,7 +68,11 @@ namespace XPlatformCloudKit.DataServices
                 }
 
                 // Now get retrieve and parse all the RSS feeds.
-                DoFetchRssFeeds(listRssSources);
+                foreach (var rssSource in listRssSources)
+                {
+                    await Parse(rssSource);
+                }
+
             }
             catch { error = true; }
             
