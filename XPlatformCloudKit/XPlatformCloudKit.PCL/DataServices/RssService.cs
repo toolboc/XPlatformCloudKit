@@ -24,42 +24,6 @@ namespace XPlatformCloudKit.DataServices
         HttpClient httpClient = new HttpClient();
         List<Item> RssData;
 
-        /// <summary>
-        /// Remove any whitespace or quotes from an RssSource field.
-        /// </summary>
-        private string cleanField(string strFld)
-        {
-            return (strFld.Trim().Trim('"'));
-        }
-
-        /// <summary>
-        /// Parse a string that should contain a URL/group name pair into an RssSource object.
-        /// </summary>
-        private RssSource stringToRssSource(string str)
-        {
-            string[] fields = str.Split(',');
-
-            if (fields.Length != 2)
-                // Invalid remote RSS source line.
-                throw new FormatException("The following line is not a valid RSS source line (invalid field count): " + str);
-
-            string theUrl = cleanField(fields[0]);
-            string theGroup = cleanField(fields[1]);
-
-            if (String.IsNullOrWhiteSpace(theUrl))
-                throw new FormatException("The following line is not a valid RSS source line (URL field is empty): " + str);
-
-            if (String.IsNullOrWhiteSpace(theGroup))
-                throw new FormatException("The following line is not a valid RSS source line (Group field is empty): " + str);
-
-            // YouTube gdata feeds are in ATOM format by default, which we can not parse.  If the RSS URL argument is missing,
-            //  flag the error.
-            if (theUrl.Contains("gdata.youtube.com") && (!theUrl.ContainsIgnoreCase("alt=rss")))
-                throw new FormatException("Found a YouTube API feed that returns the default ATOM format, which we can not parse.  Append 'alt=rss' (lowercase) to the URL to fix this problem if applicable.");
-
-            return new RssSource() { Url = theUrl, Group = theGroup };
-        }
-
         public async Task<List<Item>> GetItems()
         {
             RssData = new List<Item>();
@@ -103,16 +67,37 @@ namespace XPlatformCloudKit.DataServices
                     }
                 }
 
+                // Now get retrieve and parse all the RSS feeds.
                 foreach (var rssSource in listRssSources)
                 {
                     await Parse(rssSource);
                 }
+
             }
             catch { error = true; }
             
             if (error)
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
+
             return RssData;
+        }
+
+        /// <summary>
+        /// Retrieve and parse a list of RSS feeds in parallel and wait for them all to complete.
+        /// </summary>
+        private void DoFetchRssFeeds(List<RssSource> listRssSources)
+        {
+            // Create a list of tasks, one per RSS feed to retrieve.
+            IList<Task> tasks = new List<Task>();
+
+            // Add the parsing and retrieval of each RSS source as a separate task.
+            foreach (var rssSource in listRssSources)
+            {
+                tasks.Add(
+                    Task.Run(async () => await Parse(rssSource)));
+            }
+
+            Task.WaitAll(tasks.ToArray());
         }
 
         public async Task Parse(RssSource rssSource)
@@ -151,8 +136,11 @@ namespace XPlatformCloudKit.DataServices
             }
             else
             {
-                string audio_template = "<audio src=\"{0}\" controls autoplay>Your browser does not support the <code>audio</code> element.</audio><br/>";
-                items = from item in Feed.Descendants("item")
+                string audio_template = "<audio src=\"{0}\" controls autoplay>Your browser does not support the <code>audio</code> element.<br/><a href=\"{0}\">Link to file</a>.</audio><br/>";
+                var feeditems = AppSettings.RssMaxItemsPerFeed < 0
+                    ? Feed.Descendants("item")
+                    : Feed.Descendants("item").Take(AppSettings.RssMaxItemsPerFeed);
+                items = from item in feeditems
                         select new Item()
                         {
                             Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
@@ -190,6 +178,42 @@ namespace XPlatformCloudKit.DataServices
             {
                 await ServiceLocator.MessageService.ShowErrorAsync("Zero items retrieved from " + rssSource.Url, "Application Error");
             }
+        }
+
+        /// <summary>
+        /// Remove any whitespace or quotes from an RssSource field.
+        /// </summary>
+        private string cleanField(string strFld)
+        {
+            return (strFld.Trim().Trim('"'));
+        }
+
+        /// <summary>
+        /// Parse a string that should contain a URL/group name pair into an RssSource object.
+        /// </summary>
+        private RssSource stringToRssSource(string str)
+        {
+            string[] fields = str.Split(',');
+
+            if (fields.Length != 2)
+                // Invalid remote RSS source line.
+                throw new FormatException("The following line is not a valid RSS source line (invalid field count): " + str);
+
+            string theUrl = cleanField(fields[0]);
+            string theGroup = cleanField(fields[1]);
+
+            if (String.IsNullOrWhiteSpace(theUrl))
+                throw new FormatException("The following line is not a valid RSS source line (URL field is empty): " + str);
+
+            if (String.IsNullOrWhiteSpace(theGroup))
+                throw new FormatException("The following line is not a valid RSS source line (Group field is empty): " + str);
+
+            // YouTube gdata feeds are in ATOM format by default, which we can not parse.  If the RSS URL argument is missing,
+            //  flag the error.
+            if (theUrl.Contains("gdata.youtube.com") && (!theUrl.ContainsIgnoreCase("alt=rss")))
+                throw new FormatException("Found a YouTube API feed that returns the default ATOM format, which we can not parse.  Append 'alt=rss' (lowercase) to the URL to fix this problem if applicable.");
+
+            return new RssSource() { Url = theUrl, Group = theGroup };
         }
     }
 }
