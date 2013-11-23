@@ -84,12 +84,23 @@ namespace XPlatformCloudKit.Views
 
         void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
         {
-            ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged; 
 
             //Cache loads so fast if called from constructor that property changed is not fired
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
                 ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+
+            if (!AppState.SearchInitialized)
+            {
+                ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
+
+                Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
+                Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+
+                AppState.SearchInitialized = true;
+            }
         }
+
+
 
 
     }
