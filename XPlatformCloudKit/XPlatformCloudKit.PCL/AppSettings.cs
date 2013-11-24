@@ -90,6 +90,8 @@ namespace XPlatformCloudKit
 
         #region LocalItemsFileService Settings
         public const bool EnableLocalItemsFileService = true; //Use Items contained in LocalItemsFile.xml
+        //This allows users to host a remote XML file for their items. You can use http://ualr.edu/adcrow/XPCKItemFiles/TestItemsFile.xml as a tesxt.
+        public const string RemoteItemFileService = "";
         #endregion
 
         #region Windows8 Project options
