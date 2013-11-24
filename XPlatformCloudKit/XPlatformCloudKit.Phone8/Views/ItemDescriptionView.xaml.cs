@@ -166,5 +166,17 @@ namespace XPlatformCloudKit.Views
         {
 
         }
+
+        private void Canvas_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CanvasPanel.Visibility = Visibility.Collapsed;
+            ContentPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CanvasPanel.Visibility = Visibility.Visible;
+            ContentPanel.Visibility = Visibility.Collapsed;
+        }
     }
 }
