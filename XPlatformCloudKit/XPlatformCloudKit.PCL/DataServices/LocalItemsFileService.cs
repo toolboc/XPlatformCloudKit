@@ -3,10 +3,13 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using XPlatformCloudKit.Common;
 using XPlatformCloudKit.Models;
 using XPlatformCloudKit.Services;
 
@@ -14,24 +17,50 @@ namespace XPlatformCloudKit.DataServices
 {
     class LocalItemsFileService:IDataService
     {
+        HttpClient httpClient = new HttpClient();
         List<Item> LocalItems;
 
         public async Task<List<Item>> GetItems()
         {
-            string localItemsXML = await ServiceLocator.ResourceFileService.ReadFileFromInstallPath("LocalItemsFile.xml");
-
             LocalItems = new List<Item>();
+            if (AppSettings.EnableLocalItemsFileService == true)
+            {
+                string localItemsXML = await ServiceLocator.ResourceFileService.ReadFileFromInstallPath("LocalItemsFile.xml");
 
-            try
-            {
-                await Parse(localItemsXML);
-                return LocalItems;
+
+                try
+                {
+                    await Parse(localItemsXML);
+                }
+                catch
+                {
+                    ServiceLocator.MessageService.ShowErrorAsync("Error when Parsing Items from LocalItemsFile.xml", "Application Error");
+                }
             }
-            catch
+
+            if (!String.IsNullOrEmpty(AppSettings.RemoteItemFileService))
             {
-                ServiceLocator.MessageService.ShowErrorAsync("Error when Parsing Items from LocalItemsFile.xml", "Application Error");
-                return LocalItems;
+
+                string url = AppSettings.RemoteItemFileService;
+
+                if (Debugger.IsAttached)
+                    // Bust the cache.
+                    url = Misc.CacheBusterUrl(url);
+
+
+                string localItemsXML = await httpClient.GetStringAsync(url);
+
+                try
+                {
+                    await Parse(localItemsXML);
+                }
+                catch
+                {
+                    ServiceLocator.MessageService.ShowErrorAsync("Error when Parsing Items from Remote XML", "Application Error");
+                }
             }
+
+            return LocalItems;
         }
 
         public async Task Parse(string localItemsXML)

@@ -22,8 +22,7 @@ namespace XPlatformCloudKit.DataServices
             if (AppSettings.EnableRssService)
                 enabledDataServices.Add(new RssService());
 
-            if (AppSettings.EnableLocalItemsFileService)
-                enabledDataServices.Add(new LocalItemsFileService());
+            enabledDataServices.Add(new LocalItemsFileService());
 
             return enabledDataServices;
         }
