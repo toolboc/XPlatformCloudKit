@@ -5,6 +5,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,19 @@ namespace XPlatformCloudKit.DataServices
             try
             {
                 Items = await itemsTable.Take(1000).ToListAsync();
+
+                //Fix issue #27 - Search unable to handle NULL Azure database table value
+                foreach(var item in Items)
+                {
+                    Type type = item.GetType();
+                    var properties = type.GetRuntimeProperties();
+                    foreach (PropertyInfo property in properties)
+                    {
+                        if (property.GetValue(item, null) == null)
+                            property.SetValue(item, string.Empty);
+                    }
+                }
+
                 return Items;
             }
             catch(Exception e)
