@@ -14,5 +14,8 @@ namespace XPlatformCloudKit.Helpers
     {
         public static Item SelectedItem { get; set; }
         public static Group<Item> SelectedGroup { get; set; }
+
+        //Windows 8 uses this
+        public static bool SearchInitialized = false;
     }
 }

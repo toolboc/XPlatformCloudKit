@@ -28,33 +28,42 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="{Binding SelectedGroup.Key}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            <!--<TextBlock Text="{Binding LocalizedResources.ItemDescriptionViewTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
-        </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="115"/>
-                <RowDefinition Height="29*"/>
-                <RowDefinition Height="463*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Background="Gray" Width="110" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Image Source="{Binding SelectedItem.Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding SelectedItem.Title}"/>
-            </Border>
-            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                <TextBlock Text="{Binding SelectedItem.Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="Wrap"/>
-            </StackPanel>
-            <TextBlock Text="{Binding SelectedItem.Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Grid.ColumnSpan="2" Grid.Row="1"/>
-            <phone:WebBrowser x:Name="WebBrowser" Grid.Row="2" Grid.ColumnSpan="2" Loaded="WireUpWebBrowser"/>
-            <!--<TextBlock Text="{Binding SelectedItem.Description}" Style="{StaticResource BodyTextStyle}" TextWrapping="Wrap" TextTrimming="None" Margin="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/> -->
-        </Grid>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <Canvas x:Name="CanvasPanel" HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="456" Margin="12,0,0,0" Grid.Row="1" Visibility="Collapsed" Tap="Canvas_Tap">
+            <Image Source="{Binding SelectedItem.Image}" Height="456" Width="456" AutomationProperties.Name="{Binding SelectedItem.Title}"/>
+        </Canvas>
+
+
+<!--TitlePanel contains the name of the application and page title-->
+    	<StackPanel Grid.Row="0" Margin="12,17,0,28">
+    		<TextBlock Text="{Binding ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+    		<TextBlock Text="{Binding SelectedGroup.Key}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+    		<!--<TextBlock Text="{Binding LocalizedResources.ItemDescriptionViewTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
+    	</StackPanel>
+
+<!--ContentPanel - place additional content here-->
+    	<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+    		<Grid.RowDefinitions>
+    			<RowDefinition Height="115"/>
+    			<RowDefinition Height="29*"/>
+    			<RowDefinition Height="463*"/>
+    		</Grid.RowDefinitions>
+    		<Grid.ColumnDefinitions>
+    			<ColumnDefinition Width="Auto"/>
+    			<ColumnDefinition Width="*"/>
+    		</Grid.ColumnDefinitions>
+    		<Border Background="Gray" Width="110" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top">
+    			<Image Source="{Binding SelectedItem.Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding SelectedItem.Title}" Tap="Image_Tap"/>
+    		</Border>
+    		<StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+    			<TextBlock Text="{Binding SelectedItem.Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="Wrap"/>
+    		</StackPanel>
+    		<TextBlock Text="{Binding SelectedItem.Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Grid.ColumnSpan="2" Grid.Row="1"/>
+    		<phone:WebBrowser x:Name="WebBrowser" Grid.Row="2" Grid.ColumnSpan="2" Loaded="WireUpWebBrowser"/>
+    		<!--<TextBlock Text="{Binding SelectedItem.Description}" Style="{StaticResource BodyTextStyle}" TextWrapping="Wrap" TextTrimming="None" Margin="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/> -->
+    	</Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar x:Name="AppBar" Mode="Default" Opacity="0.7" IsVisible="True" IsMenuEnabled="False">
