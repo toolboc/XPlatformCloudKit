@@ -43,6 +43,8 @@ namespace XPlatformCloudKit.Views
             this.InitializeComponent();
             Loaded += ItemDescriptionView_Loaded;
             //DataContext = new ItemDescriptionViewModel(); MVVMCross does not need to set DataContext!
+            if (AppSettings.EnableWin8Background == true)
+                DescriptionGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
         }
 
         void ItemDescriptionView_Loaded(object sender, RoutedEventArgs e)

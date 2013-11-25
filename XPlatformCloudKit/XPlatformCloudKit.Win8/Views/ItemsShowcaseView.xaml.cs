@@ -43,6 +43,9 @@ namespace XPlatformCloudKit.Views
 
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+
+            if (AppSettings.EnableWin8Background == true)
+                ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
         }
         
         void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)

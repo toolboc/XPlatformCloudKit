@@ -20,6 +20,7 @@ using Cirrious.MvvmCross.Plugins.File;
 using Cirrious.CrossCore;
 using Microsoft.Phone.Marketplace;
 using Microsoft.Phone.Tasks;
+using System.Windows.Media;
 
 namespace XPlatformCloudKit
 {
@@ -37,6 +38,9 @@ namespace XPlatformCloudKit
             //BuildLocalizedApplicationBar();
             SearchBox.TextChanged += SearchBox_TextChanged;
             Loaded += ItemsShowcaseView_Loaded;
+
+            if (AppSettings.EnablePhone8Background == true)
+                LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
         }
 
         void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)

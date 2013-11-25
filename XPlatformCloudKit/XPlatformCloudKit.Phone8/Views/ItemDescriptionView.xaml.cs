@@ -35,6 +35,9 @@ namespace XPlatformCloudKit.Views
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = false;
             if(selectedIndex == AppState.SelectedGroup.Count - 1)
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = false;
+
+            if (AppSettings.EnablePhone8Background == true)
+                LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
         }
 
         private void NextButton_Click(object sender, EventArgs e)

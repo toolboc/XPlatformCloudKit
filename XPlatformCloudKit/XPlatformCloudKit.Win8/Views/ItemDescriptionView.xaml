@@ -26,6 +26,7 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid
+        x:Name="DescriptionGrid"
         Style="{StaticResource LayoutRootStyle}"
         DataContext="{Binding SelectedItem}"
         d:DataContext="{Binding SelectedItem, Source={d:DesignInstance Type=sampleData:ItemDescriptionSampleData, IsDesignTimeCreatable=True}}">

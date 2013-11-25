@@ -6,6 +6,7 @@
 
     <Application.Resources>
         <ResourceDictionary>
+            <ImageBrush ImageSource="ms-appx:///Assets/Wallpaper.png" x:Key="WallPaperBrush" />
             <ResourceDictionary.MergedDictionaries>
 
                 <!-- 
