@@ -8,7 +8,9 @@
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:XPlatformCloudKit" x:Key="LocalizedStrings"/>
-        
+
+        <ImageBrush ImageSource="Assets/Wallpaper.png" x:Key="WallPaperBrush" />
+
         <Style x:Key="BasicTextStyle" TargetType="TextBlock">
             <Setter Property="TextTrimming" Value="WordEllipsis"/>
         </Style>

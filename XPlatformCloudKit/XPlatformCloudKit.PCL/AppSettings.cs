@@ -90,7 +90,7 @@ namespace XPlatformCloudKit
 
         #region LocalItemsFileService Settings
         public const bool EnableLocalItemsFileService = true; //Use Items contained in LocalItemsFile.xml
-        //This allows users to host a remote XML file for their items. You can use http://ualr.edu/adcrow/XPCKItemFiles/TestItemsFile.xml as a tesxt.
+        //This allows users to host a remote XML file for their items. You can use http://ualr.edu/adcrow/XPCKItemFiles/TestItemsFile.xml as a test.
         public const string RemoteItemFileService = "";
         #endregion
 
@@ -109,6 +109,10 @@ namespace XPlatformCloudKit
         //Open XPlatformCloudKit.Win8/Common/StandardStyles.xaml and look for the <!-- Theme Overrides --> Section
         //Uncomment the portion(s) of the theme you wish to override
 
+        //Determines whether a background image should be used in the Windows 8 app.
+        //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
+        public const bool EnableWin8Background = false;
+
         //Url to your privacy policy - default value is "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html"
         //Note: This is REQUIRED for certification in the Windows 8 store
         public const string PrivacyPolicyUrl = "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html";
@@ -121,6 +125,10 @@ namespace XPlatformCloudKit
         public const bool SimulateTrialMode = false;
         //The amount of days to run the app unrestriced if Trial Mode is enforced, Set to negative value to simulate expiration
         public const int TrialPeriodInDays = 7;
+
+        //Determines whether a background image should be used in the Windows Phone 8 app.
+        //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
+        public const bool EnablePhone8Background = false;
         #endregion
 
         #region Youtube Video Link Options
@@ -141,6 +149,7 @@ namespace XPlatformCloudKit
         //Determines Font color of WebView Control used to display Description in ItemDescriptionView.xaml.cs
         //Set to "Auto" to determine based on theme background or override using hex color string i.e. "#FFFFFF" for white, "#000000" for black
         public const string FontColorOfDescription = "Auto";
+
 
         //Determines whether hyperlinks can be clicked in ItemDescriptionView.xaml for both Windows 8 and Windows Phone 8 projects
         //Sometimes, store may fail apps which contain hyperlinks that navigate improperly when clicked, this disables them
