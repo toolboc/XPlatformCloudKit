@@ -40,7 +40,10 @@ namespace XPlatformCloudKit
             Loaded += ItemsShowcaseView_Loaded;
 
             if (AppSettings.EnablePhone8Background == true)
+            {
                 LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+                LayoutRoot.Background.Opacity = .5;
+            }
         }
 
         void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
