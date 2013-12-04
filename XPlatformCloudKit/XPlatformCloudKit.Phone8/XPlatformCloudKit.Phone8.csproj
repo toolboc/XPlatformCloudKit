@@ -158,6 +158,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\XPlatformCloudKit.Win8\Assets\Logo.png">
+      <Link>Assets\Logo.png</Link>
+    </Content>
     <Content Include="..\XPlatformCloudKit.Win8\LocalItemsFile.xml">
       <Link>LocalItemsFile.xml</Link>
       <SubType>Designer</SubType>
