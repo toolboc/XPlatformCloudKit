@@ -57,6 +57,7 @@ namespace XPlatformCloudKit
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
             new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
             new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&author=thewindotnet", Group = "Youtube author example"},
             //new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
             //new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
             //new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
