@@ -114,9 +114,9 @@ namespace XPlatformCloudKit
         //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
         public const bool EnableWin8Background = false;
 
-        //Url to your privacy policy - default value is "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html"
+        //Url to your privacy policy - default value is "http://pjdecarlo.com/2013/11/app-privacy-policy.html"
         //Note: This is REQUIRED for certification in the Windows 8 store
-        public const string PrivacyPolicyUrl = "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html";
+        public const string PrivacyPolicyUrl = "http://pjdecarlo.com/2013/11/app-privacy-policy.html";
         #endregion
 
         #region Windows Phone 8 Project options      
