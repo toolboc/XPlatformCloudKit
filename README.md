@@ -57,10 +57,4 @@ Notes on getting Android Project to run
 ---------------------------------------
 
 - To build in Visual Studio will require a [Xamarin Business License](https://store.xamarin.com/).
-- You will need to copy the folder and all contents of `XPlatformCloudKit/SupportedFrameworks` to:
-  
-```
-C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5\Profile\Profile78\SupportedFrameworks
-```
-This allows PCLs which target `Profile78` to be consumed by Xamarin IOS/Android projects.
-- You must apply the [Xamarin hotfix](http://forums.xamarin.com/discussion/5507/using-system-linq-expressions-in-a-pcl-method-causes-typeloadexpression-mono-android-4-7-10024). This fixes an issue in the `System.Linq.Expressions.dll` facade used by Xamarin
+- You may need to apply the [Xamarin hotfix](http://forums.xamarin.com/discussion/5507/using-system-linq-expressions-in-a-pcl-method-causes-typeloadexpression-mono-android-4-7-10024). This fixes an issue in the `System.Linq.Expressions.dll` facade used by Xamarin
