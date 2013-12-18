@@ -130,6 +130,11 @@ namespace XPlatformCloudKit
         //Determines whether a background image should be used in the Windows Phone 8 app.
         //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
         public const bool EnablePhone8Background = false;
+
+        //Enables logic for discovery of phone numbers present in Item.Description on the ItemDescriptionView
+        //Creates a button for all discovered numbers that when clicked, initiates a phone call (Only works on physical device)
+        //Examples of matching formats: (123) 123-1234 ; 800-555-1212
+        public const bool EnableParsingPhoneNumbersPhone8 = true;
         #endregion
 
         #region Youtube Video Link Options

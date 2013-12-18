@@ -89,9 +89,28 @@ namespace XPlatformCloudKit.Views
         {
             browser = sender as WebBrowser;
             browser.IsScriptEnabled = true;
+            browser.ScriptNotify += browser_ScriptNotify;
             if (browser != null) browser.Navigating += browser_Navigating;
             ((ItemDescriptionViewModel)DataContext).PropertyChanged += ItemDescriptionView_PropertyChanged;
             LoadWebContent();
+        }
+
+        void browser_ScriptNotify(object sender, NotifyEventArgs e)
+        {
+            if(e.Value.StartsWith("launchPhoneCall:"))
+            {
+                string phoneNumber = e.Value.Remove(0, 16);
+                PhoneCallTask phoneCallTask = new PhoneCallTask();
+                phoneCallTask.PhoneNumber = phoneNumber;
+                phoneCallTask.Show();
+            }          
+        }
+
+        void LaunchPhoneCall(string number)
+        {
+            PhoneCallTask phoneCallTask = new PhoneCallTask();
+            phoneCallTask.PhoneNumber = number;
+            phoneCallTask.Show();
         }
 
         void ItemDescriptionView_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -112,11 +131,14 @@ namespace XPlatformCloudKit.Views
             string scriptOptions = string.Empty;
             string disableHyperLinksJS = "<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].onclick = function() {return(false);}; }};</script>";
             string disableOpeningHyperLinksInNewTabJS = "<script type='text/javascript'>window.onload = function() {   var anchors = document.getElementsByTagName(\"a\"); for (var i = 0; i < anchors.length; i++) { anchors[i].target = \"_self\"; }};</script>";
+            string launchPhoneCallJS = @"<script type='text/javascript'>  function callOutToCSharp(stringParameter){window.external.notify(stringParameter.toLocaleString());} window.onload = function() {   var regex = /((\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4})/, replacement = '<input type=""button"" value=""$1"" onclick=""callOutToCSharp(\'launchPhoneCall:$1\');"" />'; function replaceText(el) { if (el.nodeType === 3) { if (regex.test(el.data)) { var temp_div = document.createElement('div'); temp_div.innerHTML = el.data.replace(regex, replacement); var nodes = temp_div.childNodes; while (nodes[0]) { el.parentNode.insertBefore(nodes[0],el); } el.parentNode.removeChild(el); } } else if (el.nodeType === 1) { for (var i = 0; i < el.childNodes.length; i++) { replaceText(el.childNodes[i]);  }  }} replaceText(document.body); } </script>";
 
             if (AppSettings.DisableHyperLinksInItemDescriptionView)
                 scriptOptions = scriptOptions + disableHyperLinksJS;
             if (AppSettings.DisableOpeningHyperLinksInNewTab)
                 scriptOptions = scriptOptions + disableOpeningHyperLinksInNewTabJS;
+            if (AppSettings.EnableParsingPhoneNumbersPhone8)
+                scriptOptions = scriptOptions + launchPhoneCallJS;
 
             var webcontent = "<HTML>" +
             "<HEAD>" +
