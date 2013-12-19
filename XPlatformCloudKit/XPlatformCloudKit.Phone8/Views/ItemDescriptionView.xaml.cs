@@ -48,6 +48,9 @@ namespace XPlatformCloudKit.Views
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            if (selectedIndex >= AppState.SelectedGroup.Count - 1)
+                return;
+
             selectedIndex++;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = true;
 
@@ -55,10 +58,14 @@ namespace XPlatformCloudKit.Views
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
             
             ((ItemDescriptionViewModel)DataContext).SelectedItem = AppState.SelectedGroup[selectedIndex];
+
         }
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
+            if (selectedIndex <= 0)
+                return;
+
             selectedIndex--;
             ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = true;
 
@@ -66,6 +73,7 @@ namespace XPlatformCloudKit.Views
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = false;
 
             ((ItemDescriptionViewModel)DataContext).SelectedItem = AppState.SelectedGroup[selectedIndex];
+
         }
 
         private void ShareButton_Click(object sender, EventArgs e)
