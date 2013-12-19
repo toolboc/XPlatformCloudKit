@@ -18,6 +18,9 @@ using Microsoft.Phone.Tasks;
 using XPlatformCloudKit.Helpers;
 using XPlatformCloudKit.Resources;
 using Cirrious.MvvmCross.WindowsPhone.Views;
+using System.IO;
+using System.Diagnostics;
+using Windows.Phone.System.UserProfile;
 
 namespace XPlatformCloudKit.Views
 {
@@ -34,7 +37,7 @@ namespace XPlatformCloudKit.Views
             if(selectedIndex == 0)
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = false;
             if(selectedIndex == AppState.SelectedGroup.Count - 1)
-                ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = false;
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
 
             if (AppSettings.EnablePhone8Background == true)
             {
@@ -49,7 +52,7 @@ namespace XPlatformCloudKit.Views
             ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = true;
 
             if (selectedIndex == AppState.SelectedGroup.Count - 1)
-                ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = false;
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
             
             ((ItemDescriptionViewModel)DataContext).SelectedItem = AppState.SelectedGroup[selectedIndex];
         }
@@ -57,7 +60,7 @@ namespace XPlatformCloudKit.Views
         private void PreviousButton_Click(object sender, EventArgs e)
         {
             selectedIndex--;
-            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = true;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = true;
 
             if (selectedIndex == 0)
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = false;
@@ -205,6 +208,113 @@ namespace XPlatformCloudKit.Views
         {
             CanvasPanel.Visibility = Visibility.Visible;
             ContentPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private async void LockHelper(string filePathOfTheImage, bool isAppResource)
+        {
+            try
+            {
+                var isProvider = Windows.Phone.System.UserProfile.LockScreenManager.IsProvidedByCurrentApplication;
+                if (!isProvider)
+                {
+                    // If you're not the provider, this call will prompt the user for permission.
+                    // Calling RequestAccessAsync from a background agent is not allowed.
+                    var op = await Windows.Phone.System.UserProfile.LockScreenManager.RequestAccessAsync();
+
+                    // Only do further work if the access was granted.
+                    isProvider = op == Windows.Phone.System.UserProfile.LockScreenRequestResult.Granted;
+                }
+
+                if (isProvider)
+                {
+                    // At this stage, the app is the active lock screen background provider.
+
+                    // The following code example shows the new URI schema.
+                    // ms-appdata points to the root of the local app data folder.
+                    // ms-appx points to the Local app install folder, to reference resources bundled in the XAP package.
+                    var schema = isAppResource ? "ms-appx:///" : "ms-appdata:///Local/";
+                    var uri = new Uri(schema + filePathOfTheImage, UriKind.Absolute);
+
+                    // Set the lock screen background image.
+                    Windows.Phone.System.UserProfile.LockScreen.SetImageUri(uri);
+
+                    // Get the URI of the lock screen background image.
+                    var currentImage = Windows.Phone.System.UserProfile.LockScreen.GetImageUri();
+                    System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("You said no, so I can't update your background.");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        void DownloadImageAndSetToLock(string url)
+        {
+            try
+            {
+                WebClient client = new WebClient();
+
+                string fileName;
+                Uri currentImage = new Uri("http://Init");
+
+                try
+                {
+                    currentImage = LockScreen.GetImageUri();
+                }
+                catch
+                {
+                    //safety net for first run
+                }
+
+                if (currentImage.ToString().EndsWith("_A.jpg"))
+                {
+                    fileName = "LiveLockBackground_B.jpg";
+                }
+                else
+                {
+                    fileName = "LiveLockBackground_A.jpg";
+                }
+
+                var lockImage = string.Format("{0}", fileName);
+
+                client.OpenReadAsync(new Uri(url));
+                client.OpenReadCompleted += async (sender, args) =>
+                {
+                    Debug.WriteLine("Downloaded " + fileName);
+                    await LocalStorageHelper.WriteData("LockImage", fileName, StreamToByteArray(args.Result));
+                    LockHelper("LockImage\\" + fileName, false);
+                };
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Download of Lock Screen Image Failed");
+            }
+        }
+
+        public static byte[] StreamToByteArray(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+
+        private void LockButton_Click(object sender, EventArgs e)
+        {
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
+            DownloadImageAndSetToLock(AppState.SelectedItem.Image);
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = true;
         }
     }
 }

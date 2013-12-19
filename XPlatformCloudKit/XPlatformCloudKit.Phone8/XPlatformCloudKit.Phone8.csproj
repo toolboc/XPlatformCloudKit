@@ -120,6 +120,7 @@
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Helpers\LocalStorageHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\ItemDescriptionView.xaml.cs">
@@ -172,6 +173,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\feature.search.png" />
+    <Content Include="Assets\Icons\Locker.png" />
     <Content Include="Assets\Icons\Next.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Reload.png" />
