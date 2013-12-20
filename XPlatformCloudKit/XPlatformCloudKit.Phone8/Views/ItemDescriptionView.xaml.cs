@@ -320,9 +320,12 @@ namespace XPlatformCloudKit.Views
 
         private void LockButton_Click(object sender, EventArgs e)
         {
-            ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
-            DownloadImageAndSetToLock(AppState.SelectedItem.Image);
-            ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = true;
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = false;
+            if (AppState.SelectedItem.Image.StartsWith("http"))
+                DownloadImageAndSetToLock(AppState.SelectedItem.Image);
+            else
+                LockHelper(AppState.SelectedItem.Image, true);
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = true;
         }
     }
 }
