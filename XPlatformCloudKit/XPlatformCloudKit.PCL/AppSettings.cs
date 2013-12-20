@@ -166,5 +166,14 @@ namespace XPlatformCloudKit
         public const bool DisableOpeningHyperLinksInNewTab = true;
         #endregion
 
+        #region App Prmo Options for Windows 8 and Windows Phone projects
+        //App Promo is a control created by Jared Bienz which provides a rating reminder to users based on user defined settings
+        //http://code.msdn.microsoft.com/wpapps/Improve-app-ratings-with-a-6139caa5
+        public const bool EnableAppPromoRatingReminder = true;
+        
+        //The number of application runs before the reminder will be displayed. The default is 7.
+        public const int NumberOfRunsBeforeRateReminder = 7;
+
+        #endregion
     }
 }

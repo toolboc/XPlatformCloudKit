@@ -1,3 +1,4 @@
+using AppPromo;
 /*
 * LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
 */
@@ -46,6 +47,13 @@ namespace XPlatformCloudKit.Views
 
             if (AppSettings.EnableWin8Background == true)
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+
+            if (AppSettings.EnableAppPromoRatingReminder)
+            {
+                RateReminder rateReminder = new RateReminder();
+                rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
+                ShowcaseGrid.Children.Add(rateReminder);
+            }
         }
         
         void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)

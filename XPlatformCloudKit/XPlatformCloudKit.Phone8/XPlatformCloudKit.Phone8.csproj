@@ -209,6 +209,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AppPromo.WP8">
+      <HintPath>..\packages\AppPromo.WP8.1.0.0.3\lib\wp8\AppPromo.WP8.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.0.12\lib\sl4-wp71\Cirrious.CrossCore.dll</HintPath>
     </Reference>

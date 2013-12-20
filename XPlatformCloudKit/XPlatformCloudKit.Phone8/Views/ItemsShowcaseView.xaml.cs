@@ -21,6 +21,7 @@ using Cirrious.CrossCore;
 using Microsoft.Phone.Marketplace;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media;
+using AppPromo;
 
 namespace XPlatformCloudKit
 {
@@ -43,6 +44,13 @@ namespace XPlatformCloudKit
             {
                 LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
                 LayoutRoot.Background.Opacity = .5;
+            }
+
+            if (AppSettings.EnableAppPromoRatingReminder)
+            {
+                RateReminder rateReminder = new RateReminder();
+                rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
+                LayoutRoot.Children.Add(rateReminder);
             }
         }
 

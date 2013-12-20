@@ -179,6 +179,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AppPromo.Win8">
+      <HintPath>..\packages\AppPromo.Win8.1.0.0.2\lib\winrt45\AppPromo.Win8.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.0.12\lib\netcore45\Cirrious.CrossCore.dll</HintPath>
     </Reference>
