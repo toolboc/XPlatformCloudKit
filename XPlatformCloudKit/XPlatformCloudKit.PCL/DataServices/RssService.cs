@@ -174,6 +174,9 @@ namespace XPlatformCloudKit.DataServices
                     if (DateTime.TryParse(item.Subtitle, out dateTimeResult))
                         item.Subtitle = dateTimeResult.ToString("ddd, d MMM yyyy");
 
+                    if (AppSettings.ForceYoutubeVideosToLoadFullScreen)
+                        item.Description = item.Description.Replace("/watch?v=", "/watch_popup?v=");
+
                     RssData.Add(item);
                 };
             }

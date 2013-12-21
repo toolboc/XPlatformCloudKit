@@ -99,14 +99,7 @@ namespace XPlatformCloudKit.ViewModels
                         fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
                     }
 
-                    foreach (var currentItem in currentItems)
-                    {
-                        if (AppSettings.ForceYoutubeVideosToLoadFullScreen)
-                            currentItem.Description = currentItem.Description.Replace("/watch?v=", "/watch_popup?v=");
-
-                        items.Add(currentItem);
-                    }
-
+                    items.AddRange(currentItems);
                 }
                 catch
                 {
