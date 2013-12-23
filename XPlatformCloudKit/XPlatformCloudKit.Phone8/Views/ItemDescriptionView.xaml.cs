@@ -250,6 +250,7 @@ namespace XPlatformCloudKit.Views
 
                     // Get the URI of the lock screen background image.
                     var currentImage = Windows.Phone.System.UserProfile.LockScreen.GetImageUri();
+                    MessageBox.Show("Lock Screen Image Set");
                     System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
                 }
                 else
