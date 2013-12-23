@@ -21,6 +21,8 @@ using Cirrious.MvvmCross.WindowsPhone.Views;
 using System.IO;
 using System.Diagnostics;
 using Windows.Phone.System.UserProfile;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace XPlatformCloudKit.Views
 {
@@ -261,11 +263,11 @@ namespace XPlatformCloudKit.Views
             }
         }
 
-        void DownloadImageAndSetToLock(string url)
+        async Task DownloadImageAndSetToLock(string url)
         {
             try
             {
-                WebClient client = new WebClient();
+                HttpClient client = new HttpClient();
 
                 string fileName;
                 Uri currentImage = new Uri("http://Init");
@@ -290,13 +292,11 @@ namespace XPlatformCloudKit.Views
 
                 var lockImage = string.Format("{0}", fileName);
 
-                client.OpenReadAsync(new Uri(url));
-                client.OpenReadCompleted += async (sender, args) =>
-                {
-                    Debug.WriteLine("Downloaded " + fileName);
-                    await LocalStorageHelper.WriteData("LockImage", fileName, StreamToByteArray(args.Result));
-                    LockHelper("LockImage\\" + fileName, false);
-                };
+                var imageBytes = await client.GetByteArrayAsync(new Uri(url));
+
+                Debug.WriteLine("Downloaded " + fileName);
+                await LocalStorageHelper.WriteData("LockImage", fileName, imageBytes);
+                LockHelper("LockImage\\" + fileName, false);
             }
             catch (Exception e)
             {
@@ -304,25 +304,11 @@ namespace XPlatformCloudKit.Views
             }
         }
 
-        public static byte[] StreamToByteArray(Stream input)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
-        }
-
-        private void LockButton_Click(object sender, EventArgs e)
+        private async void LockButton_Click(object sender, EventArgs e)
         {
             ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = false;
             if (AppState.SelectedItem.Image.StartsWith("http"))
-                DownloadImageAndSetToLock(AppState.SelectedItem.Image);
+                await DownloadImageAndSetToLock(AppState.SelectedItem.Image);
             else
                 LockHelper(AppState.SelectedItem.Image, true);
             ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = true;
