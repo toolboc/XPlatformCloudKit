@@ -56,6 +56,10 @@ namespace XPlatformCloudKit
 
             if (AppSettings.EnablePubcenterAdsPhone8)
             {
+                if (AppSettings.HideAdsIfPurchasedPhone8)
+                    if (!licenseInfo.IsTrial())
+                        return;
+
                 var advertisingControlPlaceholder = new RowDefinition();
                 advertisingControlPlaceholder.Height = new GridLength(80);
                 LayoutRoot.RowDefinitions.Add(advertisingControlPlaceholder);

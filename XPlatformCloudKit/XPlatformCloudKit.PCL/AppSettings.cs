@@ -180,6 +180,8 @@ namespace XPlatformCloudKit
         //Allow displaying of Ads from Microsoft Pubcenter in Windows Phone 8 Project
         //http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk(v=msads.20).aspx
         public const bool EnablePubcenterAdsPhone8 = false;
+        //Should Ads be hidden if the app has been purchased  (true) or always shown (false) 
+        public const bool HideAdsIfPurchasedPhone8 = false;
         //Application and AdUnit Ids provided from Pubcenter
         //See: http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk-start(v=msads.20).aspx
         //for information on configuring and providing your own ads
@@ -190,6 +192,8 @@ namespace XPlatformCloudKit
         //Allow displaying of Ads from Microsoft Pubcenter in Windows 8 Project
         //http://msdn.microsoft.com/en-us/library/advertising-windows-sdk(v=msads.10).aspx
         public const bool EnablePubcenterAdsWin8 = false;
+        //Should Ads be hidden if the app has been purchased  (true) or always shown (false) 
+        public const bool HideAdsIfPurchasedWin8 = false;
         //Application and AdUnit Ids provided from Pubcenter
         //See: http://msdn.microsoft.com/en-us/library/advertising-windows-pubcenter(v=msads.10).asp
         //for information on configuring and providing your own ads
