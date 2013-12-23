@@ -1,4 +1,5 @@
 using AppPromo;
+using Microsoft.Advertising.WinRT.UI;
 /*
 * LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
 */
@@ -53,6 +54,18 @@ namespace XPlatformCloudKit.Views
                 RateReminder rateReminder = new RateReminder();
                 rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
                 ShowcaseGrid.Children.Add(rateReminder);
+            }
+
+            if (AppSettings.EnablePubcenterAdsWin8)
+            {
+                var adControl = new AdControl();
+                adControl.ApplicationId = AppSettings.PubcenterApplicationIdWin8;
+                adControl.AdUnitId = AppSettings.PubcenterAdUnitIdWin8;
+                adControl.IsAutoRefreshEnabled = true;
+                adControl.Width = 728;
+                adControl.Height = 90;
+                adControl.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Right;
+                ShowcaseGrid.Children.Add(adControl);
             }
         }
         

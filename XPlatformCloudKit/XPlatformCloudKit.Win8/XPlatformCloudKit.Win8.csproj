@@ -143,7 +143,9 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <PRIResource Include="en-US\Resources.resw" />
-    <None Include="Lib\NotificationsExtensions.winmd" />
+    <None Include="Microsoft.Advertising.WinRT.UI\Microsoft.Advertising.WinRT.UI.winmd" />
+    <None Include="Microsoft.Advertising.WinRT.UI\MicrosoftAdvertising.winmd" />
+    <None Include="lib\NotificationsExtensions.winmd" />
     <None Include="packages.config" />
     <None Include="XPlatformCloudKit.Win8_TemporaryKey.pfx" />
   </ItemGroup>
@@ -155,10 +157,16 @@
     <Content Include="Assets\Wallpaper.png" />
     <Content Include="Assets\WideLogo.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Content Include="Microsoft.Advertising.WinRT.UI\bootstrap.html" />
+    <Content Include="Microsoft.Advertising.WinRT.UI\Microsoft.Advertising.WinRT.UI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Microsoft.Advertising.WinRT.UI\MicrosoftAdvertising.xml" />
     <Content Include="LocalItemsFile.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Microsoft.Advertising.WinRT.UI\ormma.js" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -169,6 +177,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="Microsoft.Advertising.WinRT.UI\AdSettingsFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Microsoft.Advertising.WinRT.UI\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Page Include="Views\ItemDescriptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +219,10 @@
     <Reference Include="Cirrious.MvvmCross.WindowsStore">
       <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.0.12\lib\netcore45\Cirrious.MvvmCross.WindowsStore.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Advertising.WinRT.UI, Version=6.1.30629.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Advertising.WinRT.UI.winmd</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll</HintPath>
@@ -216,6 +236,10 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
       <HintPath>..\packages\WindowsAzure.MobileServices.1.0.2\lib\netcore45\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="MicrosoftAdvertising, Version=6.1.30629.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\MicrosoftAdvertising.winmd</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <Private>True</Private>

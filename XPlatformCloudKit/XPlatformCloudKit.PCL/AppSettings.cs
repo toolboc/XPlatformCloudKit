@@ -166,7 +166,7 @@ namespace XPlatformCloudKit
         public const bool DisableOpeningHyperLinksInNewTab = true;
         #endregion
 
-        #region App Prmo Options for Windows 8 and Windows Phone projects
+        #region App Promo Options for Windows 8 and Windows Phone projects
         //App Promo is a control created by Jared Bienz which provides a rating reminder to users based on user defined settings
         //http://code.msdn.microsoft.com/wpapps/Improve-app-ratings-with-a-6139caa5
         public const bool EnableAppPromoRatingReminder = true;
@@ -174,6 +174,28 @@ namespace XPlatformCloudKit
         //The number of application runs before the reminder will be displayed. The default is 7.
         public const int NumberOfRunsBeforeRateReminder = 7;
 
+        #endregion
+
+        #region Advertising Control Options for Windows 8 and Windows Phone projects
+        //Allow displaying of Ads from Microsoft Pubcenter in Windows Phone 8 Project
+        //http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk(v=msads.20).aspx
+        public const bool EnablePubcenterAdsPhone8 = false;
+        //Application and AdUnit Ids provided from Pubcenter
+        //See: http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk-start(v=msads.20).aspx
+        //for information on configuring and providing your own ads
+        //Supports 480x80 ads only!  Make sure your add unit matches this size when creating in Pubcenter!
+        public const string PubcenterApplicationIdPhone8 = "test_client";
+        public const string PubcenterAdUnitIdPhone8 = "Image480_80";
+
+        //Allow displaying of Ads from Microsoft Pubcenter in Windows 8 Project
+        //http://msdn.microsoft.com/en-us/library/advertising-windows-sdk(v=msads.10).aspx
+        public const bool EnablePubcenterAdsWin8 = false;
+        //Application and AdUnit Ids provided from Pubcenter
+        //See: http://msdn.microsoft.com/en-us/library/advertising-windows-pubcenter(v=msads.10).asp
+        //for information on configuring and providing your own ads
+        //Supports 728x90 ads only!  Make sure your add unit matches this size when creating in Pubcenter!
+        public const string PubcenterApplicationIdWin8 = "d25517cb-12d4-4699-8bdc-52040c712cab";
+        public const string PubcenterAdUnitIdWin8 = "10042999";
         #endregion
     }
 }

@@ -22,6 +22,7 @@ using Microsoft.Phone.Marketplace;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media;
 using AppPromo;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace XPlatformCloudKit
 {
@@ -51,6 +52,21 @@ namespace XPlatformCloudKit
                 RateReminder rateReminder = new RateReminder();
                 rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
                 LayoutRoot.Children.Add(rateReminder);
+            }
+
+            if (AppSettings.EnablePubcenterAdsPhone8)
+            {
+                var advertisingControlPlaceholder = new RowDefinition();
+                advertisingControlPlaceholder.Height = new GridLength(80);
+                LayoutRoot.RowDefinitions.Add(advertisingControlPlaceholder);
+                var appbarSpacer = new RowDefinition();
+                appbarSpacer.Height = new GridLength(30);
+                LayoutRoot.RowDefinitions.Add(appbarSpacer);
+                AdControl adControl = new AdControl(AppSettings.PubcenterApplicationIdPhone8, AppSettings.PubcenterAdUnitIdPhone8, true);
+                adControl.Width = 480;
+                adControl.Height = 80;
+                Grid.SetRow(adControl, 2);
+                LayoutRoot.Children.Add(adControl);
             }
         }
 

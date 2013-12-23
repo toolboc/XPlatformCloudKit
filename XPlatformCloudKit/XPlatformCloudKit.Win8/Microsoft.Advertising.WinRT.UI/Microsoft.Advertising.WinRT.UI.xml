@@ -1,0 +1,2120 @@
+<?xml version="1.0"?><doc>
+    <assembly>
+        <name>Microsoft.Advertising.WinRT.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Advertising.WinRT.UI.AdErrorEventArgs">
+            <summary>
+            The <c>AdErrorEventArgs</c> class contains information about errors that occur when ads are retrieved from the ad server.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdErrorEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initialize the AdErrorEventArgs with a causing error.
+            </summary>
+            <param name="error">Error description</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdErrorEventArgs.#ctor(System.Exception,MicrosoftAdvertising.ErrorCode)">
+            <summary>
+            Initialize the AdErrorEventArgs with a causing error.
+            </summary>
+            <param name="error">Error description</param>
+            <param name="errorCode">String version of the error code parameter.</param>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdErrorEventArgs.Error">
+            <summary>
+            The <c>Exception</c> that triggered the error event.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdErrorEventArgs.ErrorCode">
+            <summary>
+            Gets or sets the ErrorCode string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout">
+            <summary>
+             The Flyout page provides a Microsoft advertisting settings page to set personalized targetting settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.SettingsFlyout_Loaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            The page loaded event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.RefreshControlStates">
+            <summary>
+            It refreshes all UI control states based on users global and local opt in state data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.tgswOptIn_Toggled(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Handles opt in toggle switch changed event. 
+            It will save users local optin data into users local application settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.btnBackClicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            This is the click handler for the back button on the Flyout.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdSettingsFlyout.SignIn_Click(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Handles sign in hyper link click event.
+            It will prompt users to sign-in using windows live credentials.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.AdControl">
+            <summary>
+             <para>
+                The Microsoft <c>AdControl</c> provides everything that is necessary to display
+                advertising in an app.
+              </para>
+              <para>
+                Instantiates an <c>AdControl</c> and provides the optional targeting parameters.
+              </para>
+            </summary>
+            <remarks>
+              <para>
+                The <c>AdControl</c> is configured to show a new ad every 60 seconds. This is
+                the default setting. If this behavior does not suit the app, you can set
+                <c>IsAutoRefreshEnabled</c> to <c>false</c> and use the <c>Refresh</c> method to request
+                that the <c>AdControl</c> show the next ad that is available.
+              </para>
+              <para>
+                Do not use the same instance of an <c>AdControl</c> across multiple pages.
+              </para>
+              <para>
+                Once set, the parent of the <c>AdControl</c> should not be changed.
+              </para>
+              <para>
+                All of the required properties on the <c>AdControl</c> need to be set before adding the control
+                to a parent object. These required properties include <c>AdUnitId</c> and <c>ApplicationId</c>.
+              </para>
+            </remarks>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.UseStaticAnchorRendererOption">
+            <summary>
+            half of key value pair sent to renderer to tell it to use static
+            anchor setup
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.AdRotationTimeInSeconds">
+            <summary>
+            Constant for Ad rotation time, currently is equal to one minute
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.MinAdRefreshIntervalInSecondsMetered">
+            <summary>
+            Constant for minimum Ad refresh interval when on metered network
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.MinAdRefreshIntervalInSecondsUnmetered">
+            <summary>
+            Constant for minimum Ad refresh interval when on unmetered network
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isAnAdExpanded">
+            <summary>
+            in multiple ad scenarios this tracks if any ad is engaged so that
+            other ads on the same page do not refresh.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.lockObj">
+            <summary>
+            lock object for concurrent access.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isAdSettingsCommandsRequestedRegisted">
+            <summary>
+            Flag indicats if the ad settings command has been registed on app chime settings.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.settingsPopup">
+            <summary>
+            Flyout setting popup window instance.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isAdUserInfoInitialized">
+            <summary>
+            Flag indicats if the ad settings on user info has been initialized.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isInitialized">
+            <summary>
+            tracks if the adcontrol has been initialised yet, this could happend from two
+            different code paths, OnApplyTemplate or Loaded
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.appIsActive">
+            <summary>
+            Flag shows if the host application is active or not
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isExpanded">
+            <summary>
+            Flag shows if the ad has been expanded
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isUserEngaged">
+            <summary>
+            Flag shows if the user is interacting with the ad inline (not expanded)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isAutoRefreshEnabled">
+            <summary>
+            automatic (true) or manual (false) rotation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isAutoRefreshChangeAllowed">
+            <summary>
+            Flag that keeps track of if the app developer set the rotation or not
+            This property can be set just once, and cannot be set after the control is added to a parent
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.rotationTimer">
+            <summary>
+            Ad rotation timer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.timeAtLastRotation">
+            <summary>
+            time when ad was last refreshed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.advertisingWebBrowser">
+            <summary>
+            the control displaying the currently viewable ad
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.isSuspended">
+            <summary>
+            tracks the suspended state of the AdControl
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.webViewBrushUsage">
+            <summary>
+            stores the state of webViewBrushUsage
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdControl.previousIsEnabledState">
+            <summary>
+            stores the previous IsEnabled state, this is used in preventing
+            focus from being stolen by the WebView
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.#ctor">
+            <summary>
+            Initializes a new <c>AdControl</c>.
+            </summary>
+            <remarks>
+              <para>
+                The developer must set the <c>ApplicationId</c> and <c>AdUnitId</c> properties before the app
+                can show an ad.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.Refresh">
+            <summary>
+              <para>
+                A call to this method directs the <c>AdControl</c> to show the next ad as soon as an ad
+                becomes available.
+              </para>
+              <para>
+                This method may not be used when <c>IsAutoRefreshEnabled</c> is set to <c>true</c>.
+              </para>
+            </summary>
+            <remarks>
+              A new ad might not be available because of an error that occurred while trying to contact the ad platform.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The IsAutoRefreshEnabled property is set to true.</exception>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.AddAdTag(System.String,System.String)">
+            <summary>
+            Add an ad tag to the ad control. The maximum is 10 tags per ad control. If maximum is exceeded an errorOccurred event will be fired. 
+            </summary>
+            <param name="tagName">The name of the tag. Maximum of 16 characters, if exceeded an errorOccurred event will be fired.</param>
+            <param name="tagValue">The value of the tag. Maximum of 128 characters, if exceeded an errorOccurred event will be fired.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.RemoveAdTag(System.String)">
+            <summary>
+            Remove an ad tag from the ad control. This has no effect if the tag name does not exist.
+            </summary>
+            <param name="tagName">The name of the tag to remove.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.Suspend">
+            <summary>
+            Suspends the current ad and replaces the current view of the ad with a snapshot of
+            what was currently being rendered. If the ad was engaged, this action is cancelled 
+            and the expanded ad is closed. After calling Suspend the AdControl will not automatically 
+            refresh, if IsAutoRefreshEnabled=true, and you cannot manually refresh the AdControl 
+            until Resume has been called.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.Suspend(System.Boolean)">
+            <summary>
+            Suspends the current ad and replaces the current view of the ad with a snapshot of
+            what was currently being rendered. After calling Suspend the AdControl will not 
+            automatically refresh, if IsAutoRefreshEnabled=true, and you cannot manually 
+            refresh the AdControl until Resume has been called.
+            </summary>
+            <param name="closeExpandedAd">If true and the ad was engaged, this action is cancelled
+            and the expaned ad is closed. If false no action is taken on the expanded ad.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.Resume">
+            <summary>
+            Removes the static snapshot of the AdControl and replaces it with the dynamic display.
+            Resumes automatic refresh of the AdControl, if IsAutoRefreshEnable=true, and allows
+            manual refresh to occur again after Suspend.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.InitializeAdSettings">
+            <summary>
+            It shall initialized Ad personalized targeting settings data 
+            and register the settings commmand into app chime settings page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnLoaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Loaded event handler - tells you when the control is ready to go
+            </summary>
+            <param name="sender">sender of the event</param>
+            <param name="e">arguments for the event</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.onAdSettingsCommandsRequested(Windows.UI.ApplicationSettings.SettingsPane,Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs)">
+            <summary>
+            Handles app settings command requested event.
+            It shall register Microsoft Advertising settings command.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.onAdSettingsCommand(Windows.UI.Popups.IUICommand)">
+            <summary>
+            Event handler for ad settings command call.
+            It shall open up a flyout page for users to change local opt in settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnWindowActivated(System.Object,Windows.UI.Core.WindowActivatedEventArgs)">
+            <summary>
+            We use the window's activated event to force closing the Popup since a user maybe interacted with
+            something that didn't normally trigger an obvious dismiss.
+            </summary>
+            <param name="sender">Instance that triggered the event.</param>
+            <param name="e">Event data describing the conditions that led to the event.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnPopupClosed(System.Object,System.Object)">
+            <summary>
+            When the Popup closes we no longer need to monitor activation changes.
+            </summary>
+            <param name="sender">Instance that triggered the event.</param>
+            <param name="e">Event data describing the conditions that led to the event.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnUnloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Unloaded event handler - tells you when the control needs to be cleaned up
+            </summary>
+            <param name="sender">sender of the event</param>
+            <param name="e">arguments for the event</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnWindowVisibilityChanged(System.Object,Windows.UI.Core.VisibilityChangedEventArgs)">
+            <summary>
+            When the app is hidden by the start screen or another app, pause the ad control.
+            </summary>
+            <param name="sender">sender of the event</param>
+            <param name="e">arguments for the event</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.InitializeAdControl">
+            <summary>
+            Initialize the AdControl.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnSizeChanged(System.Object,Windows.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            Size changed event handler. If the control
+            contains bannerAdView/textAdView, trigger size validation and 
+            ad rendering. Also change placement size according to the control
+            size.
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">Arguments for the event</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.SetEngagedStates(System.Boolean,System.Boolean)">
+            <summary>
+            updates the engaged state of the adcontrol
+            </summary>
+            <param name="isExpandedNew">the new expanded state</param>
+            <param name="isUserEngagedNew">the new user engaged state</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnRichMediaAction(System.Object,Microsoft.Advertising.WinRT.UI.RichMediaEventArgs)">
+            <summary>
+            OnRichMediaAction handler
+            </summary>
+            <param name="sender">this is the AdControl</param>
+            <param name="e">rich media event argument</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.AdLoadFailedHandler(System.Object,Microsoft.Advertising.WinRT.UI.AdErrorEventArgs)">
+            <summary>
+            Handles the case when an ad fails to load.
+            </summary>
+            <param name="sender">state of the event receiver</param>
+            <param name="e">Event argumnets</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.AdInitializedHandler(System.Object,System.EventArgs)">
+            <summary>
+            Handles the case when an ad has initialized
+            </summary>
+            <param name="sender">state of the event receiver</param>
+            <param name="e">Event argumnets</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.OnAdRotationTimer(System.Object,System.Object)">
+            <summary>
+            Private event handler on Ad rotation timer event
+            </summary>
+            <param name="state">state of the event receiver</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.StartAdRequest">
+            <summary>
+            starts the next ad request
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.RefreshCommon">
+            <summary>
+            checks ad state and raises errors if not in a state that allows ad refresh
+            otherwise initiates an ad refresh.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.ShowNextAd">
+            <summary>
+            Get an ad from the AdPlacement and show it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.PauseTimer">
+            <summary>
+            Pause the timer and set the next timer interval to the remaining time
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.StartTimer">
+            <summary>
+            Start the timer with whatever the interval is set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.StopTimerAfterEngaged">
+            <summary>
+            Stop the timer, set the next timer interval to RotationTime
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.DiscardCurrentAd">
+            <summary>
+            This will discard the current ad, remove any existing child elements (e.g. the WebView containing the ad),
+            and make the ad control transparent.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.BroadcastErrorEvent(System.Exception)">
+            <summary>
+            Helper method that broadcasts error events to any listeners 
+            and discard current ad.
+            </summary>
+            <param name="error">the exception</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.BroadcastErrorEvent(System.Exception,System.Boolean)">
+            <summary>
+            Helper method that broadcasts error events to any listeners
+            and can choose to discard ad.
+            </summary>
+            <param name="error">the exception</param>
+            <param name="discardAd">true to discard ad, false not to</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.BroadcastAdRefreshedEvent">
+            <summary>
+            Helper method that broadcasts ad refreshed events to any listeners
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.VerifyAndDisplayAd(MicrosoftAdvertising.Shared.IAdvertisement)">
+            <summary>
+            Helper method called from the event handler for the library notification of a new ad - used to make sure the
+            new ad fits in the size available, and can be displayed by the ad control.
+            </summary>
+            <param name="ad">Advertisement to verify and display</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.AdDownloadComplete(MicrosoftAdvertising.Shared.AdPlacement,MicrosoftAdvertising.Shared.AdException)">
+            <summary>
+            Handle the AdDownload complete events
+            </summary>
+            <param name="adPlacement">The adplacement instance</param>
+            <param name="ex">Exception when AdDownload is failed.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.UnloadAdControl">
+            <summary>
+            Release AdControl resources when AdControl is removed from the application page.
+            This method detects whether this.Parent is null. If the parent is null, we need to
+            clean up the AdControl.
+            
+            The cleanup will only occur when the Parent is null, unless forceUnload is true.
+            When the AdControl is being unloaded (see the AdControl_Unloaded event handler)
+            we force cleanup even if Parent is not null.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.ActivateAdControl">
+            <summary>
+            Steps that need to happen when the ad control gets activated or comes in view
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.DeactivateAdControl">
+            <summary>
+            Steps that need to happen when the ad control gets deactivated or hides from view
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdControl.CheckIfRefreshIntervalMetAndRaiseError">
+            <summary>
+            returns true if the minimum time between manual refresh has passed,
+            this is 30 seconds when on an unmetered connection and 60 seconds on 
+            a metered connection, raises error if interval is not met
+            </summary> 
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdControl.ErrorOccurred">
+            <summary>
+            Error event that is raised when the <c>AdControl</c> encounters an error while retrieving ads.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdControl.AdRefreshed">
+            <summary>
+            Event that is raised when the <c>AdControl</c> receives a new ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdControl.IsEngagedChanged">
+            <summary>
+            Event that is raised when the user clicks on the ad and the action dialog is waiting for input from the user.
+            </summary>
+            <remarks>
+            This event is intended to give developers the option to pause the app when the action dialog appears.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.Latitude">
+            <summary>
+            The latitude of the user.
+            Invalid values will be ignored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.Longitude">
+            <summary>
+            The longitude of the user.
+            Invalid values will be ignored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.AdUnitId">
+            <summary>
+              <para>
+                Gets or sets the ad unit identifier for this <c>AdControl</c> instance.
+              </para>
+              <para>
+                This value is provided to the publisher when the publisher creates an <c>AdUnit</c> in pubCenter. See the Publisher Onboarding Guide for more information.
+              </para>
+            </summary>
+            <remarks>
+              <para>Once set, this property cannot be modified.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.ApplicationId">
+            <summary>
+              The application ID of the app. This value is provided to you when you register the app with pubCenter.
+            </summary>
+            <remarks>
+              <para>Only one value for the application ID can be used within an app.</para>
+              <para>
+                If more than one value for the <c>ApplicationId</c> is used in different <c>AdControl</c> objects that are in the app, some controls will
+                not receive ads and will raise an <c>ErrorOccurred</c> event.
+              </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsEngaged">
+            <summary>
+            Gets a value that indicates whether the user is currently interacting with one of the ads.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsAutoRefreshEnabled">
+            <summary>
+            Enables or disables the automatic refresh of ads. This property cannot be changed after the <c>AdControl</c> is added to a page.
+            </summary>
+            <remarks>
+              This property can only be set when the <c>AdControl</c> is instantiated by using the default constructor or in XAML.
+              Once set, this property cannot be modified later. This property is set to <c>true</c> by default.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">The IsAutoRefreshEnabled property has been set already.</exception>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsPerformanceScrollingEnabled">
+            <summary>
+            When true and the AdControl is in a scrollable container the current ad will temporarily be replaced
+            by a snapshot image of the ad to improve scrolling performance. When the AdControl has stopped
+            scrolling it will revert back to normal behaviour. When false no additional actions are performed on 
+            scolling.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.UseStaticAnchor">
+            <summary>
+            When true the internal WebView rendering the ad is replace with a static image of the current 
+            ad. When false the WebView is used to display the ad. Note that this value takes presidence over
+            IsPerformanceScrollingEnabled
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsSuspended">
+            <summary>
+            Gets the current suspended state of the AdControl.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsAnAdEngaged">
+            <summary>
+            Internal property to expose whether any ad is engaged
+            </summary>
+            <remarks>
+            This is exposed a property so dependencies can be tested via mock or stub
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdControl.IsPremiumInventory">
+            <summary>
+            Whether this ad placement is reserved or long-tail inventory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.GetContainerWidth">
+            <summary>
+            Gets the current contained width.
+            </summary>
+            <returns>Container width.</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.GetContainerHeight">
+            <summary>
+            Gets the current container height.
+            </summary>
+            <returns>Container height.</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.Expand(System.Uri,Microsoft.Advertising.WinRT.UI.ExpandProperties)">
+            <summary>
+            method passed as a delegate to WP7TaskInvoker to handle expand operation
+            </summary>
+            <param name="uri">url to expand to if specified</param>
+            <param name="expandProperties">properties for the expand (whether to show background, it's colour etc)</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.Resize(System.Double,System.Double)">
+            <summary>
+            method passed as a delegate to the WP7TaskInvoked to handle the expand operation
+            </summary>
+            <param name="width">width to resize to</param>
+            <param name="height">height to resize to</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.UpdateExpandProperties(Microsoft.Advertising.WinRT.UI.ExpandProperties)">
+            <summary>
+            This allows resizing an already-expanded ad. This is useful when screen size changes.
+            </summary>
+            <param name="expandProps">updated ExpandProperties to use for the expanded ad</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.RaiseAdLoadFailedEvent(System.String)">
+            <summary>
+            Raises the page load failed event to indicate that the ad did not load properly.
+            This could be due to a timeout, problem loading the renderer, problem interacting
+            with JavaScript using InvokeScript, etc.
+            </summary>
+            <param name="message">page load failed message</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.SetAdInstanceState(System.String)">
+            <summary>
+            sets the adInstanceState for this AdvertisingWebBrowser.
+            this is typically called by an expanded view ad to update
+            the default view ad.
+            </summary>
+            <param name="data">ad state to store</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser.HandleExpandedClose">
+            <summary>
+            Handles the closing of an expanded ad.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.webView">
+            <summary>
+            the webbrowser control responsible for rendering content
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.ormma">
+            <summary>
+            the Ormma handler
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.rendererUrl">
+            <summary>
+            url of the renderer to use
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.adJson">
+            <summary>
+            ad json blob to pass into the renderer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.prmJson">
+            <summary>
+            prm json blob to pass into the renderer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.rendererOptions">
+            <summary>
+            renderer options json blob to pass into the renderer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.polyAdState">
+            <summary>
+            the state of the browser (default, expanded etc)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.webRequest">
+            <summary>
+            for pre-downloading of renderer
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.popupLock">
+            <summary>
+            controls access to the popup
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.preExpandWidth">
+            <summary>
+            holds the pre-expanded width
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.preExpandHeight">
+            <summary>
+            holds the pre-expanded height
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.popupHost">
+            <summary>
+            container for expanded ad experience
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.navigateUri">
+            <summary>
+            stores the uri to navigate to for the expand to url scenario
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.subscribedToScriptNotify">
+            <summary>
+            TODO: REMOVE this when the Unload/Load content wipe bug of WebView gets fixed
+            this is to stop a double subscriptiong to the event.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.webViewBrushDisplayed">
+            <summary>
+            tracks if the webViewBrush is displayed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.previousOriginOffset">
+            <summary>
+            stores the WebViews previous location 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.previousOrientation">
+            <summary>
+            stores the previous orientation to determine if the position change
+            was caused by a screen rotation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.lastPerformanceScrollingDisplaySwitchTimestamp">
+            <summary>
+            time the previousOriginOffset was recorded 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.webViewBrushDisplayRectangle">
+            <summary>
+            rectangle for painting the webviewbrush to
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.webViewBrushUsage">
+            <summary>
+            stores the state of webViewBrushUsage
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.isSuspended">
+            <summary>
+            tracks if the ad is in the suspended state
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.#ctor">
+            <summary>
+            AdvertisingWebBrowser constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.#ctor(System.String,System.String,System.String,System.String,Microsoft.Advertising.WinRT.UI.WebViewBrushUsage)">
+            <summary>
+            constuctor
+            </summary>
+            <param name="rendererUrl">url to the ad renderer</param>
+            <param name="adJsonBlob">ad data to pass to the renderer</param>
+            <param name="prmJsonBlob">payload params to pass to the renderer</param>
+            <param name="rendererOptions">publisher provided renderer options</param>
+            <param name="wvbUsage">if and how WebViewBrush should be used to work around numerous issues in the WebView control</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.#ctor(System.Uri)">
+            <summary>
+            AdvertisingWebBrowser constructor used when expanding to a url 
+            </summary>
+            <param name="uri">target address of expansion</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.Expand(System.Uri,Microsoft.Advertising.WinRT.UI.ExpandProperties)">
+            <summary>
+            method passed as a delegate to WP7TaskInvoker to handle expand operation
+            </summary>
+            <param name="uri">url to expand to if specified</param>
+            <param name="expandProperties">properties for the expand (whether to show background, it's colour etc)</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.Resize(System.Double,System.Double)">
+            <summary>
+            Method passed as a delegate to the TaskInvoker to handle the expand operation.
+            </summary>
+            <param name="width">width to resize to</param>
+            <param name="height">height to resize to</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OrmmaClose">
+            <summary>
+            this method pipes a close call from the WebBrowserView down to the ormma
+            level so that it can raise the necessary events, in the end a delegate to
+            the WebBrowserViews own ClosePopup is called
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.SetAdInstanceState(System.String)">
+            <summary>
+            sets the adInstanceState for this AdvertisingWebBrowser.
+            this is typically called by an expanded view ad to update
+            the default view ad.
+            </summary>
+            <param name="data">ad state to store</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.GetContainerWidth">
+            <summary>
+            Gets the current contained width.
+            </summary>
+            <returns>Container width.</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.GetContainerHeight">
+            <summary>
+            Gets the current container height.
+            </summary>
+            <returns>Container height.</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.HandleExpandedClose">
+            <summary>
+            Handles the closing of the expanded webView. Sets the state back to default on the current webView.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.Suspend(System.Boolean)">
+            <summary>
+            suspends display of a dynamic ads being rendered, this basically means showing
+            a snapshot of the rendered ad in using a WebViewBrush
+            </summary>
+            <param name="closeExpandedAd">if true and ad expanded then close the expanded ad,
+            otherwise do nothing to expanded ad.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.Resume">
+            <summary>
+            resumes display of dynamic ad being rendered, this basically means hiding
+            the WebViewBrush and displaying the WebView
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.HandleScriptNotify(System.String)">
+            <summary>
+            Handles ScriptNotify events containing ORMMA actions.
+            </summary>
+            <param name="actionInfo"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebBrowserUnloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            handles the unloaded event and performs necessary cleanup
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebBrowserLoaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            WebBrowserLoaded event handler
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="args">Event arguments</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.ClosedEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            cleanup the popup and reset the size of the AdvertisingWebBrowser to the 
+            pre-expand size
+            </summary>        
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.RendererDownloadRequestComplete(MicrosoftAdvertising.Shared.HttpResponseData)">
+            <summary>
+            callback 
+            </summary>
+            <param name="responseData">response data for request</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.RenderAd(System.String)">
+            <summary>
+            called after the render script is downloaded, sets the webview's content to the bootstrap
+            with ormma and renderer set inside 'script' tags
+            </summary>
+            <param name="rendererScript"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.ConfigureWebViewBrush">
+            <summary>
+            sets up handlers required for performance scrolling
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.SetupPerformanceScrollingEventHandlers(System.Boolean)">
+            <summary>
+            sets up the event handlers required for performance scrolling
+            </summary>
+            <param name="subscribe">true to subscribe, false to unsubscribe</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.SetupStaticAnchorEventHandlers(System.Boolean)">
+            <summary>
+            sets up the event handlers required for static anchor
+            </summary>
+            <param name="subscribe">true to subscribe, false to unsubscribe</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewBrushDisplayRectanglePointerEnteredHandler(System.Object,Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            for switching the arrow-pointer to the hand-pointer when the ad is showing the WVB and is moused over
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewBrushDisplayRectanglePointerExitedHandler(System.Object,Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            for switching the hand-pointer back to the arrow-pointer when the mouse leaves the ad.
+            </summary>        
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewBrushDisplayRectangleTappedHandler(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            event handler for when the static anchor ad is tapped, fires the ormma click event
+            to notify the renderers that the ad has been clicked
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewBrushDisplayRectanglePointerMovedHandler(System.Object,Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            event handler for performance scrolling scenario, fired when the mouse moves over t
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewLayoutUpdatedHandler(System.Object,System.Object)">
+            <summary>
+            handler for the web view layout changed event. this is used for detecting movement
+            and when to swap in the WebViewBrush for improved scrolling performance
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.ShowWebViewBrush">
+            <summary>
+            displays the WebViewBrush and hides the WebView
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.ShowWebView">
+            <summary>
+            displays the WebView and hides the WebViewBrush
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OrmmaAdRenderedHandler(System.Object,System.EventArgs)">
+            <summary>
+            handles the AdRendered event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OrmmaAdRenderErrorHandler(System.Object,System.EventArgs)">
+            <summary>
+            handles the AdRenderError event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OrmmaAdInitializedHandler(System.Object,Microsoft.Advertising.WinRT.UI.AdInitializedEventArgs)">
+            <summary>
+            handles the AdInitialized event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OnSizeChanged(System.Object,Windows.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            handles sized change events by applying the new size to the
+            child controls
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.RaiseAdLoadFailedEvent(System.String)">
+            <summary>
+            Raises the ad load failed event to indicate that the ad did not load properly.
+            This could be due to a timeout, problem loading the renderer, problem interacting
+            with JavaScript using InvokeScript, etc.
+            </summary>
+            <param name="message">page load failed message</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.RaiseRichMediaActionEvent(Microsoft.Advertising.WinRT.UI.RichMediaActionType)">
+            <summary>
+            raises the rich media action event
+            </summary>
+            <param name="action">the rich media action that occurred</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.OrmmaRichMediaActionHandler(System.Object,Microsoft.Advertising.WinRT.UI.RichMediaEventArgs)">
+            <summary>
+            This passes on any events raised in OrmmaImpl.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.RichMediaAction">
+            <summary>
+            rich media actions
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.AdLoadFailed">
+            <summary>
+            event that is fired when an ad fails to load due to timeout or other error
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.AdInitialized">
+            <summary>
+            event that is fired when an ad is rendered
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.CleanupOnUnload">
+            <summary>
+            Controls the cleanup of the ormma instance, this is necessary since when expanding
+            we're unloading and re-loading the webbrowser which triggers the unloaded event that 
+            would otherwise indicate that cleanup is required. This will be set to false in the
+            loaded event to ensure cleanup unless explicitly disabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser.WebViewBrushUsage">
+            <summary>
+            When true the currently rendered ad will temporarily be replaced by a snapshot image to improve scrolling
+            performance. When the AdControl has stopped scrolling it will revert back to normal behaviour. When false
+            no additional actions are performed on scolling.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.Constants">
+            <summary>
+            Class containing shared constants.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.Constants.HiddenWhenShipped">
+            <summary>
+            HiddenWhenShipped is used within DebuggerBrowsable attribute for
+            all private/internal fields/properties of public classes to hide
+            implementation details from app developers in Visual Studio's
+            Watch window when debugging.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.JsFunctions">
+            <summary>
+            constants which represent javascript function names used in ormma
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.OrmmaMethodNames">
+            <summary>
+            ormma method names used in error reporting
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.FieldLimits">
+            <summary>
+            field limits used in validation
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.OrmmaParameters">
+            <summary>
+            name of ormma parameters in string passed down form JS layer
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.OrmmaActions">
+            <summary>
+            action names in the string passed down from the JS layer
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.OrmmaNetworkStates">
+            <summary>
+            names of network states used by ormma
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.AdInitializedEventArgs">
+            <summary>
+            AdInitializedEventArgs
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.AdInitializedEventArgs.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="rendererApiVersion">the renderer API version of the renderer that was initialized</param>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.AdInitializedEventArgs.RendererApiVersion">
+            <summary>
+            the action the event represents
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.ExpandProperties">
+            <summary>
+            holds the container properties used during expand
+            properties = {  
+                            "width`*`" : "nn",
+                            "height`*`" : "nn",   
+                            "useCustomClose`*`" :  "true|false",  
+                            "isModal`*`" : "true|false" (read-only),  
+                            "lockOrientation" : "true|false",  
+                          }
+            see http://code.google.com/p/ormma/wiki/ORMMA_JavaScript#getExpandProperties                 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.ExpandProperties.#ctor(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            ExpandProperties constructor
+            </summary>
+            <param name="width">widht to expand to</param>
+            <param name="height">height to expand to</param>
+            <param name="useCustomClose">choose whether to use custom close</param>
+            <param name="lockOrientation">choose whether to lock orientation</param>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ExpandProperties.Width">
+            <summary>
+            the width of creative in pixels, default is full screen width 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ExpandProperties.Height">
+            <summary>
+            the height of creative in pixels, default is full screen height 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ExpandProperties.UseCustomClose">
+            <summary>
+            allows the ad designer to replace the default close graphic. True, stop showing the default
+            close graphic and rely on ad creative’s custom close indicator; false (default), container
+            will display the default close graphic/
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ExpandProperties.IsModal">
+            <summary>
+             read-only property that identifies if the expanded container is modal or not. True, the SDK
+             is providing a modal container for the expanded ad; false, the SDK is not providing a modal
+             container for the expanded ad. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ExpandProperties.LockOrientation">
+            <summary>
+            Lock the orientation of the expansion, if it is not specified in the properties object a value
+            of false is assumed. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.IOrmmaImpl">
+            <summary>
+            Ormma implementation for managed interface.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.ITaskInvoker">
+            <summary>
+            interface for classes that use device specific actions
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.LocalStrings.loader">
+            <summary>
+            reference to ResourceLoader for getting localised strings
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.LocalStrings.GetResource(System.String)">
+            <summary>
+            attempts to get a resrouce and handles any exceptions
+            </summary>
+            <param name="resourceName">name of resource to get</param>
+            <returns>loaded resource or not found.</returns>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.LocalStrings.Loader">
+            <summary>
+            ResourceLoader accessor
+            </summary>        
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.taskInvoker">
+            <summary>
+            responsible for invoking actions that are platform specific
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.advertisingWebBrowser">
+            <summary>
+            refernce to AdvertisingWebBrowser used for expand, resize and openmap
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.currentState">
+            <summary>
+            current state of the rich media ad
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.previousState">
+            <summary>
+            previous state of the rich media ad, this is needed since you can
+            expand from 'default' and 'resized'. On close you need to know which
+            state to return to
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.expandProperties">
+            <summary>
+            holds the properties used for expanding
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.defaultWidth">
+            <summary>
+            the width of the ad in the default state
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.defaultHeight">
+            <summary>
+            the height of the ad in the default state
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.expandedCloseFunction">
+            <summary>
+            delegate to function called on close when in the expanded state
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.jsonWrapper">
+            <summary>
+            json wrapper function to use - TODO: refactor to inject this dependency to make easier to test it
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.adInstanceData">
+            <summary>
+            store for data passed between default and expanded states
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.OrmmaImpl.useCustomClose">
+            <summary>
+            whether to hide close bars or show them
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.#ctor(Microsoft.Advertising.WinRT.UI.ITaskInvoker,Microsoft.Advertising.WinRT.UI.RichMediaAdState)">
+            <summary>
+            constructor
+            </summary>
+            <param name="taskInvoker">platform specific task invoker</param>
+            <param name="state">the starting state of ormma</param>      
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.#ctor(Microsoft.Advertising.WinRT.UI.ITaskInvoker,Microsoft.Advertising.WinRT.UI.IAdvertisingWebBrowser,Microsoft.Advertising.WinRT.UI.RichMediaAdState,System.Double,System.Double)">
+            <summary>
+            constructor
+            </summary>
+            <param name="taskInvoker">platform specific task invoker</param>
+            <param name="advertisingWebBrowser">advertising web browser used for expanding, resizing etc</param>
+            <param name="state">the starting state of ormma</param>
+            <param name="width">the width of the rich media control</param>
+            <param name="height">the height of the rich media control</param>       
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Execute(System.String)" -->
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.InitializeOrmma">
+            <summary>
+            initialises ormma to a known state
+            </summary>
+            <returns>true if initialisation was successful, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Close">
+            <summary>
+            changes the state of the rich media ad dependant on it's current state.
+            default: moves to hidden
+            resized: moves to default
+            expanded: moves to default if it had expanded from default, moves to resized if it was expanded from resized
+            hidden: no change
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Cleanup">
+            <summary>
+            performs any required cleanup
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetState(Microsoft.Advertising.WinRT.UI.RichMediaAdState)">
+            <summary>
+            updates the state of ormma and keeps track of the previous state
+            </summary>
+            <param name="state">that state to update to</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetOrmmaAdContainerSize(System.Double,System.Double)">
+            <summary>
+            Sets the size of the ad container.
+            </summary>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetToPreviousState">
+            <summary>
+            updates the state of ormma and keeps track of the previous state
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.FireClickEvent">
+            <summary>
+            firest the "click" event in the renderer, this is typically only fired when
+            the developer has set UseStaticAnchor to true and allows us to notify the 
+            renderer that a user is interacting with the ad.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.ProcessAdError(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            processes the ad error message sent from ormma and raises the 
+            AdRenderError event, this will eventually raise the ErrorOccured event
+            on the ad sdk.
+            </summary>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetUseCustomClose(System.String)">
+            <summary>
+            sets whether to use close bands, SDK provided or a custom close button to
+            exit full screen ad.
+            </summary>
+            <param name="prms">true</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.RaiseAdRenderedEvent">
+            <summary>
+            raises the AdRendered event, this occurrs when the ad renderer sends a message telling
+            us that they've finished downloading all assets etc
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.RaiseAdInitializedEvent(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            raises the AdInitialized event, this is a message sent by the bootstrap (ie us) to say
+            we've set all parameters into the renderer and called init on it
+            </summary>
+            <param name="parameters">Dictionary containing parameter: rendererApiVersion.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetUserEngaged(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            sets the background properties to use during expand
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (width,height,useCustomClose,lockOrientation) for expanding.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetExpandProperties(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            sets the background properties to use during expand
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (width,height,useCustomClose,lockOrientation) for expanding.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Expand(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            expands the current ad to the specified size
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (url) for expanding.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Resize(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            resizes the web browser to the size specified
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (height, width) for expanding</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Show">
+            <summary>
+            shows the ad if it was in the hidden state
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Hide">
+            <summary>
+            hides the add if it was in the default state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SendSms(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initiates an SmsComposeTask with data from the rich media ad.
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (recipient, body) for sending an SMS.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SendEmail(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initiates EmailComposeTask with data from the rich media ad.
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (recipient,subject,body) for sending an email.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.BrowseToUrl(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initiates a WebBrowserTask with data from the rich media ad.
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (url) for browsing.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.PlayMedia(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initiates the media player with content from the rich media ad.
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (url) for playing a video.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.MakePhoneCall(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initiates PhoneCallTask with data from the rich media ad.
+            </summary>
+            <param name="parameters">Dictionary containing required parameters (recipient) for making a call.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.StorePicture(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            stores a picture to the devices media library
+            </summary>
+            <param name="parameters">Dictionary containing required parameter (url) for making a call.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.StartTiltAccelerometer(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            updates the tilt value in the JS layer.
+            </summary>
+            <param name="parameters">contains an optional parameter 'listener'. if 'start' it updates the 
+            the tilt value as it changes, if stop it stops updating, if not present it does nothing</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.StartShakeAccelerometer(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Starts monitoring and sending the shake events to client.
+            </summary>
+            <param name="parameters">contains an optional parameter 'listener'. if 'start' it updates the 
+            the shake value as it changes, if stop it stops updating, if not present does nothing</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetupViewableChangedHandler(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Starts the monitoring if the ad is viewable or not
+            </summary>
+            <param name="parameters">contains an optional parameter 'listener'. if 'start' it raises the 
+            the viewable changed event as it changes, if stop it stops raising the event.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.OpenMap(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            opens a map on a popup
+            </summary>
+            <param name="parameters">contains parameters POI (point of interest) and fullscreen</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.GetOrientation(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Updates the the web controls orientation variable or optional starts/stops listening
+            for the orientation changed event.
+            </summary>
+            <param name="parameters">contains an optional parameter 'listener'. if 'start' it updates the 
+            the orientation value as it changes, if stop it stops updating, if not present it updates the 
+            orientation once.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.Resize(System.Double,System.Double,Microsoft.Advertising.WinRT.UI.RichMediaAdState)">
+            <summary>
+            helper method for resizing, also updates state and size in the JS layer
+            which triggers the appropriate events
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.SetScreenSize">
+            <summary>
+            sets the screensize to use in ormma in ormma
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.RaiseRichMediaActionEvent(Microsoft.Advertising.WinRT.UI.RichMediaActionType)">
+            <summary>
+            Fires an event if there are any handlers.
+            Currently this is a no-op. We previously thought we might report to server when ormma was used to make a call or send sms.
+            We do not do this now. This can be removed completely if it is determined we will never need this event.
+            </summary>
+            <param name="action">action that occurred</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaImpl.DoRequest(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Issue request for the uri resource
+            </summary>
+            <param name="parameters">dictionary of parameters. URL is the resource to request. Display is Ormma parameter to specify how to handle response</param>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.OrmmaImpl.RichMediaAction">
+            <summary>
+            rich media actions, fired when user interacts with the ad
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.OrmmaImpl.AdRendered">
+            <summary>
+            raised when we're notified by the renderer that the ad has been
+            rendered, ie all assets etc have been downloaded
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.OrmmaImpl.AdInitialized">
+            <summary>
+            raised when the bootstrap has finished initialising the renderer with
+            parameters and init has been called on it. This is the event that will
+            ultimately be used to notify the app that the ad has been refreshed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.OrmmaImpl.AdRenderError">
+            <summary>
+            raised when ad renderer signals there was an issue rendering the ad, this 
+            eventually notifies the developer that there was an ad error and we invalidate 
+            the ad.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.OrmmaImpl.ExpandedCloseFunction">
+            <summary>
+            method called when closed from expanded state
+            this is typically a reference to a method on the WebBrowserView
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.OrmmaImpl.State">
+            <summary>
+            returns the current state of the rich media ad (expanded, resized, hidden, default).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.OrmmaImpl.AdInstanceData">
+            <summary>
+            stores the ad instances state, both in current instance and the exapnded instance
+            </summary>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.OrmmaImpl.CloseBandTotalHeight">
+            <summary>
+            gets the height to use for close bands
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.ValidateAndRemoveEmailList(System.String)">
+            <summary>
+            parses a list of email addresses in a string separated by a ',' or a ';', validates them
+            and removes them from the string if not valid or are duplicates. eg 
+            "test@example.com;test2.example.com,test3@example.com" would return
+            "test@example.com;test3@example.com;"
+            </summary>
+            <param name="emailAddresses">email address list to parse</param>
+            <returns>validated email addresses</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.IsEmailValid(System.String)">
+            <summary>
+            verifies if an email is valid
+            </summary>
+            <param name="email">email address to validate</param>
+            <returns>true if valid, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.TryGetUriParameter(System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Uri@)">
+            <summary>
+            verifies url is valid and of a supported scheme
+            </summary>
+            <param name="parameters">paramters to query</param>
+            <param name="parameterName">the name of the parameter to query</param>
+            <param name="uri">value if parameter found</param>
+            <returns>true if the parameter was found, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.TryGetIntegerParameter(System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Int32@,System.Boolean)">
+            <summary>
+            attemps to get a value from the dictionary as a integer
+            </summary>
+            <param name="parameters">paramters to query</param>
+            <param name="parameterName">the name of the parameter to query</param>
+            <param name="value">value if parameter found</param>
+            <returns>true if the parameter was found, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.TryGetBooleanParameter(System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Boolean@)">
+            <summary>
+            attemps to get a value from the dictionary as a bool, returns false on error
+            </summary>
+            <param name="parameters">paramters to query</param>
+            <param name="parameterName">the name of the parameter to query</param>
+            <param name="value">value if parameter found</param>
+            <returns>true if the parameter was found, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.TryGetGuid(System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.Guid@)">
+            <summary>
+            attempts to get a Guid from the dictionary
+            </summary>
+            <param name="parameters">paramters to query</param>
+            <param name="parameterName">the name of the parameter to query</param>
+            <param name="value">value if parameter found</param>
+            <returns>true if the parameter was found, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.OrmmaUtils.ParseQueryString(System.String)">
+            <summary>
+            <![CDATA[Parses out parameters from data supplied "param1=value1&param2=value2" into a dictionary [{param1:value1},{param2:value2}]]]>
+            </summary>
+            <param name="queryString">string to be parsed</param>
+            <returns>Dictionary containing parameter data.</returns>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.ResourceCache">
+            <summary>
+            loads resources from disk and caches them
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.ResourceCache.OrmmaKey">
+            <summary>
+            unique path to the ormma.js resource
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.ResourceCache.BootstrapKey">
+            <summary>
+            unique path to the bootstrap.html resource
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.ResourceCache.instance">
+            <summary>
+            private instance of the ResourceCache
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.ResourceCache.cachedResources">
+            <summary>
+            store for the loaded resources
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.ResourceCache.cacheAddLock">
+            <summary>
+            lock to control access for cache adds
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.ResourceCache.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.ResourceCache.GetResource(System.String)">
+            <summary>
+            loads a text resource from the file system and caches it if found
+            </summary>
+            <param name="location">the location of the resource to load</param>
+            <returns>the loaded resource or null if not found</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.ResourceCache.LoadResource(System.String)">
+            <summary>
+            attemps to load a resource
+            </summary>
+            <param name="resourcePath">unique path to the resource</param>
+            <returns>the loaded resource or an empty string if the resource was not found</returns>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.ResourceCache.Instance">
+            <summary>
+            returns the instance of the ResourceCache
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.RichMediaActionType">
+            <summary>
+            types of rich media actions 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.RichMediaEventArgs">
+            <summary>
+            RichMediaEventArgs
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.RichMediaEventArgs.#ctor(Microsoft.Advertising.WinRT.UI.RichMediaActionType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="action">the action that occurred</param>
+        </member>
+        <member name="P:Microsoft.Advertising.WinRT.UI.RichMediaEventArgs.Action">
+            <summary>
+            the action the event represents
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.UIUtilities.GetControlScreenPosition(Windows.UI.Xaml.UIElement)">
+            <summary>
+            returns the position of the element relative to the main window
+            see: http://forums.silverlight.net/p/12160/39074.aspx
+            </summary>
+            <returns>the position of the element</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.UIUtilities.IsControlOnScreen(Windows.UI.Xaml.FrameworkElement,System.Double)">
+            <summary>
+            returns true if at least x% of the ad area is on screen, false otherwise
+            </summary>
+            <param name="maxAllowedOffscreen">threshold percent to determing if control is on screen or not</param>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.popup">
+            <summary>
+            popup that holds the popup content
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.overlayCanvas">
+            <summary>
+            transparent overlay canvas that holds the close button and popup content
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.webBrowser">
+            <summary>
+            the webbrowser that contains the content to display
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.expandProperties">
+            <summary>
+            the expand properties, used for positioning and orientation etc
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.webBrowserOldParent">
+            <summary>
+            for storing the old and new parents of the AdvertisingWebBrowser
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebBrowserView.closeBandHeight">
+            <summary>
+            stores the height to be used for the close bands, typically this
+            is 50px or 0px
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.#ctor(Microsoft.Advertising.WinRT.UI.ExpandProperties,Microsoft.Advertising.WinRT.UI.AdvertisingWebBrowser,System.Double)">
+            <summary>
+            Constructor of WebBrowserView class.
+            Initialize the web browser control, the popup view and the application bar.
+            </summary>
+            <param name="expandProps">properties to use when expanding</param>
+            <param name="advertisingWebBrowser">web browser to host in the popup</param>
+            <param name="closeBandHeight">height to reserve on screen for the close bands</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.SetExpandProperties(Microsoft.Advertising.WinRT.UI.ExpandProperties)">
+            <summary>
+            Sets the ExpandProperties for the expanded ad. This method will size the ad based on the properties and center 
+            it on the screen. This is used when initially expanding and also when the expanded ad needs to be resized.
+            </summary>
+            <param name="expandProps">properties to use when expanding</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.Show">
+            <summary>
+            Show the popup
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.ClosePopup">
+            <summary>
+            closes the popup and raises the closed event, if overridden it should 
+            be called after derived classes have performed their close task.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.PositionWebBrowser(System.Double,System.Double)">
+            <summary>
+            positions the expanded browser in the popup, if the height or width is greater
+            than the screen size the ad "...will be centered vertically and horizontally causing 
+            outlying areas to be cropped." as per
+            http://code.google.com/p/ormma/wiki/ORMMA_JavaScript#expand
+            </summary>
+            <param name="width">display area width</param>
+            <param name="height">display area height</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.CloseButtonHandler(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            handler for the soft close button (X) when present
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.WebBrowserView.SizeChangedHandler(System.Object,Windows.UI.Core.WindowSizeChangedEventArgs)">
+            <summary>
+            Event handler when the size of the main windows changes
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">arguments to the event</param>
+        </member>
+        <member name="E:Microsoft.Advertising.WinRT.UI.WebBrowserView.Closed">
+            <summary>
+            event fired when popup is closed
+            </summary>
+        </member>
+        <member name="T:Microsoft.Advertising.WinRT.UI.WebViewBrushUsage">
+            <summary>
+            the WebViewBrush usage scenarios for the AdvertisingWebBrowser
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebViewBrushUsage.None">
+            <summary>
+            never show the WebViewBrush
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebViewBrushUsage.DuringScrolling">
+            <summary>
+            Show the WebViewBrush when scrolling/movement is detected, when movement stops and
+            the LayoutUpdated event fires OR pointer movement is detected on the ad switch back
+            in the WebView
+            </summary>       
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.WebViewBrushUsage.Always">
+            <summary>
+            if the ad renderer has subscribed to the ormma click event, the WebViewBrush is shown 
+            always. Clicks on the WebViewBrush are passed through to the ad by raising the ormma
+            click event.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.errorReportCount">
+            <summary>
+            used to prevent feedback loop to javascript layer, this scenario could happen when 
+            subscribing to the error event and in the handler for the error event you generate
+            the same error again.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.lastNetworkStatus">
+            <summary>
+            keeps track of last network status for event handling
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.#ctor(Windows.UI.Xaml.Controls.WebView)">
+            <summary>
+            constructor
+            </summary>
+            <param name="wv">WebView for invokeing script commands on</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.#ctor(Windows.UI.Xaml.Controls.WebView,Windows.UI.Xaml.FrameworkElement)">
+            <summary>
+            constructor
+            </summary>
+            <param name="wv">WebView for invokeing script commands on</param>
+            <param name="isOnScreenCheckEl">element to use for checking if ad control is on screen</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.SendSms(System.String,System.String)">
+            <summary>
+            initiates sending an sms
+            </summary>
+            <param name="to">recipient phone number</param>
+            <param name="body">message body</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.SendEmail(System.String,System.String,System.String)">
+            <summary>
+            initiates sending an email
+            </summary>
+            <param name="to">recipient email address</param>
+            <param name="subject">email subject</param>
+            <param name="body">email body</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.BrowseToUrl(System.Uri)">
+            <summary>
+            initiates browsing to a url
+            </summary>
+            <param name="uri">location to browse to</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.PlayMedia(System.Uri)">
+            <summary>
+            initiates playing a video
+            </summary>
+            <param name="uri">url of video to play</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.MakePhoneCall(System.String)">
+            <summary>
+            initiates a phone call
+            </summary>
+            <param name="phoneNumber">recipient phone number</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StartTiltTracking">
+            <summary>
+            Starts the tracking of accelerometer tilt data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StopTiltTracking">
+            <summary>
+            Stops the tracking of accelerometer tilt data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.GetTilt">
+            <summary>
+            Reports the current tilt coordinates to ormma once for GetTilt call.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StartShakeTracking">
+            <summary>
+            Starts the tracking of accelerometer shake data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StopShakeTracking">
+            <summary>
+            Stops the tracking of accelerometer shake data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.UpdateOrientation">
+            <summary>
+            updates the orientation in the WebView
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StartOrientationMonitoring">
+            <summary>
+            starts listening to the orientation changed event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StopOrientationMonitoring">
+            <summary>
+            stops listening to the orientation changed event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.CleanUp">
+            <summary>
+            cleans up resoureces used by the class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.ReportError(System.String,System.String)">
+            <summary>
+            Reports an error to the ad in the web browser via javascript.
+            </summary>
+            <param name="function">the ORMMA method the error occured in</param>
+            <param name="message">the error message</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.InvokeScript(System.String,System.String[])">
+            <summary>
+            invokes a javascript function
+            </summary>
+            <param name="function">the function to call</param>
+            <param name="parameters">parameters to pass to the function</param>
+            <returns>the value returned by the javascript call</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StorePicture(System.Uri)">
+            <summary>
+            Stores a picture to the media library.
+            </summary>
+            <param name="uri">location of the image to store</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.SetScreenSize(System.Double,System.Double)">
+            <summary>
+            sets the screen size for the 
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.AddSizeChangedHandler">
+            <summary>
+            adds a handler to the screen size change event to update ormma on rotations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.DoRequest(System.String,System.String)">
+            <summary>
+            Perform web request 
+            </summary>
+            <param name="url">url to request</param>
+            <param name="display">ormma display parameter to specify how to handle response</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.GetNetwork">
+            <summary>
+            Get the network type
+            </summary>
+            <returns>network type</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StartViewableChangedMonitoring">
+            <summary>
+            starts monitoring the viewable state of the ad
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StopViewableChangedMonitoring">
+            <summary>
+            stops monitoring the viewable state of the ad
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.PageOrientationAsInt">
+            <summary>
+            returns the orientation of the phone in the ormma definition
+            -1 - device orientation unknown
+            0 - portrait, 
+            90 - clockwise to landscape
+            180 - portrait upside down
+            270 - counter clockwise to landscape
+            </summary>
+            <returns> orientation as an integer</returns>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.OrientationChangedHandler(System.Object)">
+            <summary>
+            Handles orientation changed events updating the ormma library.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.AccelerometerShakenHandler(Windows.Devices.Sensors.Accelerometer,Windows.Devices.Sensors.AccelerometerShakenEventArgs)">
+            <summary>
+            Fired then the accelerometer has been shaken.
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.AccelerometerReadingChangedHandler(Windows.Devices.Sensors.Accelerometer,Windows.Devices.Sensors.AccelerometerReadingChangedEventArgs)">
+            <summary>
+            Fired when the accelerometer tilt changes.
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.StopAccelerometerMonitoring">
+            <summary>
+            Cleans up the accelerometer by unwiring all the events and setting it to null.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.SizeChangedHandler(System.Object,Windows.UI.Core.WindowSizeChangedEventArgs)">
+            <summary>
+            Event handler when the size of the main windows changes
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">arguments to the event</param>
+        </member>
+        <member name="M:Microsoft.Advertising.WinRT.UI.Win8TaskInvoker.NetworkStatusChangedHandler(System.Object)">
+            <summary>
+            event handler to notifiy ormma on network change event
+            </summary>
+            <param name="sender">sender</param>
+        </member>
+    </members>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>NfFG/Knjg2C7Imz1LGvisaXQt/I=</DigestValue></Reference></SignedInfo><SignatureValue>
+    Kb7G0D8cbCkO5tUrlM9IbPLNSdO1s233LdU3IODLc3QukO1kfSX+lyqFcu/nXyt4anIx3wlI
+    x6oWILfQFDDplX40V9m7KPKge9ZoUpbyL4RNznCuLuMiThByr8W3S2d4ySHFz2QcXCCj/XqJ
+    7Q61D/uJ3mHsQYMTun28erz4K9CmUzFqkF8/sEAsfL/LmVKvMOLADC4r25SW8jGrFdbtp/2P
+    sBWTiFMvJuXR5q0ao7/3U9XMlZ3n5G+AkYNaXJxTe6TNE7M8vNUwKKZvYjBuKDE8WIQ8nOVz
+    ZJPr1uRV3fuZMgcEZ6TwhvN4zrelTnKp+zHyXwIq6HrKlhXBEyTrUg==
+  </SignatureValue><KeyInfo>
+      <KeyValue>
+        <RSAKeyValue>
+          <Modulus>
+            s3R00II8h6ea1I6yBEKAlyUu5EHOk2M2XxPytHiYgMYofsyKE+89N4w7CaDYFMVcXtipHX8B
+            wbOYG1B37P7qfEXPf+EhDsWEyp8Pa7MJOLd0xFcevvBIqHla3w6bHJqovMhStQxpj4TOcVV7
+            /wkgv0B3NyEwdFuV33fLoOXBchIGPfLIVWyvwftqFifI9bNh49nOGw8e9OTNTDRsPkcR5wIr
+            XxR6BAf11z2L22d9Vz41622NAUCNGoeW4g93TIm6OJz7jgKR2yIP5dA2qbg3RdAq/JaNwWBx
+            M6WIsfbCBDCHW8PXL7J5EdiLZWKiihFmXX5/BXpzih96heXNKBDRPQ==
+          </Modulus>
+          <Exponent>AQAB</Exponent>
+        </RSAKeyValue>
+      </KeyValue>
+      <X509Data>
+        <X509Certificate>
+          MIIEqTCCA5GgAwIBAgITMwAAAIhZDjxRH+JqZwABAAAAiDANBgkqhkiG9w0BAQUFADB5MQsw
+          CQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwG
+          A1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSMwIQYDVQQDExpNaWNyb3NvZnQgQ29kZSBT
+          aWduaW5nIFBDQTAeFw0xMjA3MjYyMDUwNDFaFw0xMzEwMjYyMDUwNDFaMIGDMQswCQYDVQQG
+          EwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMV
+          TWljcm9zb2Z0IENvcnBvcmF0aW9uMQ0wCwYDVQQLEwRNT1BSMR4wHAYDVQQDExVNaWNyb3Nv
+          ZnQgQ29ycG9yYXRpb24wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCzdHTQgjyH
+          p5rUjrIEQoCXJS7kQc6TYzZfE/K0eJiAxih+zIoT7z03jDsJoNgUxVxe2KkdfwHBs5gbUHfs
+          /up8Rc9/4SEOxYTKnw9rswk4t3TEVx6+8EioeVrfDpscmqi8yFK1DGmPhM5xVXv/CSC/QHc3
+          ITB0W5Xfd8ug5cFyEgY98shVbK/B+2oWJ8j1s2Hj2c4bDx705M1MNGw+RxHnAitfFHoEB/XX
+          PYvbZ31XPjXrbY0BQI0ah5biD3dMibo4nPuOApHbIg/l0DapuDdF0Cr8lo3BYHEzpYix9sIE
+          MIdbw9cvsnkR2ItlYqKKEWZdfn8FenOKH3qF5c0oENE9AgMBAAGjggEdMIIBGTATBgNVHSUE
+          DDAKBggrBgEFBQcDAzAdBgNVHQ4EFgQUJls+W12WX+L3d4h/XkVTWKguW7gwDgYDVR0PAQH/
+          BAQDAgeAMB8GA1UdIwQYMBaAFMsR6MrStBZYAck3LjMWFrlMmgofMFYGA1UdHwRPME0wS6BJ
+          oEeGRWh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9wa2kvY3JsL3Byb2R1Y3RzL01pY0NvZFNp
+          Z1BDQV8wOC0zMS0yMDEwLmNybDBaBggrBgEFBQcBAQROMEwwSgYIKwYBBQUHMAKGPmh0dHA6
+          Ly93d3cubWljcm9zb2Z0LmNvbS9wa2kvY2VydHMvTWljQ29kU2lnUENBXzA4LTMxLTIwMTAu
+          Y3J0MA0GCSqGSIb3DQEBBQUAA4IBAQAP3kBJiJHRMTejRDhpsmor1JH7aIWuWLseDI9W+pnX
+          ypcnTOiFjnlpLOS9lj/lcGaXlTBlKa3Gyqz1D3moZ79p9A+X4woPv+6WdimyItAzxv+LSa2u
+          sv2/JervJ1DA6xn4GmRqoOEXWa/xz+yBqInosdIUBuNqbXRSZNqWlCpcaWsf7QWZGtzoZaqI
+          GxWVGtOkUZb9VZX4Y42fFAyxnn9KBP/DZq0Kr66k3mP68OrDs7Lrh9vFOK22c9J4ZOrsIVtr
+          O9ZEIvSBUqUrQymLDKEqcYJCy6sbftSlp6333vdGms5DOegqU+3PQOR3iEK/RxbgpTZq76ca
+          jTo9MwT2JSAj
+        </X509Certificate>
+      </X509Data>
+      <X509Data>
+        <X509Certificate>
+          MIIFmTCCA4GgAwIBAgIQea0WoUqgpa1Mc1j0BxMuZTANBgkqhkiG9w0BAQUFADBfMRMwEQYK
+          CZImiZPyLGQBGRYDY29tMRkwFwYKCZImiZPyLGQBGRYJbWljcm9zb2Z0MS0wKwYDVQQDEyRN
+          aWNyb3NvZnQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHhcNMDEwNTA5MjMxOTIyWhcN
+          MjEwNTA5MjMyODEzWjBfMRMwEQYKCZImiZPyLGQBGRYDY29tMRkwFwYKCZImiZPyLGQBGRYJ
+          bWljcm9zb2Z0MS0wKwYDVQQDEyRNaWNyb3NvZnQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3Jp
+          dHkwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDzXfqAZ9Rap6kMLJAg0DUIPHWE
+          zbcHiZyJ2t7Ow2D6kWhanpRxKRh2fMLgyCV2lA5Y+gQ0Nubfr/eAuulYCyuT5Z0F43cikfc0
+          ZDwikR1e4QmQvBT+/HVYGeF5tweSo66IWQjYnwfKA1j8aCltMtfSqMtL/OELSDJP5uu4rU/k
+          XG8TlJnbldV126gat5SRtHdb9UgMj2p5fRRwBH1tr5D12nDYR7e/my9s5wW34RFgrHmRFHzF
+          1qbk4X7Vw37lktI8ALU2gt554W3ztW74nzPJy1J9c5g224uha6KVl5uj3sJNJv8GlmclBsjn
+          rOTuEjOVMZnINQhONMp5U9W1vmMyWUA2wKVOBE0921sHM+RYv+8/U2TYQlk1V/0PRXwkBE2e
+          1jh0EZcikM5oRHSSb9VLb7CG48c2QqDQ/MHAWvmjYbkwR3GWChawkcBCle8Qfyhq4yofseTN
+          Az93cQTHIPxJDx1FiKTXy36IrY4t7EXbxFEEySr87IaemhGXW97OU4jm4rf9rJXCKEDb7wSQ
+          34EzOdmyRaUjhwalVYkxuwYtYA5BGH0fLrWXyxHrFdUkpZTvFRSJ/Utz+jJb/NEzAPlZYnAH
+          Muouq0Ate8rdIWcbMJmPFqojqEHRsG4RmzbE3kB0nOFYZcFgHnpbOMiPuwQmfNQWQOW2a2yq
+          hv0Av87BNQIDAQABo1EwTzALBgNVHQ8EBAMCAcYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4E
+          FgQUDqyCYEBWJ5flJRP8KuEKU5VZ5KQwEAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQEF
+          BQADggIBAMURTQM6YN1dUhF3j7K7NsiyBb+0t6jYIJ1cEwO2HCL6BhM1tshj1JpHbyZX0lXx
+          BLEmX9apUGigvNK4bszD6azfGc14rFl0rGY0NsQbPmw4TDMOMBINoyb+UVMA/69aToQNDx/k
+          bQUuToVLjWwzb1TSZKu/UK99ejmgN+1jAw/8EwbOFjbUVDuVG1FiOuVNF9QFOZKaJ6hbqr3s
+          u77jIIlgcWxWs6UT0G0OI36VA+1oPfLYY7hrTbboMLXhypRL96KqXZkwsj2nwlFsKCABJCcr
+          SwC3nRFrcL6yEIK8DJto0I07JIeqmShynTNfWZC99d6TnjpiWjQ54ohVHbkGsMGJay3XacMZ
+          EjaE0Mmg2v8vaXiy5Xra69cMwPe9Yxe4ORM4ojZbe/KFVmodZGLBOOKqv1FmopT1EpxmIhBr
+          8rcwki3yKfA9OxRDaKLxnCk3y844ICVtfGfzfiQSJAMIgUfspZ6X9RjXz7vV73aW7/3O21ad
+          laBC+ZdY4dcxItNfWeY+biIA6kOEtiXb2fMIVmjAZGsdfOy2k6JiV24u2OdYj8QxSSbd3ik1
+          h/UwcXBbFDxpvYkSfesuo/7Yf56CWlIKK8FDK9kwiJ/IEPuJjeahhXUzfmye23MTZGJppS99
+          ypZtn/gETTCSPW4hFCHJPeDD/YprnUr90aGdmUN3P7Da
+        </X509Certificate>
+      </X509Data>
+      <X509Data>
+        <X509Certificate>
+          MIIFvDCCA6SgAwIBAgIKYTMmGgAAAAAAMTANBgkqhkiG9w0BAQUFADBfMRMwEQYKCZImiZPy
+          LGQBGRYDY29tMRkwFwYKCZImiZPyLGQBGRYJbWljcm9zb2Z0MS0wKwYDVQQDEyRNaWNyb3Nv
+          ZnQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHhcNMTAwODMxMjIxOTMyWhcNMjAwODMx
+          MjIyOTMyWjB5MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMH
+          UmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSMwIQYDVQQDExpNaWNy
+          b3NvZnQgQ29kZSBTaWduaW5nIFBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+          ALJyWVwZMGS/HZpgICBCmXZTbD4b1m/My/Hqa/6XFhDg3zp0gxq3L6Ay7P/ewkJOI9VyANs1
+          VwqJyq4gSfTwaKxNS42lvXlLcZtHB9r9Jd+ddYjPqnNEf9eB2/O98jakyVxF3K+tPeAoaJca
+          p6Vyc1bxF5Tk/TWUcqDWdl8ed0WDhTgW0HNbBbpnUo2lsmkv2hkL/pJ0KeJ2L1TdFDBZ+NKN
+          Yv3LyV9GMVC5JxPkQDDPcikQKCLHN049oDI9kM2hOAaFXE5WgigqBTK3S9dPY+fSLWLxRT3n
+          rAgA9kahntFbjCZT6HqqSvJGzzc8OJ60d1ylF56NyxGPVjzBrAlfA9MCAwEAAaOCAV4wggFa
+          MA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFMsR6MrStBZYAck3LjMWFrlMmgofMAsGA1Ud
+          DwQEAwIBhjASBgkrBgEEAYI3FQEEBQIDAQABMCMGCSsGAQQBgjcVAgQWBBT90TFO0yaKleGY
+          YDuoMW+mPLzYLTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAfBgNVHSMEGDAWgBQOrIJg
+          QFYnl+UlE/wq4QpTlVnkpDBQBgNVHR8ESTBHMEWgQ6BBhj9odHRwOi8vY3JsLm1pY3Jvc29m
+          dC5jb20vcGtpL2NybC9wcm9kdWN0cy9taWNyb3NvZnRyb290Y2VydC5jcmwwVAYIKwYBBQUH
+          AQEESDBGMEQGCCsGAQUFBzAChjhodHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpL2NlcnRz
+          L01pY3Jvc29mdFJvb3RDZXJ0LmNydDANBgkqhkiG9w0BAQUFAAOCAgEAWTk+fyZGr+tvQLEy
+          tWrrDi9uqEn361917Uw7LddDrQv+y+ktMaMjzHxQmIAhXaw9L0y6oqhWnONwu7i0+Hm1SXL3
+          PupBf8rhDBdpy6WcIC36C1DEVs0t40rSvHDnqA2iA6VW4LiKS1fylUKc8fPv7uOGHzQ8uFaa
+          8FMjhSqkghyT4pQHHfLiTviMocroE6WRTsgb0o9ylSpxbZsa+BzwU9ZnzCL/XB3Nooy9J7J5
+          Y1ZEolHN+emjWFbdmwJFRC9f9Nqu1IIybvyklRPk62nnqaIsvsgrEA5ljpnb9aL6EiYJZTiU
+          8XofSrvR4Vbo0HiWGFzJNRZf3ZMdSY4tvq00RBzuEBUaAF3dNVshzpjHCe6FDoxPbQ4TTj18
+          KUicctHzbMrB7HCjV5JXfZSNoBtIA1r3z6NnCnSlNu0tLxfI5nI3EvRvsTxngvlSso0zFmUe
+          DordEN5k9G/ORtTTF+l5xAS00/ss3x+KnqwK+xMnQK3k+eGpf0a7B2BHZWBATrBC7E7ts3Z5
+          2Ao0CW0cgDEf4g5U3eWh++VHEK1kmP9QFi58vwUheuKVQSdpw5OPlcmN2Jshrg1cnPCiroZo
+          gwxqLbt2awAdlq3yFnv2FoMkuYjPaqhHMS+a3ONxPdcAfmJH0c6IybgY+g5yjcGjPa8CQGr/
+          aZuW4hCoELQ3UAjWwz0=
+        </X509Certificate>
+      </X509Data>
+    </KeyInfo><Object id="ts-countersig"><X509Data><X509Certificate>MIIEwzCCA6ugAwIBAgITMwAAADUo7mFTkiJhkQAAAAAANTANBgkqhkiG9w0BAQUFADB3MQswCQYD
+VQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMV
+TWljcm9zb2Z0IENvcnBvcmF0aW9uMSEwHwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFtcCBQQ0Ew
+HhcNMTMwMzI3MjAwODI2WhcNMTQwNjI3MjAwODI2WjCBszELMAkGA1UEBhMCVVMxEzARBgNVBAgT
+Cldhc2hpbmd0b24xEDAOBgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3Jh
+dGlvbjENMAsGA1UECxMETU9QUjEnMCUGA1UECxMebkNpcGhlciBEU0UgRVNOOjMxQzUtMzBCQS03
+QzkxMSUwIwYDVQQDExxNaWNyb3NvZnQgVGltZS1TdGFtcCBTZXJ2aWNlMIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAm9vWEfGEH1m0kUedzTgvsolxQaJbPc6WtX2a9wqAK0ICg8R8//f2
+6pcftWw4XkuVVOjsk9K5TeT3KyaHr7vrG+hNHCFDF/igM5qRsYFNOIEkUwKxdnlaLqz7y4xcXTub
+XKU7NoBsI3S2xnffQyfNOpmouBP65aqjt8VzhFbsjsFIMwGJMa8nNq07LQDicQQxvva3dLFnP1rl
+hLUBJpB4iYAlPj5CHFJKZCcCaM6iBr7QtT5EF4CZiImcwLkP1fI5lcM1FLsJEEW56m5frIDLh3xF
+ZAImCU+adqVmvhBJKKO57P+y+mFb+WPqknL1SurKOz0TkYw7/TnWSTwC7nod4QIDAQABo4IBCTCC
+AQUwHQYDVR0OBBYEFLkUVdsQ7WBr1Q2DdA3Oc3OVImUcMB8GA1UdIwQYMBaAFCM0+NlSRnAK7UD7
+dvuzK7DDNbMPMFQGA1UdHwRNMEswSaBHoEWGQ2h0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9wa2kv
+Y3JsL3Byb2R1Y3RzL01pY3Jvc29mdFRpbWVTdGFtcFBDQS5jcmwwWAYIKwYBBQUHAQEETDBKMEgG
+CCsGAQUFBzAChjxodHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpL2NlcnRzL01pY3Jvc29mdFRp
+bWVTdGFtcFBDQS5jcnQwEwYDVR0lBAwwCgYIKwYBBQUHAwgwDQYJKoZIhvcNAQEFBQADggEBAJaV
+lxhREadlaCDXqFbP6lUQVKjx5/JsbwouUz8YgQjPN/Y1ymKKoJBe4u9HzqrHBZj93hq26BKkmrnK
+pWKvyOY+ODJcA9PzaPlgnMeyJdykTGuPBsvYtsFYIn6E1Wu56PE+L3n28vpsaOjKAl8BvrGgbPmP
+Rbm4SwZfxJSO9+3r1yFauFZbeGfcQAl82pKj27zQmh2O5snaz1Iff7+W3owsX20ilqNJ+acaIl7/
+6cpyJUC487hUHlrIV1CyiyLmEOyt7aUQlFLU7VtXgskXVPZ03lGrVDTglUY63lUwGhdwL5f2CgYi
+pvqCjochior3gYxSN0w6jQRbNcvzG4N1vl0=</X509Certificate></X509Data><X509Data><X509Certificate>MIIGBzCCA++gAwIBAgIKYRZoNAAAAAAAHDANBgkqhkiG9w0BAQUFADBfMRMwEQYKCZImiZPyLGQB
+GRYDY29tMRkwFwYKCZImiZPyLGQBGRYJbWljcm9zb2Z0MS0wKwYDVQQDEyRNaWNyb3NvZnQgUm9v
+dCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHhcNMDcwNDAzMTI1MzA5WhcNMjEwNDAzMTMwMzA5WjB3
+MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwG
+A1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSEwHwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFt
+cCBQQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfoWyx39tIkip8ay4Z4b3i48WZ
+USNQrc7dGE4kD+7Rp9FMrXQwIBHrB9VUlRVJlBtCkq6YXDAm2gBr6Hu97IkHD/cOBJjwicwfyzMk
+h53y9GccLPx754gd6udOo6HBI1PKjfpFzwnQXq/QsEIEovmmbJNn1yjcRlOwhtDlKEYuJ6yGT1VS
+DOQDLPtqkJAwbofzWTCd+n7Wl7PoIZd++NIT8wi3U21StEWQn0gASkdmEScpZqiX5NMGgUqi+YSn
+EUcUCYKfhO1VeP4Bmh1QCIUAEDBG7bfeI0a7xC1Un68eeEExd8yb3zuDk6FhArUdDbH895uyAc4i
+S1T/+QXDwiALAgMBAAGjggGrMIIBpzAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQjNPjZUkZw
+Cu1A+3b7syuwwzWzDzALBgNVHQ8EBAMCAYYwEAYJKwYBBAGCNxUBBAMCAQAwgZgGA1UdIwSBkDCB
+jYAUDqyCYEBWJ5flJRP8KuEKU5VZ5KShY6RhMF8xEzARBgoJkiaJk/IsZAEZFgNjb20xGTAXBgoJ
+kiaJk/IsZAEZFgltaWNyb3NvZnQxLTArBgNVBAMTJE1pY3Jvc29mdCBSb290IENlcnRpZmljYXRl
+IEF1dGhvcml0eYIQea0WoUqgpa1Mc1j0BxMuZTBQBgNVHR8ESTBHMEWgQ6BBhj9odHRwOi8vY3Js
+Lm1pY3Jvc29mdC5jb20vcGtpL2NybC9wcm9kdWN0cy9taWNyb3NvZnRyb290Y2VydC5jcmwwVAYI
+KwYBBQUHAQEESDBGMEQGCCsGAQUFBzAChjhodHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpL2Nl
+cnRzL01pY3Jvc29mdFJvb3RDZXJ0LmNydDATBgNVHSUEDDAKBggrBgEFBQcDCDANBgkqhkiG9w0B
+AQUFAAOCAgEAEJeKw1wDRDbd6bStd9vOeVFNAbEudHFbbQwTq86+e4+4LtQSooxtYrhXAstOIBNQ
+md16QOJXu69YmhzhHQGGrLt48ovQ7DsB7uK+jwoFyI1I4vBTFd1Pq5Lk541q1YDB5pTyBi+FA+mR
+KiQicPv2/OR4mS4N9wficLwYTp2OawpylbihOZxnLcVRDupiXD8WmIsgP+IHGjL5zDFKdjE9K3IL
+yOpwPf+FChPfwgphjvDXuBfrTot/xTUrXqO/67x9C0J71FNyIe4wyrt4ZVxbARcKFA7S2hSY9Ty5
+ZlizLS/n+YWGzFFW6J1wlGysOUzU9nm/qhh6YinvopspNAZ3GmLJPR5tH4LwC8csu89Ds+X57H21
+46SodDW4TsVxIxImdgs8UoxxWkZDFLyzs7BNZ8ifQv+AeSGAnhUwZuhCEl4ayJ4iIdBD6Svpu/RI
+zCzU2DKATCYqSCRfWupW76bemZ3KOm+9gSd0BhHudiG/m4LBJ1S2sWo9iaF2YbRuoROmv6pH8BJv
+/YoybLL+31HIjCPJZr2dHYcSZAI9La9Zj7jkIeW1sMpjtHhUBdRBLlCslLCleKuzoJZ1GtmShxN1
+Ii8yqAhuoFuMJb+g74TKIdbrHk/Jmu5J4PcBZW+JC33Iacjmbuqnl84xKf8OxVtc2E0bodj6L54/
+LlUWa8kTo/0=</X509Certificate></X509Data><CounterSignature xmlns="http://schemas.microsoft.com/xmldsig/timestamp/2003" ts-format="cms-timestamp-message">MIIG0QYJKoZIhvcNAQcCoIIGwjCCBr4CAQMxCzAJBgUrDgMCGgUAMIIBEwYJKoZIhvcNAQcBoIIB
+BASCAQApvsbQPxxsKQ7m1SuUz0hs8s1J07Wzbfct1Tcg4MtzdC6Q7WR9Jf6XKoVy7+dfK3hqcjHf
+CUjHqhYgt9AUMOmVfjRX2bso8qB71mhSlvIvhE3OcK4u4yJOEHKvxbdLZ3jJIcXPZBxcIKP9eont
+DrUP+4neYexBgxO6fbx6vPgr0KZTMWqQXz+wQCx8v8uZUq8w4sAMLivblJbyMasV1u2n/Y+wFZOI
+Uy8m5dHmrRqjv/dT1cyVnefkb4CRg1pcnFN7pM0Tszy81TAopm9iMG4oMTxYhDyc5XNkk+vW5FXd
++5kyBwRnpPCG83jOt6VOcqn7MfJfAiroesqWFcETJOtSoIIDeqGCA3YwggJeAgEBMIHjoYG5pIG2
+MIGzMQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEe
+MBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMQ0wCwYDVQQLEwRNT1BSMScwJQYDVQQLEx5u
+Q2lwaGVyIERTRSBFU046MzFDNS0zMEJBLTdDOTExJTAjBgNVBAMTHE1pY3Jvc29mdCBUaW1lLVN0
+YW1wIFNlcnZpY2WiJQoBATAJBgUrDgMCGgUAAxUAnvVqiXzq5/Bf7HUNtyGHSG+z3ZOggcIwgb+k
+gbwwgbkxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRtb25k
+MR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xDTALBgNVBAsTBE1PUFIxJzAlBgNVBAsT
+Hm5DaXBoZXIgTlRTIEVTTjpCMDI3LUM2RjgtMUQ4ODErMCkGA1UEAxMiTWljcm9zb2Z0IFRpbWUg
+U291cmNlIE1hc3RlciBDbG9jazANBgkqhkiG9w0BAQUFAAIFANV5kQ4wIhgPMjAxMzA2MjkxNjU5
+NThaGA8yMDEzMDYzMDE2NTk1OFowdDA6BgorBgEEAYRZCgQBMSwwKjAKAgUA1XmRDgIBADAHAgEA
+AgIoQTAHAgEAAgIYSDAKAgUA1XrijgIBADA2BgorBgEEAYRZCgQCMSgwJjAMBgorBgEEAYRZCgMB
+oAowCAIBAAIDFuNgoQowCAIBAAIDB6EgMA0GCSqGSIb3DQEBBQUAA4IBAQByvaOU1UBeEW2Qlebu
+KkM3/MizPHKruszKMJU8JJVLzmOFf79R5K/3/rxAcdXcWSEo+/C8RkdFme+na/k5BzcZWbmfXcsP
+1fl300J5ar0C9zElor0RJkoAneqUjGyZhP+iI9oCoEBWyxadkYNJYnx4BVXRuDk1PlxCgH0lkvdx
+GbDaewdQfyKN12RQgYYq5Z5q13j7YShjQhT/02TwTFX8jEUHj01KH753O+ll6H5g+EkowodkBiU0
+Em6Ez95+quXEHpRogQcMgfvC3JuMKnba7B724pL3lbj98HPisvtOjaFojZCeslasvPhPTmeosJIF
+p9bOkVs3V4F29iT2SMBmMYICFTCCAhECAQEwgY4wdzELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldh
+c2hpbmd0b24xEDAOBgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3JhdGlv
+bjEhMB8GA1UEAxMYTWljcm9zb2Z0IFRpbWUtU3RhbXAgUENBAhMzAAAANSjuYVOSImGRAAAAAAA1
+MAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0x
+MzA2MjkxOTUzMjlaMCMGCSqGSIb3DQEJBDEWBBSnLobzAdUawzPimWw4r3vb9zUnaTANBgkqhkiG
+9w0BAQUFAASCAQCanM7cQcQwEQymvgHVhlrkU5tjh5H0OQiDrnUjRlUfoKGldZqXN1CBXYubb9uu
+QqKp5eCwKXbxeNSRchNoLp++aRQNvAZUd4fHBDuWN43oKsHQSMztd5u+FAU5HT0be7AWnYD02Ub9
+Kx6CV06DL/1M/17yPanq2dLmNrO3dKJilpedWXQDE9WDG1Ehkm99XKogDUJ8jmYgF7yPbw3636sY
+RjFSsm0pDTbnfLPx76shj3Dh5OTxsnJVun9YT3Or+jwPRnC80r81R823xF6b62GcpV7a466m2Eu+
+ahPSt4zvzieFundPMhXkO2ZvaGF9oduJ0krIf6hRgqM3h5W4Zx85</CounterSignature></Object></Signature></doc>
