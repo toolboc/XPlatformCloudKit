@@ -65,11 +65,11 @@ namespace XPlatformCloudKit.Views
 
         void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)
         {
-            if(this.Frame.CanGoBack)this.Frame.GoBack();
+            if (this.Frame.CanGoBack) this.Frame.GoBack();
         }
 
         private WebView browser;
-        
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             if (e.NavigationMode == NavigationMode.Back)
@@ -116,15 +116,15 @@ namespace XPlatformCloudKit.Views
 
             if (AppSettings.AutoPlayYoutubeVideos)
             {
-                    var youtubeLink = Regex.Match(selectedItem.Description, @"(https?:)?//w*\.?youtube.com/watch[^'\""<>]+").Value;
+                var youtubeLink = Regex.Match(selectedItem.Description, @"(https?:)?//w*\.?youtube.com/watch[^'\""<>]+").Value;
 
-                    if (youtubeLink.Length > 0)
-                    {
-                        browser.Navigate(new Uri(youtubeLink));
-                        return;
-                    }
+                if (youtubeLink.Length > 0)
+                {
+                    browser.Navigate(new Uri(youtubeLink));
+                    return;
+                }
             }
-               
+
             var bc = AppSettings.BackgroundColorOfDescription[0] == '#' ? AppSettings.BackgroundColorOfDescription : FetchBackgroundColor();
 
             var fc = AppSettings.FontColorOfDescription[0] == '#' ? AppSettings.FontColorOfDescription : FetchFontColor();
@@ -144,7 +144,7 @@ namespace XPlatformCloudKit.Views
             +
                 scriptOptions
             +
-            "<style type='text/css'>a img {border: 0;}</style>" +
+            "<style type='text/css'>* {font-family: 'Segoe UI', Arial, sans-serif;}a img {border: 0;}</style>" +
             "</HEAD>" +
             "<BODY style=\"background-color:" + bc + ";color:" + fc + "\">" +
             selectedItem.Description +
