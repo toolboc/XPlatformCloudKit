@@ -2,24 +2,7 @@ XPlatformCloudKit
 =================
 
 A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. Simply follow along with the included Powerpoint file located in the root of the project.
-The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the video below to see how easy it is to get started!
-* [The making of XPCK Guide](https://www.youtube.com/watch?v=BHkk-qItiUQ)
-
-Examples of Applications Built with the XPlatformCloudKit
----------------------------------------------------------
-* To see all Windows 8 apps that are built with XPCK:  
-  On Windows 8 desktop press "Windows Key + R" and type "xplatformcloudkit:" => select OK => Click "Look for app in Store"  
-  ![Screenshot](http://i.imgur.com/D5McEnu.png)![Screenshot](http://i.imgur.com/FODb3Sm.png)
-* To see latest Windows Phone 8 apps built with XPCK:  
-  View this [link](http://marketplaceedgeservice.windowsphone.com/v8/catalog/apps?os=8.0.10211.0&cc=US&lang=en-US&hw=520170499&dm=RM-820_nam_att_100&oemId=NOKIA&moId=att-us&chunkSize=50&orderBy=GlobalRank&tag=phone%2Eprotocol%2Explatformcloudkit) in Internet Explorer  
-
-* Starbucks Menu [Windows 8](http://apps.microsoft.com/windows/en-us/app/starbucks-menu/ad9e782f-9f89-46b9-ae5d-fcc296e43118)  
-  ![Windows 8 Screenshot] (http://i.imgur.com/7KaRX8t.gif)
-* Super Street Fighter 2 - Strategy Guide [Windows 8](http://apps.microsoft.com/windows/en-us/app/655e0b21-6a5f-455e-bc7f-01845c1198f9) | [Windows Phone 8](http://www.windowsphone.com/en-us/store/app/super-street-fighter-2/fe3dbbce-7770-4a41-b395-f42e3819141d)
-  ![Windows 8 Screenshot] (http://i.imgur.com/vSnRm1s.gif)
-  ![Windows Phone 8 Screenshot1] (http://cdn.marketplaceimages.windowsphone.com/v8/images/9cbb40b5-3d50-4939-a9b9-0447ba9112fb?imageType=ws_screenshot_large&rotation=0)
-  ![Windows Phone 8 Screenshot2] (http://cdn.marketplaceimages.windowsphone.com/v8/images/0ae1006f-2878-4ad9-8665-0d9872dba128?imageType=ws_screenshot_large&rotation=0)
-  ![Android Emulator Screenshot] (http://i.imgur.com/iLeJjBt.png)
+The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
 
 Video Tutorials
 ---------------
@@ -58,4 +41,20 @@ Notes on getting Android Project to run
 ---------------------------------------
 
 - To build in Visual Studio will require a [Xamarin Business License](https://store.xamarin.com/).
-- You may need to apply the [Xamarin hotfix](http://forums.xamarin.com/discussion/5507/using-system-linq-expressions-in-a-pcl-method-causes-typeloadexpression-mono-android-4-7-10024). This fixes an issue in the `System.Linq.Expressions.dll` facade used by Xamarin
+- You may need to apply the [Xamarin hotfix](http://forums.xamarin.com/discussion/5507/using-system-linq-expressions-in-a-pcl-method-causes-typeloadexpressio.n-mono-android-4-7-10024). This fixes an issue in the `System.Linq.Expressions.dll` facade used by Xamarin.
+
+Examples of Applications Built with the XPlatformCloudKit
+---------------------------------------------------------
+* To see all Windows 8 apps that are built with XPCK:  
+  On Windows 8 desktop press "Windows Key + R" and type "xplatformcloudkit:" => select OK => Click "Look for app in Store"  
+  ![Screenshot](http://i.imgur.com/D5McEnu.png)![Screenshot](http://i.imgur.com/FODb3Sm.png)
+* To see latest Windows Phone 8 apps built with XPCK:  
+  View this [link](http://marketplaceedgeservice.windowsphone.com/v8/catalog/apps?os=8.0.10211.0&cc=US&lang=en-US&hw=520170499&dm=RM-820_nam_att_100&oemId=NOKIA&moId=att-us&chunkSize=50&orderBy=GlobalRank&tag=phone%2Eprotocol%2Explatformcloudkit) in Internet Explorer  
+
+* Starbucks Menu [Windows 8](http://apps.microsoft.com/windows/en-us/app/starbucks-menu/ad9e782f-9f89-46b9-ae5d-fcc296e43118)  
+  ![Windows 8 Screenshot] (http://i.imgur.com/7KaRX8t.gif)
+* Super Street Fighter 2 - Strategy Guide [Windows 8](http://apps.microsoft.com/windows/en-us/app/655e0b21-6a5f-455e-bc7f-01845c1198f9) | [Windows Phone 8](http://www.windowsphone.com/en-us/store/app/super-street-fighter-2/fe3dbbce-7770-4a41-b395-f42e3819141d)
+  ![Windows 8 Screenshot] (http://i.imgur.com/vSnRm1s.gif)
+  ![Windows Phone 8 Screenshot1] (http://cdn.marketplaceimages.windowsphone.com/v8/images/9cbb40b5-3d50-4939-a9b9-0447ba9112fb?imageType=ws_screenshot_large&rotation=0)
+  ![Windows Phone 8 Screenshot2] (http://cdn.marketplaceimages.windowsphone.com/v8/images/0ae1006f-2878-4ad9-8665-0d9872dba128?imageType=ws_screenshot_large&rotation=0)
+  ![Android Emulator Screenshot] (http://i.imgur.com/iLeJjBt.png)
