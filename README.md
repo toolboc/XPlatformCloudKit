@@ -2,8 +2,8 @@ XPlatformCloudKit
 =================
 
 A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. Simply follow along with the included Powerpoint file located in the root of the project.
-The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  
-The value of the Description property is rendered as HTML, meaning you can do some rather interesting things, for example see: 
+The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the video below to see how easy it is to get started!
+* [The making of XPCK Guide](https://www.youtube.com/watch?v=BHkk-qItiUQ)
 
 Examples of Applications Built with the XPlatformCloudKit
 ---------------------------------------------------------
@@ -27,6 +27,7 @@ Video Tutorials
 * [Part 2 - Use Youtube Playlists to create a Video App (Legend of Zelda - Video Strategy Guide)](http://www.youtube.com/watch?v=gnMgM1z0EHg)
 * [Part 3 - Use Local File to create an app with custom data (Microsoft Gaming - Information and News)](http://www.youtube.com/watch?v=hDEmKFSNQwI)
 * [Part 4 - Using the XPCK App Builder for quick app development](https://www.youtube.com/watch?v=bcMX1Q8ILaU)
+* [Part 5 - The making of XPCK Guide](https://www.youtube.com/watch?v=BHkk-qItiUQ)
 
 Getting Started
 ---------------
