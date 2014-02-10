@@ -17,6 +17,8 @@
 
     <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+        <helpers:ItemsShowcaseViewDataTemplateSelector x:Key="ItemsShowcaseViewDataTemplateSelector" />
+        
         <!--
             Collection of grouped items displayed by this page, bound to a subset
             of the complete item list because items in groups cannot be virtualized
@@ -140,7 +142,7 @@
 			    SelectionMode="None"
 			    IsSwipeEnabled="false" IsItemClickEnabled="True"          
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
-                ItemTemplate="{StaticResource Standard250x250ItemTemplate}" >
+                ItemTemplateSelector="{StaticResource ItemsShowcaseViewDataTemplateSelector}" >
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>

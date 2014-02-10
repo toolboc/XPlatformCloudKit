@@ -125,6 +125,7 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\DispatcherHelper.cs" />
     <Compile Include="Helpers\ItemClickCommand.cs" />
+    <Compile Include="Helpers\ItemsShowcaseViewDataTemplateSelector.cs" />
     <Compile Include="Services\LiveTileNotifyService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\NavigationService.cs" />
