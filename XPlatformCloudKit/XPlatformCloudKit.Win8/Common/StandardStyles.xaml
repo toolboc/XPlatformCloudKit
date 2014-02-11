@@ -35,12 +35,13 @@
     <!-- App Title & Groups-->
     <!--<SolidColorBrush x:Key="ApplicationForegroundThemeBrush" Color="Aquamarine"/>-->
 
-    <!-- Titles -->
+    <!-- ItemsShowcaseView GridViewItem Titles -->
     <!--<SolidColorBrush x:Key="ListViewItemOverlayForegroundThemeBrush" Color="#FF991100"/>-->
-    <!--<SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush" Color="#FF991100"/>-->
 
-    <!-- Subtitles -->
+    <!-- ItemsShowcaseView GridViewItem Subtitles -->
     <!--<SolidColorBrush x:Key="ListViewItemOverlaySecondaryForegroundThemeBrush" Color="#FF991100"/>-->
+
+    <!--<SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush" Color="#FF991100"/>-->
 
     <!--<SolidColorBrush x:Key="ApplicationPointerOverForegroundThemeBrush" Color="#AAAAAA"/>-->
 
