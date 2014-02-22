@@ -27,8 +27,9 @@ Prerequisites for all projects
 ------------------------------
 
 * [Windows 8 Pro](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
-* [Visual Studio 2012 / 2013 Professional or above](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44)
-* [Visual Studio 2012 Update 3 (if using VS 2012)](http://support.microsoft.com/kb/2835600) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)
+* [Visual Studio 2012 Professional](http://www.microsoft.com/en-us/download/details.aspx?id=30682) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](http://support.microsoft.com/kb/2872520/en-us) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
+OR  
+[Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8 development
 
 
 Notes on getting Windows Phone 8 project to run:
