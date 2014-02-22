@@ -109,7 +109,7 @@ namespace XPlatformCloudKit.ViewModels
 
             ItemGroups = new List<Group<Item>>(from item in items
                                                group item by item.Group into grp
-                                               orderby grp.Key
+                                               orderby grp.GetOrderPreference()
                                                select new Group<Item>(grp.Key, grp)).ToList();
 
             IsBusy = false;
