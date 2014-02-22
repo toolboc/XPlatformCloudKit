@@ -21,6 +21,8 @@ using Cirrious.CrossCore;
 using Microsoft.Phone.Marketplace;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media;
+using AppPromo;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace XPlatformCloudKit
 {
@@ -40,7 +42,36 @@ namespace XPlatformCloudKit
             Loaded += ItemsShowcaseView_Loaded;
 
             if (AppSettings.EnablePhone8Background == true)
+            {
                 LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+                LayoutRoot.Background.Opacity = .5;
+            }
+
+            if (AppSettings.EnableAppPromoRatingReminder)
+            {
+                RateReminder rateReminder = new RateReminder();
+                rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
+                LayoutRoot.Children.Add(rateReminder);
+            }
+
+            if (AppSettings.EnablePubcenterAdsPhone8)
+            {
+                if (AppSettings.HideAdsIfPurchasedPhone8)
+                    if (!licenseInfo.IsTrial())
+                        return;
+
+                var advertisingControlPlaceholder = new RowDefinition();
+                advertisingControlPlaceholder.Height = new GridLength(80);
+                LayoutRoot.RowDefinitions.Add(advertisingControlPlaceholder);
+                var appbarSpacer = new RowDefinition();
+                appbarSpacer.Height = new GridLength(30);
+                LayoutRoot.RowDefinitions.Add(appbarSpacer);
+                AdControl adControl = new AdControl(AppSettings.PubcenterApplicationIdPhone8, AppSettings.PubcenterAdUnitIdPhone8, true);
+                adControl.Width = 480;
+                adControl.Height = 80;
+                Grid.SetRow(adControl, 2);
+                LayoutRoot.Children.Add(adControl);
+            }
         }
 
         void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)

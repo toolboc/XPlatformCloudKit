@@ -17,6 +17,8 @@
 
     <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+        <helpers:ItemsShowcaseViewDataTemplateSelector x:Key="ItemsShowcaseViewDataTemplateSelector" />
+        
         <!--
             Collection of grouped items displayed by this page, bound to a subset
             of the complete item list because items in groups cannot be virtualized
@@ -77,6 +79,9 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomedInItemGridView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomedOutGroupGridView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -94,16 +99,16 @@
                         <DataTemplate>
                             <Grid Height="250" Width="250">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/> 
+                                    <RowDefinition Height="45"/> 
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock
                                 Margin="6,0,12,0"
                                 Text="{Binding Group.Key}"
                                 TextTrimming="WordEllipsis"
-                                FontFamily="Segoe UI Light"
-                                FontSize="24" />
-                                <Image Source="{Binding Group[0].Image}" Grid.Row="1"/>
+                                FontSize="24"
+                                Style="{StaticResource BasicTextStyle}"/>
+                                <Image Source="{Binding Group[0].Image}" Grid.Row="1" />
                             </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
@@ -117,7 +122,6 @@
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="4" />
                             <Setter Property="Padding" Value="10" />
-                            <Setter Property="Background" Value="SlateGray" />
                             <Setter Property="BorderThickness" Value="1" />
                             <Setter Property="HorizontalContentAlignment" Value="Left" />
                             <Setter Property="VerticalContentAlignment" Value="Bottom" />
@@ -140,7 +144,7 @@
 			    SelectionMode="None"
 			    IsSwipeEnabled="false" IsItemClickEnabled="True"          
                 helpers:ItemClickCommand.Command="{Binding ItemSelectedCommand}"
-                ItemTemplate="{StaticResource Standard250x250ItemTemplate}" >
+                ItemTemplateSelector="{StaticResource ItemsShowcaseViewDataTemplateSelector}" >
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>

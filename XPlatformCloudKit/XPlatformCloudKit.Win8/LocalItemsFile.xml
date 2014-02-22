@@ -1,24 +1,142 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<item>
-		<title>If you see me, "LocalItemsFile" is enabled!</title>
-		<subtitle>Warning</subtitle>
-		<description>To disable, set "EnableLocalItemsFile = false" in AppSettings.cs &lt;/br&gt;&lt;a href="http://bing.com"&gt;By the way, I am html, click me and I'll take you to Bing&lt;/a&gt;</description>
-		<image>http://www.irunoninsulin.com/wp-content/uploads/2010/06/green-check-mark.jpg</image>
-		<group>Local Data</group>
-	</item>
-	<item>
-		<title>Shi Tzu</title>
-		<subtitle>small</subtitle>
-		<description>A shih tzu is a toy dog breed weighing 5–7.25 kilograms with long silky hair. The breed originated in China. Shih Tzu were officially recognized by the American Kennel Club in 1969. The name is both singular and plural.</description>
-		<image>http://us.123rf.com/400wm/400/400/isselee/isselee0906/isselee090600219/5085394-grey-shih-tzu-6-years-old-in-front-of-a-white-background.jpg</image>
-		<group>Dog</group>
-	</item>
-	<item>
-		<title>HTML Example</title>
-		<subtitle>This uses JavaScript, too!</subtitle>
-		<description>&lt;html&gt; &lt;body&gt; &lt;font face = "Comic Sans MS"&gt; &lt;font size=5&gt;There are all kinds of &lt;font color="blue"&gt;&lt;i&gt;super fun&lt;/i&gt;&lt;/font&gt; things you can do with HTML in your XML files. &lt;br&gt;&lt;font size=3&gt;You can use http://htmledit.squarefree.com to preview your HTML. Then you can use Notepad++ to condense it all into one line easily. Just select all the text and press Ctrl+J for Join Lines in Notepad++. (It's also in the Edit menu under Line Operations.)&lt;br&gt;&lt;br&gt;  &lt;p id="demo"&gt;Hey, what day is it??&lt;/p&gt; &lt;button onclick="myFunction()"&gt;JavaScript Button&lt;/button&gt; &lt;script&gt; function myFunction() { var d = new Date(); var weekday=new Array(7); weekday[0]="It's Sunday"; weekday[1]="It's Monday"; weekday[2]="It's Tuesday"; weekday[3]="It's Wednesday"; weekday[4]="It's Thursday"; weekday[5]="It's Friday"; weekday[6]="It's Saturday";  var x = document.getElementById("demo"); x.innerHTML=weekday[d.getDay()]; } &lt;/script&gt;  &lt;br&gt;&lt;br&gt;&lt;br&gt; &lt;font face = "Arial"&gt; If you want to link to websites within your app, you can add &lt;font color="red"&gt;target=_blank&lt;/font&gt; to your URL links and change the AppSettings.cs file to allow for it. By default, it is disabled. &lt;br&gt;&lt;br&gt; It's also helpful to know that you can use Excel to edit your XML files, but you don't have to. Sometimes Excel just gets in the way and it'd be easier to use something like Notepad++ to edit the code directly. But you have to remember that things need to be converted first. Use this website to convert things:&lt;br&gt;https://sites.google.com/site/infivivek/resourse-centre/online-resources/html-to-xml-converter &lt;br&gt;But if you do use Excel, make sure you copy all the HTML into the one line for the description. It might help to double-click the cell and then paste it. &lt;br&gt;&lt;br&gt; &lt;font face="Courier New"&gt; Also, you can make your own RSS feeds for your website, even free Google sites. Then you can write up your own XML file to upload (much like this file) using this guide:&lt;br&gt;http://www.w3schools.com/rss/rss_tag_image.asp&lt;br&gt;If you use your own RSS feed, make sure there is an image somewhere in the HTML in the description (even if it's at the bottom of the page), and it'll show up in your app (both on the main page and the sub page). &lt;br&gt;&lt;br&gt;&lt;center&gt; You can even make tables. And center them. &lt;table border="1"&gt;   &lt;tr&gt;     &lt;th&gt;Column 1&lt;/th&gt;     &lt;th&gt;Column 2&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;Row 1&lt;/td&gt;     &lt;td&gt;abcde&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;   &lt;td&gt;Row 2&lt;/td&gt;   &lt;td&gt;fghij&lt;/td&gt;   &lt;/tr&gt; &lt;/table&gt; &lt;/center&gt; &lt;br&gt;&lt;br&gt;  Or you can &lt;a href="http://www.dominos.com" target=_blank&gt;click here&lt;/a&gt; to order Dominos pizza. If you leave default settings on, you'll be ordering the pizza from within the app, but if you change AppSettings.cs like mentioned earlier, it'll open a new window. Or you could just call them at (713) 747-3800.  &lt;br&gt;&lt;br&gt; ...and this is &lt;b&gt;&lt;font color="green"&gt;&lt;font size=5&gt;just the beginning.&lt;/font&gt;&lt;/font&gt;&lt;/b&gt; What else can &lt;b&gt;you&lt;/b&gt; think of to do?&lt;br&gt; &lt;br&gt;&lt;center&gt; &lt;img src="http://3.bp.blogspot.com/--P7JWhCCr1A/UecFPgmGWlI/AAAAAAAAGWg/P9Tor4nWi2A/s1600/madden-divider-line.png" width="500" height="15" alt="border"&gt; &lt;font size=2&gt;&lt;br&gt;If you find an image you like online, you can right-click and copy the URL and also view the image info to see the pixel dimensions--all without downloading it. &lt;/center&gt; &lt;/font&gt; &lt;/body&gt; &lt;/html&gt;</description>
-		<image>http://101fundraising.org/wp-content/uploads/2013/09/lightbulb.gif</image>
-		<group>HTML</group>
-	</item>
+  <item>
+    <title>If you see me, "LocalItemsFile" is enabled!</title>
+    <subtitle>Warning</subtitle>
+    <description>
+      <![CDATA[
+        To disable, set "EnableLocalItemsFile = false" in AppSettings.cs </br><a href="http://bing.com">By the way, I am html, click me and I'll take you to Bing</a>
+      ]]>
+    </description>
+    <image>http://www.irunoninsulin.com/wp-content/uploads/2010/06/green-check-mark.jpg</image>
+    <group>Local Data</group>
+  </item>
+  <item>
+    <title>Shi Tzu</title>
+    <subtitle>small</subtitle>
+    <description>
+      A shih tzu is a toy dog breed weighing 5–7.25 kilograms with long silky hair. The breed originated in China. Shih Tzu were officially recognized by the American Kennel Club in 1969. The name is both singular and plural.
+    </description>
+    <image>http://us.123rf.com/400wm/400/400/isselee/isselee0906/isselee090600219/5085394-grey-shih-tzu-6-years-old-in-front-of-a-white-background.jpg</image>
+    <group>Dog</group>
+  </item>
+  <item>
+    <title>HTML Example</title>
+    <subtitle>This uses JavaScript, too!</subtitle>
+    <description>
+      <![CDATA[
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        * {
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        .example {
+            background-color: red;
+            color: #FFFFFF;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+        }
+        #demo {
+            border: 1px solid #000;
+        }
+    </style>
+
+    <p>There are all kinds of <span style="color: blue">super fun</span> things you can do with HTML in your XML files.</p>
+    <p>You can use <a href="http://jsbin.com">http://jsbin.com</a> to preview your HTML. Wrap your HTML markup in a CDATA block</p>
+
+    <h2>HTML</h2>
+    <p>You can add links to your app. For instance, you can add a link to <a href="http://www.dominos.com" target="_blank">order Dominos pizza</a>. If you leave default settings on, the website will open within the app. If you want to link to websites within
+        your app but have them open up in the user's browser, you can add <span style="color:red">target="_blank"</span> to your anchor tags and change the AppSettings.cs file to allow for it. By default, it is disabled.</p>Or you could just call them at
+    <a
+    href="tel:(713) 747-3800">(713) 747-3800</a>. This will initiate a phone call in WP8 or Windows 8 via Skype or other phone apps.
+
+        <p>Add images to your pages.</p>
+
+        <div>
+            <img src="http://3.bp.blogspot.com/--P7JWhCCr1A/UecFPgmGWlI/AAAAAAAAGWg/P9Tor4nWi2A/s1600/madden-divider-line.png" width="500" height="15" alt="border">
+        </div>
+
+        <p>You might want to list things.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+
+        <p>You can add a table. And center it using inline CSS.</p>
+
+        <table border="1" style="margin: 0 auto;">
+            <tr>
+                <th>
+                    Column 1
+                </th>
+                <th>
+                    Column 2
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Row 1
+                </td>
+                <td>
+                    abcde
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Row 2
+                </td>
+                <td>
+                    fghij
+                </td>
+            </tr>
+        </table>
+
+        <p>You can also style things with a style block.</p>
+
+        <div class="example">
+            This div has a class of 'example'.
+        </div>
+
+
+        <h2>JavaScript</h2>
+        <p>Yes, you can even run JavaScript from within this WebView.</p>
+
+        <span id="demo">
+            Hey, what day is it??
+          </span>
+        <button onclick="myFunction()">
+            JavaScript Button
+        </button>
+        <script>
+            function myFunction() {
+                var d = new Date();
+                var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                var x = document.getElementById("demo");
+                x.innerHTML = "Hey, it's " + weekday[d.getDay()] + "!";
+            }
+        </script>
+
+        <h2>iframes</h2>
+        <p>Want to embed another webpage in your app? You can do that using an iframe!</p>
+
+        <iframe src="http://en.m.wikipedia.org/wiki/Ball_lightning" width="400" height="400"></iframe>
+
+  <div><img src="http://3.bp.blogspot.com/--P7JWhCCr1A/UecFPgmGWlI/AAAAAAAAGWg/P9Tor4nWi2A/s1600/madden-divider-line.png" width="500" height="15" alt="border"></div>
+
+
+        <p>...and this is <span style="color:green">just the beginning.</span></p>
+
+        <p>What else can <b>you</b> think of to do?</p>
+</body>
+</html>
+    
+      ]]>
+    </description>
+    <image>http://101fundraising.org/wp-content/uploads/2013/09/lightbulb.gif</image>
+    <group>HTML</group>
+  </item>
 </items>

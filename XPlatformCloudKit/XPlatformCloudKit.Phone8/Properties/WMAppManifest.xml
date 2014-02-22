@@ -10,6 +10,9 @@
       <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_REMOVABLE_STORAGE" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views\ItemsShowcaseView.xaml" />
@@ -39,6 +42,7 @@
       </PrimaryToken>
     </Tokens>
     <Extensions>
+      <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
       <Protocol Name="xplatformcloudkit" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
     </Extensions>
     <ScreenResolutions>

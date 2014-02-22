@@ -120,6 +120,7 @@
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Helpers\LocalStorageHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\ItemDescriptionView.xaml.cs">
@@ -158,6 +159,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\XPlatformCloudKit.Win8\Assets\Logo.png">
+      <Link>Assets\Logo.png</Link>
+    </Content>
     <Content Include="..\XPlatformCloudKit.Win8\LocalItemsFile.xml">
       <Link>LocalItemsFile.xml</Link>
       <SubType>Designer</SubType>
@@ -169,6 +173,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\feature.search.png" />
+    <Content Include="Assets\Icons\Locker.png" />
     <Content Include="Assets\Icons\Next.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Reload.png" />
@@ -189,6 +194,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Wallpaper.png" />
+    <Content Include="lib\Microsoft.Advertising.Mobile.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\Microsoft.Advertising.Mobile.UI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\Microsoft.Advertising.Mobile.UI.xml" />
+    <Content Include="lib\Microsoft.Advertising.Mobile.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -204,6 +217,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AppPromo.WP8">
+      <HintPath>..\packages\AppPromo.WP8.1.0.0.3\lib\wp8\AppPromo.WP8.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.0.12\lib\sl4-wp71\Cirrious.CrossCore.dll</HintPath>
     </Reference>
@@ -231,6 +247,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.0.12\lib\sl4-wp71\Cirrious.MvvmCross.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\wp8\Microsoft.Threading.Tasks.dll</HintPath>

@@ -69,6 +69,7 @@
         <shell:ApplicationBar x:Name="AppBar" Mode="Default" Opacity="0.7" IsVisible="True" IsMenuEnabled="False">
             <shell:ApplicationBarIconButton x:Name="PreviousButton" IconUri="/Assets/Icons/Previous.png" Text="previous" Click="PreviousButton_Click" />
             <shell:ApplicationBarIconButton x:Name="ShareButton" IconUri="/Assets/Icons/Share.png" Text="share" Click="ShareButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="LockButton" IconUri="/Assets/Icons/Locker.png" Text="set lock" Click="LockButton_Click" />
             <shell:ApplicationBarIconButton x:Name="NextButton" IconUri="/Assets/Icons/Next.png" Text="next" Click="NextButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

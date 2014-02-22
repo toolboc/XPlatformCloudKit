@@ -35,12 +35,13 @@
     <!-- App Title & Groups-->
     <!--<SolidColorBrush x:Key="ApplicationForegroundThemeBrush" Color="Aquamarine"/>-->
 
-    <!-- Titles -->
+    <!-- ItemsShowcaseView GridViewItem Titles -->
     <!--<SolidColorBrush x:Key="ListViewItemOverlayForegroundThemeBrush" Color="#FF991100"/>-->
-    <!--<SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush" Color="#FF991100"/>-->
 
-    <!-- Subtitles -->
+    <!-- ItemsShowcaseView GridViewItem Subtitles -->
     <!--<SolidColorBrush x:Key="ListViewItemOverlaySecondaryForegroundThemeBrush" Color="#FF991100"/>-->
+
+    <!--<SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush" Color="#FF991100"/>-->
 
     <!--<SolidColorBrush x:Key="ApplicationPointerOverForegroundThemeBrush" Color="#AAAAAA"/>-->
 
@@ -1674,6 +1675,18 @@
         <Grid HorizontalAlignment="Left" Width="250" Height="250">
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                 <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+            </Border>
+            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Standard445x250ItemTemplate">
+        <Grid HorizontalAlignment="Left" Width="445" Height="250">
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Source="{Binding Image}" Stretch="UniformToFill" VerticalAlignment="Center"  AutomationProperties.Name="{Binding Title}"/>
             </Border>
             <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
                 <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>

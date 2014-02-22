@@ -57,6 +57,7 @@ namespace XPlatformCloudKit
             new RssSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
             new RssSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
             new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
+            new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&author=thewindotnet", Group = "Youtube author example"},
             //new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
             //new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
             //new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
@@ -113,9 +114,9 @@ namespace XPlatformCloudKit
         //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
         public const bool EnableWin8Background = false;
 
-        //Url to your privacy policy - default value is "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html"
+        //Url to your privacy policy - default value is "http://pjdecarlo.com/2013/11/app-privacy-policy.html"
         //Note: This is REQUIRED for certification in the Windows 8 store
-        public const string PrivacyPolicyUrl = "http://windotnet.blogspot.com/2013/11/app-privacy-policy.html";
+        public const string PrivacyPolicyUrl = "http://pjdecarlo.com/2013/11/app-privacy-policy.html";
         #endregion
 
         #region Windows Phone 8 Project options      
@@ -129,6 +130,11 @@ namespace XPlatformCloudKit
         //Determines whether a background image should be used in the Windows Phone 8 app.
         //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
         public const bool EnablePhone8Background = false;
+
+        //Enables logic for discovery of phone numbers present in Item.Description on the ItemDescriptionView
+        //Creates a button for all discovered numbers that when clicked, initiates a phone call (Only works on physical device)
+        //Examples of matching formats: (123) 123-1234 ; 800-555-1212
+        public const bool EnableParsingPhoneNumbersPhone8 = true;
         #endregion
 
         #region Youtube Video Link Options
@@ -160,5 +166,41 @@ namespace XPlatformCloudKit
         public const bool DisableOpeningHyperLinksInNewTab = true;
         #endregion
 
+        #region App Promo Options for Windows 8 and Windows Phone projects
+        //App Promo is a control created by Jared Bienz which provides a rating reminder to users based on user defined settings
+        //http://code.msdn.microsoft.com/wpapps/Improve-app-ratings-with-a-6139caa5
+        public const bool EnableAppPromoRatingReminder = true;
+        
+        //The number of application runs before the reminder will be displayed. The default is 7.
+        public const int NumberOfRunsBeforeRateReminder = 7;
+
+        #endregion
+
+        #region Advertising Control Options for Windows 8 and Windows Phone projects
+        //Allow displaying of Ads from Microsoft Pubcenter in Windows Phone 8 Project
+        //http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk(v=msads.20).aspx
+        public const bool EnablePubcenterAdsPhone8 = false;
+        //Should Ads be hidden if the app has been purchased  (true) or always shown (false) 
+        public const bool HideAdsIfPurchasedPhone8 = false;
+        //Application and AdUnit Ids provided from Pubcenter
+        //See: http://msdn.microsoft.com/en-us/library/advertising-mobile-windows-phone-sdk-start(v=msads.20).aspx
+        //for information on configuring and providing your own ads
+        //Supports 480x80 ads only!  Make sure your add unit matches this size when creating in Pubcenter!
+        public const string PubcenterApplicationIdPhone8 = "test_client";
+        public const string PubcenterAdUnitIdPhone8 = "Image480_80";
+
+        //Allow displaying of Ads from Microsoft Pubcenter in Windows 8 Project
+        //http://msdn.microsoft.com/en-us/library/advertising-windows-sdk(v=msads.10).aspx
+        public const bool EnablePubcenterAdsWin8 = false;
+        //Should Ads be hidden if the app has been purchased  (true) or always shown (false) 
+        public const bool HideAdsIfPurchasedWin8 = false;
+        //Application and AdUnit Ids provided from Pubcenter
+        //See: http://msdn.microsoft.com/en-us/library/advertising-windows-pubcenter(v=msads.10).asp
+        //for information on configuring and providing your own ads
+        //Supports 728x90 ads only!  Make sure your add unit matches this size when creating in Pubcenter!
+        //Be careful your ad does not block your Application Title!  To change the render size see lines 65 & 66 of XPlatformCloudKit.Win8/Views/ItemsShowcaseView.xaml.cs
+        public const string PubcenterApplicationIdWin8 = "d25517cb-12d4-4699-8bdc-52040c712cab";
+        public const string PubcenterAdUnitIdWin8 = "10042999";
+        #endregion
     }
 }

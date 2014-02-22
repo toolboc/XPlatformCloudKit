@@ -1,3 +1,5 @@
+using AppPromo;
+using Microsoft.Advertising.WinRT.UI;
 /*
 * LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
 */
@@ -6,7 +8,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Store;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
@@ -33,6 +37,7 @@ namespace XPlatformCloudKit.Views
     /// </summary>
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
+
         public ItemsShowcaseView()
         {
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
@@ -46,6 +51,14 @@ namespace XPlatformCloudKit.Views
 
             if (AppSettings.EnableWin8Background == true)
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+
+            if (AppSettings.EnableAppPromoRatingReminder)
+            {
+                RateReminder rateReminder = new RateReminder();
+                rateReminder.RunsBeforeReminder = AppSettings.NumberOfRunsBeforeRateReminder;
+                ShowcaseGrid.Children.Add(rateReminder);
+            }
+
         }
         
         void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)
@@ -85,25 +98,52 @@ namespace XPlatformCloudKit.Views
                 ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
 
-        void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
+        async void ItemsShowcaseView_Loaded(object sender, RoutedEventArgs e)
         {
 
             //Cache loads so fast if called from constructor that property changed is not fired
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
                 ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
 
-            if (!AppState.SearchInitialized)
+            if (!AppState.Windows8ItemsShowcaseViewInitialized)
             {
                 ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
 
                 Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
                 Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
-                AppState.SearchInitialized = true;
+                //This is a one-time execuction block, so we can test simulating a purchase here 
+                if (AppSettings.EnablePubcenterAdsWin8)
+                {
+                    if (AppSettings.HideAdsIfPurchasedWin8)
+                    {
+                        #if DEBUG
+                        await simulateAppPurchase();
+                        var licenseInfo = Windows.ApplicationModel.Store.CurrentAppSimulator.LicenseInformation;
+                        #else
+                        var licenseInfo = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
+                        #endif
+                        if (!licenseInfo.IsTrial)
+                            return;
+                    }
+                    var adControl = new AdControl();
+                    adControl.ApplicationId = AppSettings.PubcenterApplicationIdWin8;
+                    adControl.AdUnitId = AppSettings.PubcenterAdUnitIdWin8;
+                    adControl.IsAutoRefreshEnabled = true;
+                    adControl.Width = 728;
+                    adControl.Height = 90;
+                    adControl.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Right;
+                    ShowcaseGrid.Children.Add(adControl);
+                }
+
+                AppState.Windows8ItemsShowcaseViewInitialized = true;
             }
         }
 
-
+        async private Task simulateAppPurchase()
+        {
+            var result = await Windows.ApplicationModel.Store.CurrentAppSimulator.RequestAppPurchaseAsync(false);
+        }
 
 
     }

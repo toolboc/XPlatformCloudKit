@@ -18,12 +18,15 @@ namespace XPlatformCloudKit.Models
     [DataTable("Item")]
     public class Item : BindableBase
     {
-        private int id;
+
+        //As of 11/23/2015 - Azure now creates default id of type string, whereas it was previously type int
+        //http://blogs.msdn.com/b/carlosfigueira/archive/2013/11/23/new-tables-in-azure-mobile-services-string-id-system-properties-and-optimistic-concurrency.aspx
+        private string id;
         /// <summary>
         /// Gets or sets the record id of the <see cref="Item"/>.
         /// </summary>
         [DataMember(Name = "id")]
-        public int Id
+        public string Id
         {
             get { return id; }
             set { Set(ref id, value); }
