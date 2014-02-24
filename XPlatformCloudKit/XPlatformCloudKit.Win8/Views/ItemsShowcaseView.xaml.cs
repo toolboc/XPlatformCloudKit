@@ -46,9 +46,6 @@ namespace XPlatformCloudKit.Views
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemsShowcaseView_Loaded;
 
-            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
-            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
-
             if (AppSettings.EnableWin8Background == true)
             {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
@@ -113,7 +110,7 @@ namespace XPlatformCloudKit.Views
                 ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
 
                 Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
-                Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+                //Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
                 //This is a one-time execuction block, so we can test simulating a purchase here 
                 if (AppSettings.EnablePubcenterAdsWin8)
