@@ -50,7 +50,10 @@ namespace XPlatformCloudKit.Views
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
             if (AppSettings.EnableWin8Background == true)
+            {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+                Window.Current.SizeChanged += Window_SizeChanged;
+            }
 
             if (AppSettings.EnableAppPromoRatingReminder)
             {
@@ -145,6 +148,20 @@ namespace XPlatformCloudKit.Views
             var result = await Windows.ApplicationModel.Store.CurrentAppSimulator.RequestAppPurchaseAsync(false);
         }
 
+        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            if (e.Size.Width == 320)//snapped
+            {
+                if (AppSettings.EnableWin8Background == true)
+                {
+                    ShowcaseGrid.Background.Opacity = .5;
+                }
+            }
+            else
+            {
+                ShowcaseGrid.Background.Opacity = 1;
+            }
+        }
 
     }
 }
