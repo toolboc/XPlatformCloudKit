@@ -63,9 +63,10 @@ namespace XPlatformCloudKit.ViewModels
                     if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText))
                     {
                         var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                        var timeSinceLastRefreshInMinutes = (DateTime.Now - lastRefreshTime).TotalMinutes;
 
                         //has cache expired?
-                        if (overrideCache || (DateTime.Now - lastRefreshTime).Minutes > AppSettings.CacheIntervalInMinutes)
+                        if (overrideCache || timeSinceLastRefreshInMinutes > AppSettings.CacheIntervalInMinutes)
                         {
                             currentItems = await dataService.GetItems();
                         }
