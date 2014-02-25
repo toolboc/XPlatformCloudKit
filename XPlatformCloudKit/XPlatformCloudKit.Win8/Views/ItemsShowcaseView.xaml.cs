@@ -37,6 +37,7 @@ namespace XPlatformCloudKit.Views
     /// </summary>
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
+        AdControl adControl = new AdControl();
 
         public ItemsShowcaseView()
         {
@@ -49,7 +50,6 @@ namespace XPlatformCloudKit.Views
             if (AppSettings.EnableWin8Background == true)
             {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
-                Window.Current.SizeChanged += Window_SizeChanged;
             }
 
             if (AppSettings.EnableAppPromoRatingReminder)
@@ -126,7 +126,7 @@ namespace XPlatformCloudKit.Views
                         if (!licenseInfo.IsTrial)
                             return;
                     }
-                    var adControl = new AdControl();
+
                     adControl.ApplicationId = AppSettings.PubcenterApplicationIdWin8;
                     adControl.AdUnitId = AppSettings.PubcenterAdUnitIdWin8;
                     adControl.IsAutoRefreshEnabled = true;
@@ -136,6 +136,7 @@ namespace XPlatformCloudKit.Views
                     ShowcaseGrid.Children.Add(adControl);
                 }
 
+                Window.Current.SizeChanged += Window_SizeChanged;
                 AppState.Windows8ItemsShowcaseViewInitialized = true;
             }
         }
@@ -153,10 +154,15 @@ namespace XPlatformCloudKit.Views
                 {
                     ShowcaseGrid.Background.Opacity = .5;
                 }
+                if (AppSettings.EnablePubcenterAdsWin8)
+                {
+                    adControl.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
                 ShowcaseGrid.Background.Opacity = 1;
+                adControl.Visibility = Visibility.Visible;
             }
         }
 

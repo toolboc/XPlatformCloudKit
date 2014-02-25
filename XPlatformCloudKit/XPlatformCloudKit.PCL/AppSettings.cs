@@ -197,8 +197,9 @@ namespace XPlatformCloudKit
         //Application and AdUnit Ids provided from Pubcenter
         //See: http://msdn.microsoft.com/en-us/library/advertising-windows-pubcenter(v=msads.10).asp
         //for information on configuring and providing your own ads
-        //Supports 728x90 ads only!  Make sure your add unit matches this size when creating in Pubcenter!
-        //Be careful your ad does not block your Application Title!  To change the render size see lines 65 & 66 of XPlatformCloudKit.Win8/Views/ItemsShowcaseView.xaml.cs
+        //Supports 728x90 by default!  Make sure your ad unit matches this size when creating in Pubcenter!
+        //To change the render size for different ad sizes see lines 133 & 134 of XPlatformCloudKit.Win8/Views/ItemsShowcaseView.xaml.cs
+        //Be careful your ad does not block your Application Title!  
         public const string PubcenterApplicationIdWin8 = "d25517cb-12d4-4699-8bdc-52040c712cab";
         public const string PubcenterAdUnitIdWin8 = "10042999";
         #endregion
