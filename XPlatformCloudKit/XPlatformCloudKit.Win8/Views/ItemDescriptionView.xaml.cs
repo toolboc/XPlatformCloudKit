@@ -1,4 +1,4 @@
-/*
+﻿/*
 * LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
 */
 using System;
@@ -192,6 +192,28 @@ namespace XPlatformCloudKit.Views
             }
         }
 
+        private void ScrollingHost_ViewChanged(object sender, Windows.UI.Xaml.Controls.ScrollViewerViewChangedEventArgs e)
+        {
+            if (Window.Current.CoreWindow.Bounds.Width > 1024)//I.e. are we in Full Landscape?  Not Snapped or Filled
+            {
+                if (e.IsIntermediate)
+                {
+                    //webViewRectangleCanvas.Visibility = Visibility.Visible;
+                    //WebViewBrush b = new WebViewBrush();
+                    //b.SourceName = "webView";
+                    //b.Redraw();
+                    //webViewRectangleCanvas.Fill = b;
+                    webView.Visibility = Visibility.Collapsed;
+                    //double absoluteOffset = ((ScrollViewer)sender).HorizontalOffset;
+                    //double relativeOffset = absoluteOffset - (int)absoluteOffset;
+                    //webViewRectangleCanvas.Opacity = 1 - Math.Abs(relativeOffset);
+                }
+                else
+                {
+                    webView.Visibility = Visibility.Visible;
+                }
+            }
+        }
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
