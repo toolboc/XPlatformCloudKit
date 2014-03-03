@@ -12,6 +12,14 @@ Video Tutorials
 * [Part 4 - Using the XPCK App Builder for quick app development](https://www.youtube.com/watch?v=bcMX1Q8ILaU)
 * [Part 5 - The making of XPCK Guide](https://www.youtube.com/watch?v=BHkk-qItiUQ)
 
+Blog Articles featuring XPCK
+----------------------------
+* [Stuart Lodge's Blog (Author of MVVMCross)](http://slodge.blogspot.co.uk/2014/03/the-awesome-xplatformcloudkit.html)
+* [Microsoft Dev Radio](http://channel9.msdn.com/Blogs/DevRadio/Microsoft-DevRadio-Creating-Multi-Platform-apps-with-the-XPlatformCloudkit-SDK-and-Windows-Azure)
+* [Awesome Apps Built with XPCK](http://pjdecarlo.com/2013/12/awesome-apps-for-windows-phone-and-windows-8-built-with-xpck.html)
+* [Channel 9 / Coding4Fun](http://channel9.msdn.com/coding4fun/blog/One-kit-three-platforms-the-XPlatformCloudKit)
+* [B2Codigo Blog](http://www.b2codigo.com/)
+
 Getting Started
 ---------------
 
