@@ -1,3 +1,4 @@
+using AsyncOAuth;
 /*
 * LICENSE: https://raw.github.com/apimash/StarterKits/master/LicenseTerms-SampleApps%20.txt
 */
@@ -69,6 +70,21 @@ namespace XPlatformCloudKit.Win8
             //Using MVVM Cross Container
             var iocProvider = MvxSimpleIoCContainer.Initialise();
             Mvx.RegisterSingleton<IMvxFileStore>(new MvxWindowsStoreBlockingFileStore());
+
+            //Oauth Init
+            OAuthUtility.ComputeHash = (key, buffer) =>
+            {
+                var crypt = Windows.Security.Cryptography.Core.MacAlgorithmProvider.OpenAlgorithm("HMAC_SHA1");
+                var keyBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(key);
+                var cryptKey = crypt.CreateKey(keyBuffer);
+
+                var dataBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(buffer);
+                var signBuffer = Windows.Security.Cryptography.Core.CryptographicEngine.Sign(cryptKey, dataBuffer);
+
+                byte[] value;
+                Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(signBuffer, out value);
+                return value;
+            };
 
             Frame rootFrame = Window.Current.Content as Frame;
 

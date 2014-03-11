@@ -203,5 +203,26 @@ namespace XPlatformCloudKit
         public const string PubcenterApplicationIdWin8 = "d25517cb-12d4-4699-8bdc-52040c712cab";
         public const string PubcenterAdUnitIdWin8 = "10042999";
         #endregion
+
+        #region Experimental 
+        //Experimental features, be very careful!
+        #region TwitterService
+        //Currently supported on Windows Phone and Windows 8 only!
+        public const bool EnableTwitterService = false;
+
+        //Created @ https://apps.twitter.com, found under "manage api keys"
+        public const string TwitterConsumerKey = "";
+        public const string TwitterConsumerSecret = "";
+
+        //In "manage api keys" scroll down to create access tokens
+        public const string TwitterAccessToken = "";
+        public const string TwitterAccessSecret = "";
+
+        public static readonly TwitterSource[] TwitterAddressCollection = 
+        {
+             new TwitterSource {Url = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=pjdecarlo", Group = "PJDeCarlo"}
+        };
+        #endregion
+        #endregion
     }
 }

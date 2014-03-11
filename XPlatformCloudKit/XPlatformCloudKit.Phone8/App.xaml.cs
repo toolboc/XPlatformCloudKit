@@ -18,6 +18,8 @@ using Cirrious.MvvmCross.Plugins.File.WindowsPhone;
 using Cirrious.CrossCore.IoC;
 using XPlatformCloudKit.DataServices;
 using Cirrious.MvvmCross.ViewModels;
+using AsyncOAuth;
+using System.Security.Cryptography;
 
 namespace XPlatformCloudKit.Phone8
 {
@@ -87,6 +89,9 @@ namespace XPlatformCloudKit.Phone8
             //Using MVVM Cross IOCContainer
             var iocProvider = MvxSimpleIoCContainer.Initialise();
             Mvx.RegisterSingleton<IMvxFileStore>(new MvxIsolatedStorageFileStore());
+
+            //Oauth Init
+            OAuthUtility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
 
         }
 
