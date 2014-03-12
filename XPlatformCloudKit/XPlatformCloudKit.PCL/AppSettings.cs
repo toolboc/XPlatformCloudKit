@@ -207,7 +207,6 @@ namespace XPlatformCloudKit
         #region Experimental 
         //Experimental features, be very careful!
         #region TwitterService
-        //Currently supported on Windows Phone and Windows 8 only!
         public const bool EnableTwitterService = false;
 
         //Created @ https://apps.twitter.com, found under "manage api keys"
