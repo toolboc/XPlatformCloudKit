@@ -51,6 +51,10 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AsyncOAuth, Version=0.8.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AsyncOAuth.0.8.3\lib\AsyncOAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.0.12\lib\MonoAndroid16\Cirrious.CrossCore.dll</HintPath>
     </Reference>

@@ -12,6 +12,8 @@ using Cirrious.MvvmCross.Plugins.File;
 using Cirrious.MvvmCross.Plugins.File.Droid;
 using XPlatformCloudKit.DataServices;
 using XPlatformCloudKit.Services;
+using AsyncOAuth;
+using System.Security.Cryptography;
 
 namespace XPlatformCloudKit
 {
@@ -33,6 +35,9 @@ namespace XPlatformCloudKit
             ServiceLocator.ResourceFileService = new ResourceFileService();
             Cirrious.MvvmCross.Plugins.File.PluginLoader.Instance.EnsureLoaded();
             Cirrious.MvvmCross.Plugins.DownloadCache.PluginLoader.Instance.EnsureLoaded();
+
+            //Oauth Init
+            OAuthUtility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
         }
 		
         protected override IMvxTrace CreateDebugTrace()
