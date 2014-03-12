@@ -20,6 +20,13 @@ Blog Articles featuring XPCK
 * [Channel 9 / Coding4Fun](http://channel9.msdn.com/coding4fun/blog/One-kit-three-platforms-the-XPlatformCloudKit)
 * [B2Codigo Blog](http://www.b2codigo.com/)
 
+Related Content
+---------------
+* [Build Once for Windows 8 and Phone 8 (Learn more about the patterns, architecture, and design concepts behind XPCK)] (http://aka.ms/buildonce)
+* [Marketing and Monetization Materials (Learn how to create monetary success off of your published applications)] (http://aka.ms/monetization)
+* [App Marketing 101 (Real-World Examples of successful apps built with XPCK)] (http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop/Part-4-App-Marketing-101-Real-World-Examples)
+* [App Marketing Virtual Workshop (5 part series marketing seminar for developers, by developers)] (http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop)
+
 Getting Started
 ---------------
 
