@@ -212,7 +212,7 @@ namespace XPlatformCloudKit
         #region 3rd Party Services
         //Subject to changes outlined by the API host - not guaranteed to work forever!
         #region YoutubeService
-        public const bool EnableYoutubeService = true;
+        public const bool EnableYoutubeService = false;
 
         //Created @ https://code.google.com/apis/console, enable YouTube Data API v3 under APIs then find under Credentials
         //NOT USED YET - Placeholder for later
