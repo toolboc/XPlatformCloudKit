@@ -28,6 +28,9 @@ namespace XPlatformCloudKit.DataServices
             if (AppSettings.EnableTwitterService)
                 enabledDataServices.Add(new TwitterService());
 
+            if (AppSettings.EnableYoutubeService)
+                enabledDataServices.Add(new YoutubeService());
+
             return enabledDataServices;
         }
     }

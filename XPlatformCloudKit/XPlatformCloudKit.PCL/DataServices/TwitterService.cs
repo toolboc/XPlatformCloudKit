@@ -38,7 +38,7 @@ namespace XPlatformCloudKit.DataServices
             return TwitterData;
         }
 
-        public async Task Parse(TwitterSource twitterSource)
+        public async Task Parse(UrlSource twitterSource)
         {
             var result = await client.GetStringAsync(twitterSource.Url);
 

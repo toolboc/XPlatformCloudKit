@@ -34,7 +34,7 @@ namespace XPlatformCloudKit.DataServices
                 RssData = new List<Item>();
 
                 // Copy the RSS feeds in the AppSettings.RssAddressCollection into a local list.
-                List<RssSource> listRssSources = new List<RssSource>();
+                List<UrlSource> listRssSources = new List<UrlSource>();
 
                 listRssSources.AddRange(AppSettings.RssAddressCollection.ToList());
 
@@ -85,7 +85,7 @@ namespace XPlatformCloudKit.DataServices
         /// <summary>
         /// Retrieve and parse a list of RSS feeds in parallel and wait for them all to complete.
         /// </summary>
-        private void DoFetchRssFeeds(List<RssSource> listRssSources)
+        private void DoFetchRssFeeds(List<UrlSource> listRssSources)
         {
             // Create a list of tasks, one per RSS feed to retrieve.
             IList<Task> tasks = new List<Task>();
@@ -100,7 +100,7 @@ namespace XPlatformCloudKit.DataServices
             Task.WaitAll(tasks.ToArray());
         }
 
-        public async Task Parse(RssSource rssSource)
+        public async Task Parse(UrlSource rssSource)
         {
 
             var _UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
@@ -197,7 +197,7 @@ namespace XPlatformCloudKit.DataServices
         /// <summary>
         /// Parse a string that should contain a URL/group name pair into an RssSource object.
         /// </summary>
-        private RssSource stringToRssSource(string str)
+        private UrlSource stringToRssSource(string str)
         {
             string[] fields = str.Split(',');
 
@@ -219,7 +219,7 @@ namespace XPlatformCloudKit.DataServices
             if (theUrl.Contains("gdata.youtube.com") && (!theUrl.ContainsIgnoreCase("alt=rss")))
                 throw new FormatException("Found a YouTube API feed that returns the default ATOM format, which we can not parse.  Append 'alt=rss' (lowercase) to the URL to fix this problem if applicable.");
 
-            return new RssSource() { Url = theUrl, Group = theGroup };
+            return new UrlSource() { Url = theUrl, Group = theGroup };
         }
     }
 }
