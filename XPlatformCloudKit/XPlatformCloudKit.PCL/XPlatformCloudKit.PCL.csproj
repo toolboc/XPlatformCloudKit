@@ -46,6 +46,7 @@
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\Misc.cs" />
     <Compile Include="DataServices\LocalItemsFileService.cs" />
+    <Compile Include="DataServices\RemoteUrlSourceService.cs" />
     <Compile Include="DataServices\TwitterService.cs" />
     <Compile Include="DataServices\YoutubeService.cs" />
     <Compile Include="Helpers\AppState.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Services\IResourceFileService.cs" />
     <Compile Include="Services\ServiceLocator.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\ItemDescriptionViewModel.cs" />
     <Compile Include="ViewModels\ItemsShowcaseViewModel.cs" />
   </ItemGroup>

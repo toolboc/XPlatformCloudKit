@@ -20,48 +20,14 @@ namespace XPlatformCloudKit.DataServices
 
         public async Task<List<Item>> GetItems()
         {
-            if(AppSettings.YoutubePublicAPIKey.Length < 30)
+            if(AppSettings.YoutubePublicAPIKey.Length < 30 && !AppSettings.EnableRemoteUrlSourceService)
                 ServiceLocator.MessageService.ShowErrorAsync("YoutubeService is enabled but YoutubePublicAPIKey appears to be invalid please check this value in AppSettings.cs", "Application Error");
 
             try
             {
                 YoutubeData = new List<Item>();
 
-                // Copy the Youtube feeds in the AppSettings.YoutubeAddressCollection into a local list.
-                List<UrlSource> listYoutubeSources = new List<UrlSource>();
-
-                listYoutubeSources.AddRange(AppSettings.YoutubeAddressCollection.ToList());
-
-                // Do we have a URL for remote list of additional Youtube feeds?
-                if (!String.IsNullOrWhiteSpace(AppSettings.RemoteYoutubeSourceUrl))
-                {
-                    // Yes retrieve the list. If we are in the debugger, then make sure that 
-                    //  the phone or emulator does not cache the URL.  That way we always get
-                    //  the latest contents, which is important when iteratively modifying
-                    //  the remote Youtube source list.
-                    string url = AppSettings.RemoteYoutubeSourceUrl;
-
-                    if (Debugger.IsAttached)
-                        // Bust the cache.
-                        url = Misc.CacheBusterUrl(url);
-
-                    string RemoteYoutubeFile = await httpClient.GetStringAsync(url);
-
-                    if (!String.IsNullOrWhiteSpace(RemoteYoutubeFile))
-                    {
-                        // Parse the file into a list of strings.  Split by either carraige return, or
-                        //  line feed to account for platform  differences in the platform that created 
-                        //  the remote Youtube feeds list file.  
-                        string[] arrayCRLF = { "\r", "\n" };
-                        string[] RemoteYoutubeSources = RemoteYoutubeFile.Split(arrayCRLF, StringSplitOptions.RemoveEmptyEntries);
-
-                        // Now parse each additional feed and add it to the master collection.
-                        foreach (string YoutubeSourceAsStr in RemoteYoutubeSources)
-                            listYoutubeSources.Add(stringToYoutubeSource(YoutubeSourceAsStr));
-                    }
-                }
-
-                foreach (var youtubeSource in listYoutubeSources)
+                foreach (var youtubeSource in AppSettings.YoutubeAddressCollection)
                 {
                     currentYoutubeSource = youtubeSource;
                     await Parse(youtubeSource);
@@ -105,14 +71,12 @@ namespace XPlatformCloudKit.DataServices
 
             foreach (var youtubeItem in jsonItems)
             {
-
-
                 YoutubeData.Add(new Item
                 {
                     Title = youtubeItem["snippet"]["title"].ToString(),
                     Subtitle = youtubeItem["snippet"]["publishedAt"].ToString(),
                     Description = string.Format(youtubeHtmlTemplate, "https://www.youtube.com" + youtubePrefix + youtubeItem["snippet"]["resourceId"]["videoId"], youtubeItem["snippet"]["thumbnails"]["high"]["url"].ToString(), youtubeItem["snippet"]["title"].ToString(), youtubeItem["snippet"]["description"].ToString()),
-                    Image = youtubeItem["snippet"]["thumbnails"]["high"]["url"].ToString(),
+                    Image = youtubeItem["snippet"]["thumbnails"]["medium"]["url"].ToString(),
                     Group = youtubeSource.Group
                 });
             }

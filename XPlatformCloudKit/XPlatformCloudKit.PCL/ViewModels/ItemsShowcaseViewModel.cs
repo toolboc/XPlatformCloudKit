@@ -48,6 +48,13 @@ namespace XPlatformCloudKit.ViewModels
         {
             IsBusy = true;
 
+            if (AppSettings.EnableRemoteUrlSourceService)
+            {
+                await RemoteUrlSourceService.GetRemoteUrlSources();
+                //Check if new sources added
+                EnabledDataServices = DataServiceFactory.GetCurrentDataService();
+            }
+
             List<Item> items = new List<Item>();
             MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
             var fileStore = Mvx.Resolve<IMvxFileStore>();
