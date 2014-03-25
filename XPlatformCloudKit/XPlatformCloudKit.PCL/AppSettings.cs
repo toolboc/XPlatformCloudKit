@@ -54,7 +54,7 @@ namespace XPlatformCloudKit
         {
             new UrlSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
             new UrlSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
-            new UrlSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
+            //new UrlSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
             //new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
             //new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
             //new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
@@ -227,6 +227,11 @@ namespace XPlatformCloudKit
         {
              new UrlSource {Url = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PL0OTHVsGLN2medBm9k-VFtB6cvUbP9n6B&part=snippet&maxResults=50&fields=items%2CnextPageToken&key=" + YoutubePublicAPIKey, Group = "Youtube Playlist"}
         };
+
+        //Url to a remotely hosted list of Youtube Sources and Group Name, comma delimted and seperated by newline
+        //See an example by using the value in the commented line below
+        //public const string RemoteYoutubeSourceUrl = "http://pjdecarlo.com/playground/remoteYoutubeExample.html";
+        public const string RemoteYoutubeSourceUrl = "";
         #endregion
 
         #region TwitterService
