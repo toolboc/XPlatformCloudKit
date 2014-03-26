@@ -85,36 +85,5 @@ namespace XPlatformCloudKit.DataServices
             if (nextPageToken != null)
                 await Parse(new UrlSource {Url = currentYoutubeSource.Url + "&pageToken=" + nextPageToken, Group = currentYoutubeSource.Group});
         }
-
-        /// <summary>
-        /// Remove any whitespace or quotes from an YoutubeSource field.
-        /// </summary>
-        private string cleanField(string strFld)
-        {
-            return (strFld.Trim().Trim('"'));
-        }
-
-        /// <summary>
-        /// Parse a string that should contain a URL/group name pair into an YoutubeSource object.
-        /// </summary>
-        private UrlSource stringToYoutubeSource(string str)
-        {
-            string[] fields = str.Split(',');
-
-            if (fields.Length != 2)
-                // Invalid remote Youtube source line.
-                throw new FormatException("The following line is not a valid Youtube source line (invalid field count): " + str);
-
-            string theUrl = cleanField(fields[0]);
-            string theGroup = cleanField(fields[1]);
-
-            if (String.IsNullOrWhiteSpace(theUrl))
-                throw new FormatException("The following line is not a valid Youtube source line (URL field is empty): " + str);
-
-            if (String.IsNullOrWhiteSpace(theGroup))
-                throw new FormatException("The following line is not a valid Youtube source line (Group field is empty): " + str);
-
-            return new UrlSource() { Url = theUrl, Group = theGroup };
-        }
     }
 }

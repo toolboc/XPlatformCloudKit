@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using XPlatformCloudKit.Common;
 using XPlatformCloudKit.Models;
 using XPlatformCloudKit.Services;
 
@@ -33,15 +34,15 @@ namespace XPlatformCloudKit.DataServices
                    switch(source.Type)
                    {
                        case "RssService":
-                           AppSettings.RssAddressCollection.Add(source);
+                           ArrayUtilities.Add(ref AppSettings.RssAddressCollection, source);
                            AppSettings.EnableRssService = true;
                            break;
                        case "YoutubeService":
-                           AppSettings.YoutubeAddressCollection.Add(source);
+                           ArrayUtilities.Add(ref AppSettings.YoutubeAddressCollection, source);
                            AppSettings.EnableYoutubeService = true;
                            break;
                        case "TwitterService":
-                           AppSettings.TwitterAddressCollection.Add(source);
+                           ArrayUtilities.Add(ref AppSettings.TwitterAddressCollection, source);
                            //Twitter should be enabled prior to app submission on account of Oauth requirements
                            break;
                        default:

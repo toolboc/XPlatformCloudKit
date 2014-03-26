@@ -62,4 +62,14 @@ namespace XPlatformCloudKit.Common
             return url + "?uncache=" + cacheBusterUrlArgument;
         }
     }
+
+    public static class ArrayUtilities
+    {
+        public static void Add<T>(ref T[] array, T t)
+        {
+            int newSize = array.Length + 1;
+            Array.Resize(ref array, newSize);
+            array[newSize - 1] = t;
+        }
+    }
 }

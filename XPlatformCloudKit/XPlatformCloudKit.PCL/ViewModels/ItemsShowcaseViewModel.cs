@@ -27,15 +27,10 @@ namespace XPlatformCloudKit.ViewModels
         #region Constructors
         public ItemsShowcaseViewModel()
         {
-            EnabledDataServices = DataServiceFactory.GetCurrentDataService();
-
-            if (EnabledDataServices.Count == 0)
-                ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
-            else
-                // If we are running in the debugger, tell LoadItems() to ignore the cache in case we modified
-                //  the RSS feeds or other content elements.  This way we are sure to see the desired content
-                //  when iterating program changes in the debugger.
-                LoadItems(Debugger.IsAttached);
+            // If we are running in the debugger, tell LoadItems() to ignore the cache in case we modified
+            //  the RSS feeds or other content elements.  This way we are sure to see the desired content
+            //  when iterating program changes in the debugger.
+            LoadItems(Debugger.IsAttached);
         }
 
         #endregion // Constructors
@@ -48,11 +43,26 @@ namespace XPlatformCloudKit.ViewModels
         {
             IsBusy = true;
 
+            if(AppSettings.EnableRemoteAppSettings)
+            {
+                RemoteAppSettingsService remoteAppSettingsService = new RemoteAppSettingsService();
+                await remoteAppSettingsService.LoadRemoteAppSettings();
+            }
+
+            //Name may change after RemoteSettings enabled
+            ApplicationName = AppSettings.ApplicationName;
+
             if (AppSettings.EnableRemoteUrlSourceService)
             {
                 await RemoteUrlSourceService.GetRemoteUrlSources();
-                //Check if new sources added
-                EnabledDataServices = DataServiceFactory.GetCurrentDataService();
+            }
+
+            EnabledDataServices = DataServiceFactory.GetCurrentDataService();
+
+            if (EnabledDataServices.Count == 0)
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
+                return;
             }
 
             List<Item> items = new List<Item>();
@@ -126,10 +136,11 @@ namespace XPlatformCloudKit.ViewModels
         #endregion Internal Methods
 
         #region Public Properties
+        private string applicationName;
         public string ApplicationName
         {
-            set { AppSettings.ApplicationName = value; RaisePropertyChanged(() => ApplicationName); }
-            get { return AppSettings.ApplicationName; }
+            set { applicationName = value; AppSettings.ApplicationName = value; RaisePropertyChanged(() => ApplicationName); }
+            get { return applicationName; }
         }
 
         private Boolean isSearch;

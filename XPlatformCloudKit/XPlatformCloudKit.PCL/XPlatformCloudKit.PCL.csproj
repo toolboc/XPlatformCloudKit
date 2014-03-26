@@ -64,6 +64,7 @@
     <Compile Include="DataServices\RssService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\IResourceFileService.cs" />
+    <Compile Include="Services\RemoteAppSettingsService.cs" />
     <Compile Include="Services\ServiceLocator.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="ViewModels\ItemDescriptionViewModel.cs" />
