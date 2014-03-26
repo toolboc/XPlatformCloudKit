@@ -1,4 +1,6 @@
-﻿using Cirrious.MvvmCross.Plugins.Json;
+﻿using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.File;
+using Cirrious.MvvmCross.Plugins.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,9 @@ namespace XPlatformCloudKit.Services
     {
         HttpClient httpClient = new HttpClient();
 
-        public async Task LoadRemoteAppSettings()
+        public async Task LoadRemoteAppSettings(bool overrideCache = false)
         {
-            var remoteSettings = await GetRemoteAppSettings();
+            var remoteSettings = await GetRemoteAppSettings(overrideCache);
 
             if(remoteSettings != null)
 
@@ -68,14 +70,26 @@ namespace XPlatformCloudKit.Services
             }
         }
 
-        private async Task<string> GetRemoteAppSettings()
+        private async Task<string> GetRemoteAppSettingsFromWeb()
         {
             try
             {
+                var fileStore = Mvx.Resolve<IMvxFileStore>();
+
                 var _UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
                 httpClient.DefaultRequestHeaders.Add("user-agent", _UserAgent);
+                var remoteAppSettings = await httpClient.GetStringAsync(AppSettings.RemoteAppSettingsService);
 
-                return await httpClient.GetStringAsync(AppSettings.RemoteAppSettingsService);
+                if (fileStore.Exists("RemoteAppSettingsLastRefresh"))
+                    fileStore.DeleteFile("RemoteAppSettingsLastRefresh");
+
+                if (fileStore.Exists("CachedRemoteAppSettings"))
+                    fileStore.DeleteFile("CachedRemoteAppSettings");
+
+                fileStore.WriteFile("RemoteAppSettingsLastRefresh", DateTime.Now.ToString());
+                fileStore.WriteFile("CachedRemoteAppSettings", remoteAppSettings);
+
+                return remoteAppSettings;
             }
             catch (Exception e)
             {
@@ -83,5 +97,35 @@ namespace XPlatformCloudKit.Services
                 return null;
             }
         }
+
+        private async Task<string> GetRemoteAppSettings(bool overrideCache = false)
+        {
+            var fileStore = Mvx.Resolve<IMvxFileStore>();
+            string remoteAppSettingsLastRefresh;
+            if (fileStore.TryReadTextFile("RemoteAppSettingsLastRefresh", out remoteAppSettingsLastRefresh))
+            {
+                var lastRefreshTime = DateTime.Parse(remoteAppSettingsLastRefresh);
+                var timeSinceLastRefreshInMinutes = (DateTime.Now - lastRefreshTime).TotalMinutes;
+
+                //has cache expired?
+                if (overrideCache || timeSinceLastRefreshInMinutes > AppSettings.CacheIntervalInMinutes)
+                {
+                    return await GetRemoteAppSettingsFromWeb();
+                }
+                else //load from cache
+                {
+                    string cachedRemoteAppSettings;
+                    if (fileStore.TryReadTextFile("CachedRemoteAppSettings", out cachedRemoteAppSettings))
+                    {
+                        return cachedRemoteAppSettings;
+                    }
+                }
+            }
+            
+            return await GetRemoteAppSettingsFromWeb();
+
+        }
+
+
     }
 }

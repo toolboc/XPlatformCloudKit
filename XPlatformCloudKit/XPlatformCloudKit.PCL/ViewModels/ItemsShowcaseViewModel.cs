@@ -46,7 +46,7 @@ namespace XPlatformCloudKit.ViewModels
             if(AppSettings.EnableRemoteAppSettings)
             {
                 RemoteAppSettingsService remoteAppSettingsService = new RemoteAppSettingsService();
-                await remoteAppSettingsService.LoadRemoteAppSettings();
+                await remoteAppSettingsService.LoadRemoteAppSettings(overrideCache);
             }
 
             //Name may change after RemoteSettings enabled
