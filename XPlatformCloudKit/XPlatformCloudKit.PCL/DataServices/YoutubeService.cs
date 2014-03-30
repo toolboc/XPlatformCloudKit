@@ -71,17 +71,18 @@ namespace XPlatformCloudKit.DataServices
 
             foreach (var youtubeItem in jsonItems)
             {
+                var description = youtubeItem["snippet"]["description"].ToString();
+                if(description != "This video is private.")
                 YoutubeData.Add(new Item
                 {
                     Title = youtubeItem["snippet"]["title"].ToString(),
                     Subtitle = youtubeItem["snippet"]["publishedAt"].ToString(),
-                    Description = string.Format(youtubeHtmlTemplate, "https://www.youtube.com" + youtubePrefix + youtubeItem["snippet"]["resourceId"]["videoId"], youtubeItem["snippet"]["thumbnails"]["high"]["url"].ToString(), youtubeItem["snippet"]["title"].ToString(), youtubeItem["snippet"]["description"].ToString()),
+                    Description = string.Format(youtubeHtmlTemplate, "https://www.youtube.com" + youtubePrefix + youtubeItem["snippet"]["resourceId"]["videoId"], youtubeItem["snippet"]["thumbnails"]["high"]["url"].ToString(), youtubeItem["snippet"]["title"].ToString(), description),
                     Image = youtubeItem["snippet"]["thumbnails"]["medium"]["url"].ToString(),
                     Group = youtubeSource.Group
                 });
             }
 
-            //For some unknown reason, likely due to the Youtube API, this request breaks at index 130 of my test playlist YMMV
             if (nextPageToken != null)
                 await Parse(new UrlSource {Url = currentYoutubeSource.Url + "&pageToken=" + nextPageToken, Group = currentYoutubeSource.Group});
         }
