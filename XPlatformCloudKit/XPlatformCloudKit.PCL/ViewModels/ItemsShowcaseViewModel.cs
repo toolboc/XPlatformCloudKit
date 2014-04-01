@@ -23,7 +23,7 @@ namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
     {
-        private static Semaphore pool = new Semaphore(0, 1);
+        private static Semaphore pool = new Semaphore(1, 1);
         MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
         IMvxFileStore fileStore = Mvx.Resolve<IMvxFileStore>();
         List<Item> items;
@@ -86,8 +86,6 @@ namespace XPlatformCloudKit.ViewModels
         {
             IList<Task> tasks = new List<Task>();
 
-            pool.Release();
-
             foreach (var dataService in enabledDataServices)
             {
                 tasks.Add(
@@ -120,12 +118,22 @@ namespace XPlatformCloudKit.ViewModels
                     {
                         string cachedItemsText;
                         pool.WaitOne();
-                        if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
+                        try
                         {
-                            currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
-                            loadedFromCache = true;
+                            if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
+                            {
+                                currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
+                                loadedFromCache = true;
+                            }
                         }
-                        pool.Release();
+                        catch
+                        {
+                            ServiceLocator.MessageService.ShowErrorAsync("Error Deserializing " + dataService.GetType().ToString(), "Error loading cache");
+                        }
+                        finally
+                        {
+                            pool.Release();
+                        }
                     }
                 }
                 else
