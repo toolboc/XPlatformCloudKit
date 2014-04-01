@@ -27,6 +27,7 @@ namespace XPlatformCloudKit.DataServices
 
                 foreach (var twitterSource in AppSettings.TwitterAddressCollection)
                 {
+                    twitterSource.Type = "TwitterSource";
                     await Parse(twitterSource);
                 }
             }
@@ -61,7 +62,8 @@ namespace XPlatformCloudKit.DataServices
                     Subtitle = createdTime,
                     Description = tweettext,
                     Image = profileBanner,
-                    Group = twitterSource.Group
+                    Group = twitterSource.Group,
+                    UrlSource = twitterSource
                 });
             }
         }

@@ -53,6 +53,10 @@ namespace XPlatformCloudKit.DataServices
                 foreach(var item in Items)
                 {
                     Type type = item.GetType();
+
+                    if (type != typeof(string))
+                        continue;
+
                     var properties = type.GetRuntimeProperties();
                     foreach (PropertyInfo property in properties)
                     {

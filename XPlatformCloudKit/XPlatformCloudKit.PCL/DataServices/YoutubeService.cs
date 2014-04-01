@@ -29,6 +29,7 @@ namespace XPlatformCloudKit.DataServices
 
                 foreach (var youtubeSource in AppSettings.YoutubeAddressCollection)
                 {
+                    youtubeSource.Type = "YoutubeSource";
                     currentYoutubeSource = youtubeSource;
                     await Parse(youtubeSource);
                 }
@@ -79,7 +80,8 @@ namespace XPlatformCloudKit.DataServices
                     Subtitle = youtubeItem["snippet"]["publishedAt"].ToString(),
                     Description = string.Format(youtubeHtmlTemplate, "https://www.youtube.com" + youtubePrefix + youtubeItem["snippet"]["resourceId"]["videoId"], youtubeItem["snippet"]["thumbnails"]["high"]["url"].ToString(), youtubeItem["snippet"]["title"].ToString(), description),
                     Image = youtubeItem["snippet"]["thumbnails"]["medium"]["url"].ToString(),
-                    Group = youtubeSource.Group
+                    Group = youtubeSource.Group,
+                    UrlSource = currentYoutubeSource
                 });
             }
 

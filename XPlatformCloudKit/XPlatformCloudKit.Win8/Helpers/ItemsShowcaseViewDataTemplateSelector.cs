@@ -14,21 +14,23 @@ namespace XPlatformCloudKit.Helpers
         protected override DataTemplate SelectTemplateCore(object item, Windows.UI.Xaml.DependencyObject container)
         {
             //returns a default square template defined in StandarStyles.xaml
- 	        return Application.Current.Resources["Standard250x250ItemTemplate"] as DataTemplate;
+ 	        //return Application.Current.Resources["Standard250x250ItemTemplate"] as DataTemplate;
 
             //returns a default 16:9 wide template defined in StandarStyles.xaml
             //return Application.Current.Resources["Standard445x250ItemTemplate"] as DataTemplate;
 
             //Note that we can also build out custom logic to determine which template to supply based on a property of Item
-            //var selectedItem = item as Item;
-            //if (selectedItem.Group.Contains("Youtube"))
-            //{
-            //    return Application.Current.Resources["Standard445x250ItemTemplate"] as DataTemplate;
-            //}
-            //else
-            //{
-            //    return Application.Current.Resources["Standard250x250ItemTemplate"] as DataTemplate;
-            //}
+            var selectedItem = item as Item;
+
+            //Use Wide Template when source originates from Youtube API
+            if (selectedItem.UrlSource != null && (selectedItem.UrlSource.Url.Contains("gdata.youtube.com") || selectedItem.UrlSource.Url.Contains("googleapis.com/youtube")))
+            {
+                return Application.Current.Resources["Standard445x250ItemTemplate"] as DataTemplate;
+            }
+            else
+            {
+                return Application.Current.Resources["Standard250x250ItemTemplate"] as DataTemplate;
+            }
         }
 
     }

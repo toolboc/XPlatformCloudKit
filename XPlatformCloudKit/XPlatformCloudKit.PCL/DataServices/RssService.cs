@@ -35,6 +35,7 @@ namespace XPlatformCloudKit.DataServices
 
                 foreach (var rssSource in AppSettings.RssAddressCollection)
                 {
+                    rssSource.Type = "RssSource";
                     await Parse(rssSource);
                 }
 
@@ -58,6 +59,7 @@ namespace XPlatformCloudKit.DataServices
             // Add the parsing and retrieval of each RSS source as a separate task.
             foreach (var rssSource in listRssSources)
             {
+                rssSource.Type = "RssSource";
                 tasks.Add(
                     Task.Run(async () => await Parse(rssSource)));
             }
@@ -95,6 +97,7 @@ namespace XPlatformCloudKit.DataServices
                             Description = item.Descendants(media + "thumbnail").Count() > 0 ? string.Format(youtubeHtmlTemplate, item.Element("link").Value, item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault(), item.Element("title").Value, item.Element("description").Value.Substring(0, Math.Min(580, item.Element("description").Value.Length))) : string.Empty,
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : string.Empty,
                             Group = @group,
+                            UrlSource = rssSource
                         };
 
                 items = items.Where(x => x.Description != string.Empty);
@@ -123,6 +126,7 @@ namespace XPlatformCloudKit.DataServices
                                     : string.Empty),
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : "",
                             Group = @group,
+                            UrlSource = rssSource
                         };
             }
 

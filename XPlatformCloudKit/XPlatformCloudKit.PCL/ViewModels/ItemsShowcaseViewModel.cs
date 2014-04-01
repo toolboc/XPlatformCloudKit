@@ -37,7 +37,7 @@ namespace XPlatformCloudKit.ViewModels
 
         #region Internal Methods
         /// <summary>
-        /// Loads Items from our Azure Mobile Service and sort into grouped enumerable
+        /// Loads Items from our DataServices and sort into grouped enumerable
         /// </summary>
         private async void LoadItems(bool overrideCache = false)
         {
