@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XPlatformCloudKit;
-using System.Runtime.Serialization.Json;
-using System.Web.Script.Serialization;
+using JsonPrettyPrinterPlus;
+using JsonPrettyPrinterPlus.JsonSerialization;
 
 namespace AppSettingsSerializer
 {
@@ -41,8 +41,11 @@ namespace AppSettingsSerializer
                 };
                 Stream f = File.Open(filename, FileMode.Create);
                 StreamWriter sw = new StreamWriter(f);
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                var json = serializer.Serialize(a);
+                var prettyPrinter = new JsonPrettyPrinter(new JsonPrettyPrinterPlus.JsonPrettyPrinterInternals.JsonPPStrategyContext());
+                var json = JsonExtensions.ToJSON(a,true);
+                Console.WriteLine(json);
+                Console.WriteLine("\n*Completed* \n\nSee: " + filename + " for formatted output - Press a key to continue");
+                Console.ReadKey();
                 sw.Write(json);
                 sw.Close();
             }
