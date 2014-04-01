@@ -57,20 +57,20 @@ namespace XPlatformCloudKit
             new UrlSource{Url = "https://www.facebook.com/feeds/page.php?format=rss20&id=487598667939827", Group = "Facebook Example"},
             new UrlSource{Url = "http://api.flickr.com/services/feeds/photos_public.gne?format=rss&tags=cats", Group = "Flickr Example"},
             //new UrlSource{Url = "http://pipes.yahoo.com/pipes/pipe.run?_id=74fc14a798efee89310bea2b56f99336&_render=rss&n=10", Group = "Yahoo Pipes example"},
-            //new RssSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
-            //new RssSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
-            //new RssSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
-            //new RssSource{Url = "http://changelogshow.com/105.rss", Group = "Podcast example"},
-            //new RssSource{Url = "http://blog.designersofthings.com/rss", Group = "Tumblr Example"},
-            //new RssSource{Url = "http://pinterest.com/happylynnifer/feed.rss", Group = "Pinterest User Example"},
-            //new RssSource{Url = "http://www.pinterest.com/happylynnifer/human-tech-advances.rss", Group = "Pinterest User Board Example"},
+            //new UrlSource{Url = "http://www.amazon.com/rss/tag/xbox/new/", Group = "Amazon example"},
+            //new UrlSource{Url = "http://reddit.com/r/Microsoft/.rss", Group = "Reddit example"},
+            //new UrlSource{Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"},
+            //new UrlSource{Url = "http://changelogshow.com/105.rss", Group = "Podcast example"},
+            //new UrlSource{Url = "http://blog.designersofthings.com/rss", Group = "Tumblr Example"},
+            //new UrlSource{Url = "http://pinterest.com/happylynnifer/feed.rss", Group = "Pinterest User Example"},
+            //new UrlSource{Url = "http://www.pinterest.com/happylynnifer/human-tech-advances.rss", Group = "Pinterest User Board Example"},
 
             //NOTE: Youtube public RSS APIs *may* work but are not guaranteed longterm, offical deprecation announced on March 4, 2014
             //More info @ https://developers.google.com/youtube/2.0/developers_guide_protocol_deprecated
             //Highly suggested to use 
-            //new RssSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=1", Group = "Youtube Playlist Example"},
-            //new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
-            //new RssSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&author=thewindotnet", Group = "Youtube author example"},
+            //new UrlSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=1", Group = "Youtube Playlist Example"},
+            //new UrlSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
+            //new UrlSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&author=thewindotnet", Group = "Youtube author example"},
 
         };
 
@@ -250,7 +250,7 @@ namespace XPlatformCloudKit
          * Make sure EnableRemoteUrlSourceService is set to TRUE or the remote content (or the RSS feeds below) will 
          * not be accessed.
          */
-        //The value below can be used to test RemoteRssSourceUrl, but please don't leave it active in your published app.
+        //The value below can be used to test RemoteUrlSourceUrl, but please don't leave it active in your published app.
         //public string RemoteUrlSourceUrl = "http://pjdecarlo.com/playground/remoteUrlSourceExample.html";
         public static string RemoteUrlSourceUrl = "";
         #endregion
