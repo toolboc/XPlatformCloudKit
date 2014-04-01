@@ -22,6 +22,7 @@ namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
     {
+        List<Item> items;
         List<IDataService> EnabledDataServices;
 
         #region Constructors
@@ -65,65 +66,8 @@ namespace XPlatformCloudKit.ViewModels
                 return;
             }
 
-            List<Item> items = new List<Item>();
-            MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
-            var fileStore = Mvx.Resolve<IMvxFileStore>();
-
-            foreach (var dataService in EnabledDataServices)
-            {
-                List<Item> currentItems = new List<Item>();
-                bool loadedFromCache = false;
-
-                if (fileStore != null)
-                {
-                    string lastRefreshText;
-                    if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText))
-                    {
-                        var lastRefreshTime = DateTime.Parse(lastRefreshText);
-                        var timeSinceLastRefreshInMinutes = (DateTime.Now - lastRefreshTime).TotalMinutes;
-
-                        //has cache expired?
-                        if (overrideCache || timeSinceLastRefreshInMinutes > AppSettings.CacheIntervalInMinutes)
-                        {
-                            currentItems = await dataService.GetItems();
-                        }
-                        else //load from cache
-                        {
-                            string cachedItemsText;
-                            if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
-                            {
-                                currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
-                                loadedFromCache = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        currentItems = await dataService.GetItems();
-                    }
-                }
-
-                try
-                {
-                    if (!loadedFromCache && currentItems.Count > 0)
-                    {
-                        if (fileStore.Exists("CachedItems-" + dataService.GetType().ToString()))
-                            fileStore.DeleteFile("CachedItems-" + dataService.GetType().ToString());
-
-                        if (fileStore.Exists("LastRefresh-" + dataService.GetType().ToString()))
-                            fileStore.DeleteFile("LastRefresh-" + dataService.GetType().ToString());
-
-                        fileStore.WriteFile("CachedItems-" + dataService.GetType().ToString(), mvxJsonConverter.SerializeObject(currentItems));
-                        fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
-                    }
-
-                    items.AddRange(currentItems);
-                }
-                catch
-                {
-                    ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from Remote Service. \n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
-                }
-            }
+            items = new List<Item>();
+            await DoFetchDataServices(EnabledDataServices, overrideCache);  
 
             ItemGroups = new List<Group<Item>>(from item in items
                                                group item by item.Group into grp
@@ -131,6 +75,80 @@ namespace XPlatformCloudKit.ViewModels
                                                select new Group<Item>(grp.Key, grp)).ToList();
 
             IsBusy = false;
+        }
+
+        private Task DoFetchDataServices(List<IDataService> enabledDataServices, bool overrideCache = false)
+        {
+            IList<Task> tasks = new List<Task>();
+
+            foreach (var dataService in enabledDataServices)
+            {
+                tasks.Add(
+                    Task.Run(async () => await LoadDataService(dataService, overrideCache)));
+            }
+
+            return Task.WhenAll(tasks.ToArray());
+        }
+
+        private async Task LoadDataService(IDataService dataService, bool overrideCache = false)
+        {
+            MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
+            var fileStore = Mvx.Resolve<IMvxFileStore>();
+
+            List<Item> currentItems = new List<Item>();
+
+            bool loadedFromCache = false;
+
+            if (fileStore != null)
+            {
+                string lastRefreshText;
+                if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText))
+                {
+                    var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                    var timeSinceLastRefreshInMinutes = (DateTime.Now - lastRefreshTime).TotalMinutes;
+
+                    //has cache expired?
+                    if (overrideCache || timeSinceLastRefreshInMinutes > AppSettings.CacheIntervalInMinutes)
+                    {
+                        currentItems = await dataService.GetItems();
+                    }
+                    else //load from cache
+                    {
+                        string cachedItemsText;
+                        if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
+                        {
+                            currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
+                            loadedFromCache = true;
+                        }
+                    }
+                }
+                else
+                {
+                    currentItems = await dataService.GetItems();
+                }
+            }
+
+            try
+            {
+                if (!loadedFromCache && currentItems.Count > 0)
+                {
+                    if (fileStore.Exists("CachedItems-" + dataService.GetType().ToString()))
+                        fileStore.DeleteFile("CachedItems-" + dataService.GetType().ToString());
+
+                    if (fileStore.Exists("LastRefresh-" + dataService.GetType().ToString()))
+                        fileStore.DeleteFile("LastRefresh-" + dataService.GetType().ToString());
+
+                    fileStore.WriteFile("CachedItems-" + dataService.GetType().ToString(), mvxJsonConverter.SerializeObject(currentItems));
+                    fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
+                }
+
+                items.AddRange(currentItems);
+            }
+            catch
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from " + dataService.GetType().ToString() + "\n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
+            }
+            
         }
 
         #endregion Internal Methods
