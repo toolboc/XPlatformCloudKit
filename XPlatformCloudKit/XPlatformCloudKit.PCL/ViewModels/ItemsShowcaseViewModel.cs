@@ -17,13 +17,18 @@ using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Plugins.Json;
 using System.Diagnostics;
+using System.Threading;
 
 namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
     {
+        private static Semaphore pool = new Semaphore(0, 1);
+        MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
+        IMvxFileStore fileStore = Mvx.Resolve<IMvxFileStore>();
         List<Item> items;
         List<IDataService> EnabledDataServices;
+
 
         #region Constructors
         public ItemsShowcaseViewModel()
@@ -44,7 +49,7 @@ namespace XPlatformCloudKit.ViewModels
         {
             IsBusy = true;
 
-            if(AppSettings.EnableRemoteAppSettings)
+            if (AppSettings.EnableRemoteAppSettings)
             {
                 RemoteAppSettingsService remoteAppSettingsService = new RemoteAppSettingsService();
                 await remoteAppSettingsService.LoadRemoteAppSettings(overrideCache);
@@ -67,7 +72,7 @@ namespace XPlatformCloudKit.ViewModels
             }
 
             items = new List<Item>();
-            await DoFetchDataServices(EnabledDataServices, overrideCache);  
+            await DoFetchDataServices(EnabledDataServices, overrideCache);
 
             ItemGroups = new List<Group<Item>>(from item in items
                                                group item by item.Group into grp
@@ -81,6 +86,8 @@ namespace XPlatformCloudKit.ViewModels
         {
             IList<Task> tasks = new List<Task>();
 
+            pool.Release();
+
             foreach (var dataService in enabledDataServices)
             {
                 tasks.Add(
@@ -92,9 +99,6 @@ namespace XPlatformCloudKit.ViewModels
 
         private async Task LoadDataService(IDataService dataService, bool overrideCache = false)
         {
-            MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
-            var fileStore = Mvx.Resolve<IMvxFileStore>();
-
             List<Item> currentItems = new List<Item>();
 
             bool loadedFromCache = false;
@@ -115,11 +119,13 @@ namespace XPlatformCloudKit.ViewModels
                     else //load from cache
                     {
                         string cachedItemsText;
+                        pool.WaitOne();
                         if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
                         {
                             currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
                             loadedFromCache = true;
                         }
+                        pool.Release();
                     }
                 }
                 else
@@ -148,7 +154,7 @@ namespace XPlatformCloudKit.ViewModels
             {
                 ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from " + dataService.GetType().ToString() + "\n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
             }
-            
+
         }
 
         #endregion Internal Methods
@@ -290,7 +296,7 @@ namespace XPlatformCloudKit.ViewModels
                     searchCommand = new RelayCommand<string>(
                         (searchTerm) =>
                         {
-                            if (searchTerm!=null && !searchTerm.Equals("") && ItemGroups!=null && ItemGroups.Count>0)
+                            if (searchTerm != null && !searchTerm.Equals("") && ItemGroups != null && ItemGroups.Count > 0)
                             {
                                 IsSearch = true;
                                 if (tempApplicationName == null)
@@ -315,10 +321,10 @@ namespace XPlatformCloudKit.ViewModels
                                         itemgroup.Add(tempgroup);
                                 }
                                 ItemGroups = itemgroup;
-                                if(itemgroup.Count==0)
+                                if (itemgroup.Count == 0)
                                     ServiceLocator.MessageService.ShowErrorAsync("We didn't find any results. Please try another query.", "No Results Found");
                             }
-                            else if(tempApplicationName!=null)
+                            else if (tempApplicationName != null)
                             {
                                 ApplicationName = tempApplicationName;
                                 tempApplicationName = null;
