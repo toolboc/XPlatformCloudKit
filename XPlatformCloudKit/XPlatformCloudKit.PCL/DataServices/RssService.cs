@@ -21,29 +21,23 @@ namespace XPlatformCloudKit.DataServices
 {
     class RssService : IDataService
     {
-        HttpClient httpClient = new HttpClient();
         List<Item> RssData;
 
         public async Task<List<Item>> GetItems()
         {
             RssData = new List<Item>();
-            Boolean error = false;
            
             try
             {
                 RssData = new List<Item>();
 
-                foreach (var rssSource in AppSettings.RssAddressCollection)
-                {
-                    rssSource.Type = "RssSource";
-                    await Parse(rssSource);
-                }
+                await DoFetchRssFeeds(AppSettings.RssAddressCollection.ToList());
 
             }
-            catch { error = true; }
-            
-            if (error)
-                ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService", "Application Error");
+            catch(Exception e)
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService: " + e.Message, "Application Error");
+            }
 
             return RssData;
         }
@@ -51,7 +45,7 @@ namespace XPlatformCloudKit.DataServices
         /// <summary>
         /// Retrieve and parse a list of RSS feeds in parallel and wait for them all to complete.
         /// </summary>
-        private void DoFetchRssFeeds(List<UrlSource> listRssSources)
+        private Task DoFetchRssFeeds(List<UrlSource> listRssSources)
         {
             // Create a list of tasks, one per RSS feed to retrieve.
             IList<Task> tasks = new List<Task>();
@@ -64,11 +58,12 @@ namespace XPlatformCloudKit.DataServices
                     Task.Run(async () => await Parse(rssSource)));
             }
 
-            Task.WaitAll(tasks.ToArray());
+            return Task.WhenAll(tasks.ToArray());
         }
 
         public async Task Parse(UrlSource rssSource)
         {
+            var httpClient = new HttpClient();
 
             var _UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
             httpClient.DefaultRequestHeaders.Add("user-agent", _UserAgent);
