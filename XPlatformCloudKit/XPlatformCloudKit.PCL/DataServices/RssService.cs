@@ -117,6 +117,9 @@ namespace XPlatformCloudKit.DataServices
                                     : string.Empty)
                                 + (item.Element("description") != null
                                     ? (string)(item.Element("description").Value)
+                                    : string.Empty)
+                                + (item.Element("link") != null
+                                    ? " <a href=" + (string)(item.Element("link").Value) + ">Link</a>"
                                     : string.Empty),
                             Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : "",
                             Group = @group,
