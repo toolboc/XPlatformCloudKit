@@ -39,7 +39,8 @@ namespace XPlatformCloudKit.DataServices
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from RssService: " + e.Message, "Application Error");
             }
 
-            return RssData;
+            //Return all items sorted by Date
+            return RssData.OrderBy(x => DateTime.Parse(x.Subtitle)).ToList();
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace XPlatformCloudKit.DataServices
                             select new Item()
                             {
                                 Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
-                                Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : string.Empty,
+                                Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : DateTime.Now.ToString(),
                                 Description =
                                     // TODO: perhaps this needs to use the url's MIME type to determine the tag for audio, video, PDFs, etc.?
                                       (item.Element("enclosure") != null
