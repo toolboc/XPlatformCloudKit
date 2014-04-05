@@ -112,7 +112,7 @@ namespace XPlatformCloudKit.Views
 
         private void LoadWebContent()
         {
-            var selectedItem = flipView.SelectedItem as Item;
+            var selectedItem = ((ItemDescriptionViewModel)DataContext).SelectedItem;
 
             if (AppSettings.AutoPlayYoutubeVideos)
             {
@@ -160,6 +160,9 @@ namespace XPlatformCloudKit.Views
 
         private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Pretty sure DataBinding is broken for SelectedItem Property of FlipView
+            //http://stackoverflow.com/questions/10441408/why-does-flipview-ignore-selecteditem
+            ((ItemDescriptionViewModel)DataContext).SelectedItem = flipView.SelectedItem as Item;
             LoadWebContent();
         }
 
