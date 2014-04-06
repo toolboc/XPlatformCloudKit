@@ -17,111 +17,162 @@ using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Plugins.Json;
 using System.Diagnostics;
+using System.Threading;
 
 namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
     {
+        private static Semaphore pool = new Semaphore(1, 1);
+        MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
+        IMvxFileStore fileStore = Mvx.Resolve<IMvxFileStore>();
+        List<Item> items;
         List<IDataService> EnabledDataServices;
+
 
         #region Constructors
         public ItemsShowcaseViewModel()
         {
-            EnabledDataServices = DataServiceFactory.GetCurrentDataService();
-
-            if (EnabledDataServices.Count == 0)
-                ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
-            else
-                // If we are running in the debugger, tell LoadItems() to ignore the cache in case we modified
-                //  the RSS feeds or other content elements.  This way we are sure to see the desired content
-                //  when iterating program changes in the debugger.
-                LoadItems(Debugger.IsAttached);
+            // If we are running in the debugger, tell LoadItems() to ignore the cache in case we modified
+            //  the RSS feeds or other content elements.  This way we are sure to see the desired content
+            //  when iterating program changes in the debugger.
+            LoadItems(Debugger.IsAttached);
         }
 
         #endregion // Constructors
 
         #region Internal Methods
         /// <summary>
-        /// Loads Items from our Azure Mobile Service and sort into grouped enumerable
+        /// Loads Items from our DataServices and sort into grouped enumerable
         /// </summary>
         private async void LoadItems(bool overrideCache = false)
         {
             IsBusy = true;
 
-            List<Item> items = new List<Item>();
-            MvxJsonConverter mvxJsonConverter = new MvxJsonConverter();
-            var fileStore = Mvx.Resolve<IMvxFileStore>();
-
-            foreach (var dataService in EnabledDataServices)
+            if (AppSettings.EnableRemoteAppSettings)
             {
-                List<Item> currentItems = new List<Item>();
-                bool loadedFromCache = false;
+                RemoteAppSettingsService remoteAppSettingsService = new RemoteAppSettingsService();
+                await remoteAppSettingsService.LoadRemoteAppSettings(overrideCache);
+            }
 
-                if (fileStore != null)
+            //Name may change after RemoteSettings enabled
+            ApplicationName = AppSettings.ApplicationName;
+
+            if (AppSettings.EnableRemoteUrlSourceService)
+            {
+                await RemoteUrlSourceService.GetRemoteUrlSources();
+            }
+
+            EnabledDataServices = DataServiceFactory.GetCurrentDataService();
+
+            if (EnabledDataServices.Count == 0)
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("No DataServices Enabled", "Application Error");
+                return;
+            }
+
+            items = new List<Item>();
+            await DoFetchDataServices(EnabledDataServices, overrideCache);
+
+            ItemGroups = new List<Group<Item>>(from item in items
+                                               group item by item.Group into grp
+                                               orderby grp.GetOrderPreference()
+                                               select new Group<Item>(grp.Key, grp)).ToList();
+
+            IsBusy = false;
+        }
+
+        private Task DoFetchDataServices(List<IDataService> enabledDataServices, bool overrideCache = false)
+        {
+            IList<Task> tasks = new List<Task>();
+
+            foreach (var dataService in enabledDataServices)
+            {
+                tasks.Add(
+                    Task.Run(async () => await LoadDataService(dataService, overrideCache)));
+            }
+
+            return Task.WhenAll(tasks.ToArray());
+        }
+
+        private async Task LoadDataService(IDataService dataService, bool overrideCache = false)
+        {
+            List<Item> currentItems = new List<Item>();
+
+            bool loadedFromCache = false;
+
+            if (fileStore != null)
+            {
+                string lastRefreshText;
+                if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText))
                 {
-                    string lastRefreshText;
-                    if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText))
-                    {
-                        var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                    var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                    var timeSinceLastRefreshInMinutes = (DateTime.Now - lastRefreshTime).TotalMinutes;
 
-                        //has cache expired?
-                        if (overrideCache || (DateTime.Now - lastRefreshTime).Minutes > AppSettings.CacheIntervalInMinutes)
+                    //has cache expired?
+                    if (overrideCache || timeSinceLastRefreshInMinutes > AppSettings.CacheIntervalInMinutes)
+                    {
+                        currentItems = await dataService.GetItems();
+                    }
+                    else //load from cache
+                    {
+                        string cachedItemsText;
+                        pool.WaitOne();
+                        try
                         {
-                            currentItems = await dataService.GetItems();
-                        }
-                        else //load from cache
-                        {
-                            string cachedItemsText;
                             if (fileStore.TryReadTextFile("CachedItems-" + dataService.GetType().ToString(), out cachedItemsText))
                             {
                                 currentItems = mvxJsonConverter.DeserializeObject<List<Item>>(cachedItemsText);
                                 loadedFromCache = true;
                             }
                         }
-                    }
-                    else
-                    {
-                        currentItems = await dataService.GetItems();
+                        catch
+                        {
+                            ServiceLocator.MessageService.ShowErrorAsync("Error Deserializing " + dataService.GetType().ToString(), "Error loading cache");
+                        }
+                        finally
+                        {
+                            pool.Release();
+                        }
                     }
                 }
-
-                try
+                else
                 {
-                    if (!loadedFromCache && currentItems.Count > 0)
-                    {
-                        if (fileStore.Exists("CachedItems-" + dataService.GetType().ToString()))
-                            fileStore.DeleteFile("CachedItems-" + dataService.GetType().ToString());
-
-                        if (fileStore.Exists("LastRefresh-" + dataService.GetType().ToString()))
-                            fileStore.DeleteFile("LastRefresh-" + dataService.GetType().ToString());
-
-                        fileStore.WriteFile("CachedItems-" + dataService.GetType().ToString(), mvxJsonConverter.SerializeObject(currentItems));
-                        fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
-                    }
-
-                    items.AddRange(currentItems);
-                }
-                catch
-                {
-                    ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from Remote Service. \n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
+                    currentItems = await dataService.GetItems();
                 }
             }
 
-            ItemGroups = new List<Group<Item>>(from item in items
-                                               group item by item.Group into grp
-                                               orderby grp.Key
-                                               select new Group<Item>(grp.Key, grp)).ToList();
+            try
+            {
+                if (!loadedFromCache && currentItems.Count > 0)
+                {
+                    if (fileStore.Exists("CachedItems-" + dataService.GetType().ToString()))
+                        fileStore.DeleteFile("CachedItems-" + dataService.GetType().ToString());
 
-            IsBusy = false;
+                    if (fileStore.Exists("LastRefresh-" + dataService.GetType().ToString()))
+                        fileStore.DeleteFile("LastRefresh-" + dataService.GetType().ToString());
+
+                    fileStore.WriteFile("CachedItems-" + dataService.GetType().ToString(), mvxJsonConverter.SerializeObject(currentItems));
+                    fileStore.WriteFile("LastRefresh-" + dataService.GetType().ToString(), DateTime.Now.ToString());
+                }
+
+                items.AddRange(currentItems);
+            }
+            catch
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("Error retrieving items from " + dataService.GetType().ToString() + "\n\nPossible Causes:\nNo internet connection\nRemote Service unavailable", "Application Error");
+            }
+
         }
 
         #endregion Internal Methods
 
         #region Public Properties
+        private string applicationName;
         public string ApplicationName
         {
-            set { AppSettings.ApplicationName = value; RaisePropertyChanged(() => ApplicationName); }
-            get { return AppSettings.ApplicationName; }
+            set { applicationName = value; AppSettings.ApplicationName = value; RaisePropertyChanged(() => ApplicationName); }
+            get { return applicationName; }
         }
 
         private Boolean isSearch;
@@ -253,7 +304,7 @@ namespace XPlatformCloudKit.ViewModels
                     searchCommand = new RelayCommand<string>(
                         (searchTerm) =>
                         {
-                            if (searchTerm!=null && !searchTerm.Equals("") && ItemGroups!=null && ItemGroups.Count>0)
+                            if (searchTerm != null && !searchTerm.Equals("") && ItemGroups != null && ItemGroups.Count > 0)
                             {
                                 IsSearch = true;
                                 if (tempApplicationName == null)
@@ -278,10 +329,10 @@ namespace XPlatformCloudKit.ViewModels
                                         itemgroup.Add(tempgroup);
                                 }
                                 ItemGroups = itemgroup;
-                                if(itemgroup.Count==0)
+                                if (itemgroup.Count == 0)
                                     ServiceLocator.MessageService.ShowErrorAsync("We didn't find any results. Please try another query.", "No Results Found");
                             }
-                            else if(tempApplicationName!=null)
+                            else if (tempApplicationName != null)
                             {
                                 ApplicationName = tempApplicationName;
                                 tempApplicationName = null;

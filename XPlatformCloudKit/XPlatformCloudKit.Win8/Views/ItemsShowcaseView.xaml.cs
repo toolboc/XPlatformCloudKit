@@ -37,6 +37,7 @@ namespace XPlatformCloudKit.Views
     /// </summary>
     public sealed partial class ItemsShowcaseView : LayoutAwarePage
     {
+        AdControl adControl = new AdControl();
 
         public ItemsShowcaseView()
         {
@@ -46,11 +47,10 @@ namespace XPlatformCloudKit.Views
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemsShowcaseView_Loaded;
 
-            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
-            Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
-
             if (AppSettings.EnableWin8Background == true)
+            {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+            }
 
             if (AppSettings.EnableAppPromoRatingReminder)
             {
@@ -110,7 +110,7 @@ namespace XPlatformCloudKit.Views
                 ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
 
                 Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
-                Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+                //Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
                 //This is a one-time execuction block, so we can test simulating a purchase here 
                 if (AppSettings.EnablePubcenterAdsWin8)
@@ -126,7 +126,7 @@ namespace XPlatformCloudKit.Views
                         if (!licenseInfo.IsTrial)
                             return;
                     }
-                    var adControl = new AdControl();
+
                     adControl.ApplicationId = AppSettings.PubcenterApplicationIdWin8;
                     adControl.AdUnitId = AppSettings.PubcenterAdUnitIdWin8;
                     adControl.IsAutoRefreshEnabled = true;
@@ -136,6 +136,7 @@ namespace XPlatformCloudKit.Views
                     ShowcaseGrid.Children.Add(adControl);
                 }
 
+                Window.Current.SizeChanged += Window_SizeChanged;
                 AppState.Windows8ItemsShowcaseViewInitialized = true;
             }
         }
@@ -145,6 +146,25 @@ namespace XPlatformCloudKit.Views
             var result = await Windows.ApplicationModel.Store.CurrentAppSimulator.RequestAppPurchaseAsync(false);
         }
 
+        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            if (e.Size.Width == 320)//snapped
+            {
+                if (AppSettings.EnableWin8Background == true)
+                {
+                    ShowcaseGrid.Background.Opacity = .5;
+                }
+                if (AppSettings.EnablePubcenterAdsWin8)
+                {
+                    adControl.Visibility = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                ShowcaseGrid.Background.Opacity = 1;
+                adControl.Visibility = Visibility.Visible;
+            }
+        }
 
     }
 }

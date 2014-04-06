@@ -22,7 +22,14 @@ namespace XPlatformCloudKit.DataServices
             if (AppSettings.EnableRssService)
                 enabledDataServices.Add(new RssService());
 
-            enabledDataServices.Add(new LocalItemsFileService());
+            if (AppSettings.EnableLocalItemsFileService)
+                enabledDataServices.Add(new LocalItemsFileService());
+
+            if (AppSettings.EnableTwitterService)
+                enabledDataServices.Add(new TwitterService());
+
+            if (AppSettings.EnableYoutubeService)
+                enabledDataServices.Add(new YoutubeService());
 
             return enabledDataServices;
         }

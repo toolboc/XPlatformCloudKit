@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace XPlatformCloudKit.Models
 {
-    public class RssSource
+    public class UrlSource
     {
-        public RssSource()
+        public UrlSource()
         {
             Group = "";
         }
 
         public string Url { get; set; }
         public string Group { get; set; }
+        public string Type { get; set; }
     }
 }
