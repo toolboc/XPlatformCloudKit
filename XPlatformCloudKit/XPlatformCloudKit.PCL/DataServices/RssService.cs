@@ -76,6 +76,7 @@ namespace XPlatformCloudKit.DataServices
 
                 XNamespace xmlns = "http://www.w3.org/2005/Atom";
                 XNamespace media = "http://search.yahoo.com/mrss/";
+                XNamespace content = "http://purl.org/rss/1.0/modules/content/";
 
                 XDocument Feed = XDocument.Parse(response);
 
@@ -108,13 +109,9 @@ namespace XPlatformCloudKit.DataServices
                         ? Feed.Descendants("item")
                         : Feed.Descendants("item").Take(AppSettings.RssMaxItemsPerFeed);
                     items = from item in feeditems
-                            select new Item()
-                            {
-                                Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
-                                Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : DateTime.Now.ToString(),
-                                Description =
-                                    // TODO: perhaps this needs to use the url's MIME type to determine the tag for audio, video, PDFs, etc.?
-                                      (item.Element("enclosure") != null
+                            let body = item.Descendants(content + "encoded").FirstOrDefault()
+                            // TODO: perhaps this needs to use the url's MIME type to determine the tag for audio, video, PDFs, etc.?
+                            let parsed = (item.Element("enclosure") != null
                                         ? string.Format(audio_template, (string)(item.Element("enclosure").Attribute("url")))
                                         : string.Empty)
                                     + (item.Element("description") != null
@@ -122,7 +119,12 @@ namespace XPlatformCloudKit.DataServices
                                         : string.Empty)
                                     + (item.Element("link") != null
                                         ? " <a href=" + (string)(item.Element("link").Value) + ">Link</a>"
-                                        : string.Empty),
+                                        : string.Empty)
+                            select new Item()
+                            {
+                                Title = item.Element("title") != null ? item.Element("title").Value : string.Empty,
+                                Subtitle = item.Element("pubDate") != null ? item.Element("pubDate").Value : DateTime.Now.ToString(),
+                                Description = body != null ? body.Value : parsed,
                                 Image = item.Descendants(media + "thumbnail") != null ? item.Descendants(media + "thumbnail").Select(e => (string)e.Attribute("url")).FirstOrDefault() : "",
                                 Group = @group,
                                 UrlSource = rssSource
