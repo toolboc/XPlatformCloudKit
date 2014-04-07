@@ -48,6 +48,7 @@ namespace XPlatformCloudKit
         #region RssService Settings
         public static bool EnableRssService = true;//Use RssAddressCollection 
         public static int RssMaxItemsPerFeed = -1; //The Maximum number of items to fetch for each feed. Enter Negative value to fetch all.
+        public static bool RssOrderDescending = false; // The order items in the feed should be rendered on screen. News is usually descending (newest first), strategy guides are usually ascending (viewed in order).
 
         //Urls to an RSS Data Source 
         //i.e. http://reddit.com/r/technology/.rss
