@@ -138,7 +138,7 @@ namespace XPlatformCloudKit.Views
             if (AppSettings.DisableOpeningHyperLinksInNewTab)
                 scriptOptions = scriptOptions + disableOpeningHyperLinksInNewTabJS;
 
-            var webcontent = "<HTML>" +
+            var webcontent = "<!doctype html><HTML>" +
             "<HEAD>" +
             "<meta name=\"viewport\" content=\"width=320, user-scrollable=no\" />"
             +
