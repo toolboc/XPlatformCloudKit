@@ -40,7 +40,14 @@ namespace XPlatformCloudKit.DataServices
             }
 
             //Return all items sorted by Date
-            return RssData.OrderBy(x => DateTime.Parse(x.Subtitle)).ToList();
+            if (AppSettings.RssOrderDescending)
+            {
+                return RssData.OrderByDescending(x => DateTime.Parse(x.Subtitle)).ToList();
+            }
+            else
+            {
+                return RssData.OrderBy(x => DateTime.Parse(x.Subtitle)).ToList();
+            }
         }
 
         /// <summary>
