@@ -157,6 +157,10 @@ namespace XPlatformCloudKit.DataServices
                         if (AppSettings.ForceYoutubeVideosToLoadFullScreen)
                             item.Description = item.Description.Replace("/watch?v=", "/watch_popup?v=");
 
+                        // Fix "shortcut" urls
+                        item.Description = item.Description.Replace("src=\"//", "src=\"http://");
+                        item.Description = item.Description.Replace("src='//", "src='http://");
+
                         RssData.Add(item);
                     };
                 }
