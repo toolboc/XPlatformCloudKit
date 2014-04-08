@@ -102,9 +102,19 @@ namespace XPlatformCloudKit
         //Set to false to use standard theme. Set to true to use wallpaper. To change the wall paper, replace Wallpaper.png in the Assets folder.
         public static bool EnableWin8Background = false;
 
-        //Url to your privacy policy - default value is "http://pjdecarlo.com/2013/11/app-privacy-policy.html"
-        //Note: This is REQUIRED for certification in the Windows 8 store
-        public static string PrivacyPolicyUrl = "http://pjdecarlo.com/2013/11/app-privacy-policy.html";
+        //Url to your privacy policy
+        //The Windows Store now requires that your privacy policy be specific to your app as of April 7, 2014 
+        //I.e. they are no longer allowing generic privacy policies
+        //You must be clearly include the name of the app in your privacy policy to meet this requirement!
+        //
+        //In the Description Step of App Submission in the Windows 8 store you may modify and use the value below
+        //to generate an app-specific privacy policy
+        //"http://pjdecarlo.com/2013/11/app-privacy-policy.html?App=INSERT YOUR APP NAME HERE"
+        //OR you may provide your own app-specific privacy policy url
+        //
+        //In addtion your app must display a link to your privacy policy in the charms bar, the value below is used to create that link
+        //OR you may provide your own app-specific privacy policy url
+        public static string PrivacyPolicyUrl = "http://pjdecarlo.com/2013/11/app-privacy-policy.html" + "?App=" + ApplicationName;
         #endregion
 
         #region Windows Phone 8 Project options      
