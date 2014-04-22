@@ -153,7 +153,7 @@ namespace XPlatformCloudKit.Views
             if (AppSettings.EnableParsingPhoneNumbersPhone8)
                 scriptOptions = scriptOptions + launchPhoneCallJS;
 
-            var webcontent = "<HTML>" +
+            var webcontent = "<!doctype html><HTML>" +
             "<HEAD>" +
             "<meta name=\"viewport\" content=\"width=320, user-scrollable=no\" />"
             +

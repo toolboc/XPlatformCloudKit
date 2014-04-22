@@ -93,7 +93,7 @@ namespace XPlatformCloudKit
                     if (fileStore.TryReadTextFile("FirstLaunch", out firstLaunch))
                     {
                         var dateTimeOfFirstLaunch = DateTime.Parse(firstLaunch);
-                        if ((DateTime.Now - dateTimeOfFirstLaunch).Days > AppSettings.TrialPeriodInDays)
+                        if ((DateTime.Now - dateTimeOfFirstLaunch).Days >= AppSettings.TrialPeriodInDays)
                         {
                             TrialBlocker.Visibility = Visibility.Visible;
                         }
