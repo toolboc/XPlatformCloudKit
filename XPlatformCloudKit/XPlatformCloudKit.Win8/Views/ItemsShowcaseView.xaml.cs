@@ -72,7 +72,7 @@ namespace XPlatformCloudKit.Views
             var deferral = request.GetDeferral();
             request.Data.Properties.Title = AppSettings.ApplicationName;
             request.Data.SetText("Check out this awesome app in the Windows Store!");
-            //request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
+            request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
             deferral.Complete();
         }
 

@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,10 +42,33 @@ namespace XPlatformCloudKit.Views
         public ItemDescriptionView()
         {
             this.InitializeComponent();
+            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemDescriptionView_Loaded;
             //DataContext = new ItemDescriptionViewModel(); MVVMCross does not need to set DataContext!
             if (AppSettings.EnableWin8Background == true)
                 DescriptionGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
+        }
+
+        private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            var deferral = request.GetDeferral();
+            request.Data.Properties.Title = AppState.SelectedItem.Title;
+            
+            string html;
+            if (AppState.SelectedItem.UrlSource != null && AppState.SelectedItem.UrlSource.Url.Contains("gdata.youtube.com/feeds"))
+                html = AppState.SelectedItem.Description;
+            else
+                html = webView.InvokeScript("eval", new string[] { "document.documentElement.outerHTML;" });
+                 
+            request.Data.SetHtmlFormat(Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.CreateHtmlFormat(html));
+
+            var image = AppState.SelectedItem.Image;
+            if (!image.StartsWith("http"))
+                image = "ms-appx://" + image;
+
+            request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(image)));
+            deferral.Complete();
         }
 
         void ItemDescriptionView_Loaded(object sender, RoutedEventArgs e)
