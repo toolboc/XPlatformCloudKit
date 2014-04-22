@@ -144,7 +144,7 @@ namespace XPlatformCloudKit.DataServices
                     foreach (var item in items)
                     {
                         if (item.Image == null) //Attempt to parse an image out of the description if one is not returned in the RSS
-                            item.Image = Regex.Match(item.Description, "(https?:)?//?[^'\"<>]+?.(jpg|jpeg|gif|png)").Value;
+                            item.Image = Regex.Match(item.Description, @"(https?:)?//?[^'""<>]+?\.(jpg|jpeg|gif|png)").Value;
 
                         if (item.Image == string.Empty) //Unable to locate any image, so fallback to logo
                             item.Image = "/Assets/Logo.png";
