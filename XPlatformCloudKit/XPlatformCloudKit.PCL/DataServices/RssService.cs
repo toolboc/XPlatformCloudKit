@@ -94,7 +94,9 @@ namespace XPlatformCloudKit.DataServices
                 if (rssSource.Url.StartsWith("http://gdata.youtube.com/feeds/api/playlists/"))  //parse Youtube Playlist RSS 
                 {
                     //0 is link, 1 is image, 2 is title, 3 is description
-                    string youtubeHtmlTemplate = "<p><a href=\"{0}\"><img src=\"{1}\" alt=\"\" width=300></a></p><p><a style=\"font-size: 15px; font-weight: bold; font-decoration: none;\" href=\"{0}\">{2}</a></p><p>{3}</p>";
+                    //string youtubeHtmlTemplate = "<p><a href=\"{0}\"><img src=\"{1}\" alt=\"\" width=300></a></p><p><a style=\"font-size: 15px; font-weight: bold; font-decoration: none;\" href=\"{0}\">{2}</a></p><p>{3}</p>";
+
+                    string youtubeHtmlTemplate = "<iframe back width=\"315\" height=\"177\" src=\"{0}\" frameBorder=\"0\"> </iframe>";
 
                     items = from item in Feed.Descendants("item")
                             select new Item()
