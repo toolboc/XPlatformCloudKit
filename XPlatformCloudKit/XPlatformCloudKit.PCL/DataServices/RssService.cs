@@ -161,6 +161,16 @@ namespace XPlatformCloudKit.DataServices
                         item.Description = item.Description.Replace("src=\"//", "src=\"http://");
                         item.Description = item.Description.Replace("src='//", "src='http://");
 
+                        // Facebook Data
+                        if (item.UrlSource.Url.StartsWith("https://www.facebook.com/feeds/page.php?"))
+                        {
+                            //Payload comes back URL encoded
+                            item.Title = System.Net.WebUtility.HtmlDecode(item.Title);
+                            
+                            //Use normal image instead of small
+                            item.Image = item.Image.Replace("_s.", "_n.");
+                        }
+
                         RssData.Add(item);
                     };
                 }
