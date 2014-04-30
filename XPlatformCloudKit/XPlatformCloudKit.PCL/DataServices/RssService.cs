@@ -164,9 +164,9 @@ namespace XPlatformCloudKit.DataServices
                         // Facebook Data
                         if (item.UrlSource.Url.StartsWith("https://www.facebook.com/feeds/page.php?"))
                         {
-                            //Payload comes back URL encoded
-                            item.Title = System.Net.WebUtility.HtmlDecode(item.Title);
-                            
+                            //Payload comes back URL encoded and begins with a space
+                            item.Title = XPlatformCloudKit.Helpers.HttpUtility.HtmlDecode(item.Title).TrimStart(' ');
+
                             //Use normal image instead of small
                             item.Image = item.Image.Replace("_s.", "_n.");
                         }

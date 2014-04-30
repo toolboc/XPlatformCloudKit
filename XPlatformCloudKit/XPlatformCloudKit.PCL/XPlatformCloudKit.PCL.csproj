@@ -51,6 +51,7 @@
     <Compile Include="DataServices\YoutubeService.cs" />
     <Compile Include="Helpers\AppState.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\HttpUtility.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\UrlSource.cs" />
