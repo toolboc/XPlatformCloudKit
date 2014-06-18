@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Phone8", "XPlatformCloudKit.Phone8\XPlatformCloudKit.Phone8.csproj", "{EB23386F-8607-4836-9670-A7FB49C4D42C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Win8", "XPlatformCloudKit.Win8\XPlatformCloudKit.Win8.csproj", "{AEE63638-485F-4239-A5B2-122423603DBB}"
@@ -8,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.PCL", "XPlatformCloudKit.PCL\XPlatformCloudKit.PCL.csproj", "{98171E1A-B4D8-4D7D-8E23-022AA10A8255}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsSerializer", "AppSettingsSerializer\AppSettingsSerializer.csproj", "{9387D590-6FDF-46FA-8F6E-BDB4AD12BAF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Droid", "XPlatformCloudKit.Droid\XPlatformCloudKit.Droid.csproj", "{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,18 @@ Global
 		{9387D590-6FDF-46FA-8F6E-BDB4AD12BAF0}.Release|ARM.ActiveCfg = Release|Any CPU
 		{9387D590-6FDF-46FA-8F6E-BDB4AD12BAF0}.Release|x64.ActiveCfg = Release|Any CPU
 		{9387D590-6FDF-46FA-8F6E-BDB4AD12BAF0}.Release|x86.ActiveCfg = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|x64.ActiveCfg = Release|Any CPU
+		{FD5158DE-8D0E-4D52-8C5A-4FD88D42C18D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
