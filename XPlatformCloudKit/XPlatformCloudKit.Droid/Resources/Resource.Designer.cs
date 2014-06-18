@@ -98,16 +98,19 @@ namespace XPlatformCloudKit
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int ItemsShowcaseView = 2130903040;
+			public const int FirstView = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int ListItem_Group = 2130903041;
+			public const int ItemsShowcaseView = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int ListItem_Item = 2130903042;
+			public const int ListItem_Group = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int SplashScreen = 2130903043;
+			public const int ListItem_Item = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int SplashScreen = 2130903044;
 			
 			static Layout()
 			{

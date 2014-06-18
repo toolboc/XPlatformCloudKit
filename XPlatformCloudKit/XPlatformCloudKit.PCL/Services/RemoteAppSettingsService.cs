@@ -1,4 +1,4 @@
-﻿using Cirrious.CrossCore;
+﻿using Cirrious.MvvmCross;
 using Cirrious.MvvmCross.Plugins.File;
 using Cirrious.MvvmCross.Plugins.Json;
 using Newtonsoft.Json.Linq;
@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using XPlatformCloudKit.Models;
+using Cirrious.CrossCore;
 
 namespace XPlatformCloudKit.Services
 {

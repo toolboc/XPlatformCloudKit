@@ -68,7 +68,7 @@ namespace XPlatformCloudKit.Win8
             ServiceLocator.ResourceFileService = new ResourceFileService();
 
             //Using MVVM Cross Container
-            var iocProvider = MvxSimpleIoCContainer.Initialise();
+            var iocProvider = MvxSimpleIoCContainer.Initialize();
             Mvx.RegisterSingleton<IMvxFileStore>(new MvxWindowsStoreBlockingFileStore());
 
             //Oauth Init

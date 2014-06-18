@@ -87,7 +87,7 @@ namespace XPlatformCloudKit.Phone8
             ServiceLocator.ResourceFileService = new ResourceFileService();
 
             //Using MVVM Cross IOCContainer
-            var iocProvider = MvxSimpleIoCContainer.Initialise();
+            var iocProvider = MvxSimpleIoCContainer.Initialize();
             Mvx.RegisterSingleton<IMvxFileStore>(new MvxIsolatedStorageFileStore());
 
             //Oauth Init

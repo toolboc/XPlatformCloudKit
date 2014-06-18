@@ -11,14 +11,14 @@ using XPlatformCloudKit.DataServices;
 using XPlatformCloudKit.Models;
 using XPlatformCloudKit.Services;
 using XPlatformCloudKit.Helpers;
-using Cirrious.CrossCore;
+using Cirrious.MvvmCross;
 using Cirrious.MvvmCross.Plugins.File;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Plugins.Json;
 using System.Diagnostics;
 using System.Threading;
-
+using Cirrious.CrossCore;
 namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
