@@ -90,6 +90,7 @@ namespace XPlatformCloudKit.Models
         /// <summary>
         /// Contains the UrlSource where exists for the Item - YoutubeSource, RssSource, TwitterSource etc.
         /// </summary>
-        public UrlSource UrlSource { get; set; }
+        [DataMember(Name = "urlSource", EmitDefaultValue=false)]
+        public virtual UrlSource UrlSource { get; set; }
     }
 }
