@@ -255,6 +255,7 @@ namespace XPlatformCloudKit.Views
             var browser = sender as WebView;
             
             browser.Loaded -= WireUpWebBrowser;
+            GC.Collect();
 
             LoadWebContent(browser, browser.DataContext as Item);
         }
@@ -354,12 +355,6 @@ namespace XPlatformCloudKit.Views
                     panel.Visibility = Visibility.Collapsed;
                 }
             }
-        }
-
-        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Throws away WebView Controls that aren't next or previous
-            GC.Collect();
         }
     }
 }

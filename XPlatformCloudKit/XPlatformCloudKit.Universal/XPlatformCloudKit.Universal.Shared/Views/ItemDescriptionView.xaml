@@ -57,7 +57,6 @@
         <FlipView Grid.Row="1" x:Name="flipView"
                   SelectedItem="{Binding SelectedItem, Mode=OneWay}"
                   ItemsSource="{Binding SelectedGroup}" 
-                  SelectionChanged="flipView_SelectionChanged"
                   VirtualizingStackPanel.VirtualizationMode="Standard">
         </FlipView>
 
