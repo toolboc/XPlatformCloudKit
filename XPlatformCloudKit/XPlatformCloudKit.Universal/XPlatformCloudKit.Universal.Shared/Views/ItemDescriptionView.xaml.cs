@@ -84,13 +84,13 @@ namespace XPlatformCloudKit.Views
         void ItemDescriptionView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 #if WINDOWS_APP
-            if (e.PreviousSize.Width > 600 && e.NewSize.Width > 600)
+            if (e.PreviousSize.Width > 700 && e.NewSize.Width > 700)
                 return;
 
-            if (e.PreviousSize.Width <= 600 && e.NewSize.Width <= 600)
+            if (e.PreviousSize.Width <= 700 && e.NewSize.Width <= 700)
                 return;
 
-            if (e.NewSize.Width <= 600)
+            if (e.NewSize.Width <= 700)
                 flipView.ItemTemplate = this.Resources["FlipViewItemTemplateSnapped"] as DataTemplate;
             else 
                 flipView.ItemTemplate = this.Resources["FlipViewItemTemplateFull"] as DataTemplate;
@@ -122,7 +122,7 @@ namespace XPlatformCloudKit.Views
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
 
 #if WINDOWS_APP
-            if (Window.Current.Bounds.Width <= 600)
+            if (Window.Current.Bounds.Width <= 700)
                 flipView.ItemTemplate = this.Resources["FlipViewItemTemplateSnapped"] as DataTemplate;
             else
                 flipView.ItemTemplate = this.Resources["FlipViewItemTemplateFull"] as DataTemplate;
