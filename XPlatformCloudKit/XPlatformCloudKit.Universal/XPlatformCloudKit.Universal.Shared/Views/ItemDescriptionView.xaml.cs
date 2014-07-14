@@ -253,6 +253,9 @@ namespace XPlatformCloudKit.Views
         private void WireUpWebBrowser(object sender, RoutedEventArgs e)
         {
             var browser = sender as WebView;
+            
+            browser.Loaded -= WireUpWebBrowser;
+
             LoadWebContent(browser, browser.DataContext as Item);
         }
 
@@ -304,7 +307,6 @@ namespace XPlatformCloudKit.Views
             "</HTML>";
 
             browser.NavigateToString(webcontent);
-
         }
 
         private bool IsYoutubeLink(string description)
@@ -352,6 +354,12 @@ namespace XPlatformCloudKit.Views
                     panel.Visibility = Visibility.Collapsed;
                 }
             }
+        }
+
+        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Throws away WebView Controls that aren't next or previous
+            GC.Collect();
         }
     }
 }
