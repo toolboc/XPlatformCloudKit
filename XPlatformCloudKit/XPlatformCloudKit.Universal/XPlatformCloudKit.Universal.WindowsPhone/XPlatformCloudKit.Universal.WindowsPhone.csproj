@@ -115,7 +115,6 @@
     </Content>
     <Content Include="lib\Microsoft.Advertising.Mobile.UI.xml" />
     <Content Include="lib\Microsoft.Advertising.Mobile.xml" />
-    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AppPromo">
