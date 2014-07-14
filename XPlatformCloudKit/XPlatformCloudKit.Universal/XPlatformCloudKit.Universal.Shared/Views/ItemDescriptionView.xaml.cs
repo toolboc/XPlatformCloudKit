@@ -298,7 +298,7 @@ namespace XPlatformCloudKit.Views
             +
             "<style type='text/css'>a img {border: 0;}</style>" +
             "</HEAD>" +
-            "<BODY style=\"background-color:" + bc + ";color:" + fc + "\">" +
+            "<BODY style=\"background-color:" + bc + ";color:" + fc + ";-ms-touch-action: pan-y;" + "\">" +
             selectedItem.Description +
             "</BODY>" +
             "</HTML>";
