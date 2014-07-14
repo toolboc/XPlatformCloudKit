@@ -41,7 +41,7 @@ namespace XPlatformCloudKit.Views
             if(selectedIndex == AppState.SelectedGroup.Count - 1)
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[3]).IsEnabled = false;
 
-            if (AppSettings.EnablePhone8Background == true)
+            if (AppSettings.EnablePhoneBackground8X == true)
             {
                 LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
                 LayoutRoot.Background.Opacity = .5;
@@ -150,7 +150,7 @@ namespace XPlatformCloudKit.Views
                 scriptOptions = scriptOptions + disableHyperLinksJS;
             if (AppSettings.DisableOpeningHyperLinksInNewTab)
                 scriptOptions = scriptOptions + disableOpeningHyperLinksInNewTabJS;
-            if (AppSettings.EnableParsingPhoneNumbersPhone8)
+            if (AppSettings.EnableParsingPhoneNumbersPhone8X)
                 scriptOptions = scriptOptions + launchPhoneCallJS;
 
             var webcontent = "<!doctype html><HTML>" +

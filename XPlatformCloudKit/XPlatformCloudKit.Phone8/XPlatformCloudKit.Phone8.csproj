@@ -123,9 +123,6 @@
     <Compile Include="Helpers\LocalStorageHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\FirstView.xaml.cs">
-      <DependentUpon>FirstView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ItemDescriptionView.xaml.cs">
       <DependentUpon>ItemDescriptionView.xaml</DependentUpon>
     </Compile>
@@ -144,10 +141,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Views\FirstView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\ItemDescriptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

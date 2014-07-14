@@ -131,9 +131,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ResourceFileService.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\FirstView.xaml.cs">
-      <DependentUpon>FirstView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ItemDescriptionView.xaml.cs">
       <DependentUpon>ItemDescriptionView.xaml</DependentUpon>
     </Compile>
@@ -190,10 +187,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
-    <Page Include="Views\FirstView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\ItemDescriptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -45,7 +45,7 @@ namespace XPlatformCloudKit.Views
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemDescriptionView_Loaded;
             //DataContext = new ItemDescriptionViewModel(); MVVMCross does not need to set DataContext!
-            if (AppSettings.EnableWin8Background == true)
+            if (AppSettings.EnableBackgroundWin8X == true)
                 DescriptionGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
         }
 
@@ -107,7 +107,7 @@ namespace XPlatformCloudKit.Views
         {
             browser = sender as WebView;
 
-            if (AppSettings.GroupsToDisplayInFullScreen.Contains(AppState.SelectedGroup.Key))
+            if (AppSettings.GroupsToDisplayInFullScreenWindows8.Contains(AppState.SelectedGroup.Key))
                 MaximizeWebView();
 
             flipView.SelectionChanged += flipView_SelectionChanged;
@@ -138,7 +138,7 @@ namespace XPlatformCloudKit.Views
         {
             var selectedItem = ((ItemDescriptionViewModel)DataContext).SelectedItem;
 
-            if (AppSettings.AutoPlayYoutubeVideos)
+            if (AppSettings.MaximizeYoutubeVideos)
             {
                 var youtubeLink = Regex.Match(selectedItem.Description, @"(https?:)?//w*\.?youtube.com/watch[^'\""<>]+").Value;
 

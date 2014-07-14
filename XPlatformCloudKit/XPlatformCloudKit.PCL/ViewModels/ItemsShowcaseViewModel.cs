@@ -330,7 +330,10 @@ namespace XPlatformCloudKit.ViewModels
                                 }
                                 ItemGroups = itemgroup;
                                 if (itemgroup.Count == 0)
+                                {
                                     ServiceLocator.MessageService.ShowErrorAsync("We didn't find any results. Please try another query.", "No Results Found");
+                                    ItemGroups = temp;
+                                }
                             }
                             else if (tempApplicationName != null)
                             {

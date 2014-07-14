@@ -41,7 +41,7 @@ namespace XPlatformCloudKit
             SearchBox.TextChanged += SearchBox_TextChanged;
             Loaded += ItemsShowcaseView_Loaded;
 
-            if (AppSettings.EnablePhone8Background == true)
+            if (AppSettings.EnablePhoneBackground8X == true)
             {
                 LayoutRoot.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
                 LayoutRoot.Background.Opacity = .5;
@@ -142,11 +142,7 @@ namespace XPlatformCloudKit
 
             if (selectedItem != null)
             {
-                //Uncomment when MVVMCross is properly able to auto-resolve views for Win8
                 ((ItemsShowcaseViewModel)DataContext).SelectedItem = selectedItem;
-                //AppState.SelectedItem = selectedItem;
-                //AppState.SelectedGroup = ((ItemsShowcaseViewModel)DataContext).ItemGroups.Where(x => x.Key == selectedItem.Group).ToList().First();
-                //((PhoneApplicationFrame)Application.Current.RootVisual).Navigate(new Uri("/Views/ItemDescriptionView.xaml", UriKind.Relative));
             }
         }
 
