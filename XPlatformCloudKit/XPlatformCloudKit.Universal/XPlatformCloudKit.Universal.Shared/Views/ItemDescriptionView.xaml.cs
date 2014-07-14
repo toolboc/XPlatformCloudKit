@@ -145,6 +145,9 @@ namespace XPlatformCloudKit.Views
             binding.Path = new PropertyPath("SelectedItem");
             binding.Mode = BindingMode.TwoWay;
             flipView.SetBinding(FlipView.SelectedItemProperty, binding);
+#if WINDOWS_PHONE_APP
+            updateNextAndPreviousButtons();
+#endif
         }
 
         private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
