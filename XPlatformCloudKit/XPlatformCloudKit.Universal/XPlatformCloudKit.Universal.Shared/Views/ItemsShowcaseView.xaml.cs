@@ -347,14 +347,15 @@ namespace XPlatformCloudKit.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-
+#if WINDOWS_APP
+            DataTransferManager.GetForCurrentView().DataRequested -= ShareLinkHandler;
+#endif
 
 #if WINDOWS_PHONE_APP
             Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             SearchBox.TextChanged -= SearchBox_TextChanged;
             SearchBoxSnapped.TextChanged -= SearchBox_TextChanged;
 #endif
-            DataTransferManager.GetForCurrentView().DataRequested -= ShareLinkHandler;
             Window.Current.SizeChanged -= Window_SizeChanged;
             base.OnNavigatedFrom(e);
         }
@@ -363,8 +364,8 @@ namespace XPlatformCloudKit.Views
         {
 #if WINDOWS_APP
             SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
-#endif
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
+#endif
             Window.Current.SizeChanged += Window_SizeChanged;
 
 #if WINDOWS_PHONE_APP
