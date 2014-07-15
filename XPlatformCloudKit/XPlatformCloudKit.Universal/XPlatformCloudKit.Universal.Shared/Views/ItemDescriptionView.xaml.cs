@@ -54,10 +54,11 @@ namespace XPlatformCloudKit.Views
 #endif
         }
 
-#if WINDOWS_APP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+#if WINDOWS_APP
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
+#endif
             base.OnNavigatedTo(e);
         }
 
@@ -74,7 +75,7 @@ namespace XPlatformCloudKit.Views
             GC.Collect();
             base.OnNavigatedFrom(e);
         }
-
+#if WINDOWS_APP
         void searchPane_QuerySubmitted(Windows.ApplicationModel.Search.SearchPane sender, Windows.ApplicationModel.Search.SearchPaneQuerySubmittedEventArgs args)
         {
             if (this.Frame.CanGoBack) this.Frame.GoBack();
