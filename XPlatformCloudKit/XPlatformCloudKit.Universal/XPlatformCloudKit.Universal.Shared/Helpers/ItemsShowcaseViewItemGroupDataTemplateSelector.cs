@@ -22,6 +22,11 @@ namespace XPlatformCloudKit.Helpers
         protected override DataTemplate SelectTemplateCore(object itemGroup, Windows.UI.Xaml.DependencyObject container)
         {
             var currentFrame = Window.Current.Content as Frame;
+            
+            //Ensure that we always get the ItemsShowcaseView
+            if (currentFrame.CanGoBack)
+                currentFrame.GoBack();
+
             var currentItemsShowcaseView = currentFrame.Content as ItemsShowcaseView;
 
             //Note that we can also build out custom logic to determine which template to supply based on a property of itemGroup or its elements
