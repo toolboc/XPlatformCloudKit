@@ -55,10 +55,6 @@ namespace XPlatformCloudKit.Views
             Loaded += ItemsShowcaseView_Loaded;
             this.InitializeComponent();
 #if WINDOWS_APP
-            SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
-            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
-            Window.Current.SizeChanged += Window_SizeChanged;
-
             if (AppSettings.EnableBackgroundWin8X == true)
             {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperHorizontalBrush"] as ImageBrush;
@@ -184,7 +180,7 @@ namespace XPlatformCloudKit.Views
 
 #if WINDOWS_APP
                 Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
-                //Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+               //Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
                 //This is a one-time execuction block, so we can test simulating a purchase here 
                 if (AppSettings.EnablePubcenterAdsWin8)
@@ -351,16 +347,26 @@ namespace XPlatformCloudKit.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+
+
 #if WINDOWS_PHONE_APP
             Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             SearchBox.TextChanged -= SearchBox_TextChanged;
             SearchBoxSnapped.TextChanged -= SearchBox_TextChanged;
 #endif
+            DataTransferManager.GetForCurrentView().DataRequested -= ShareLinkHandler;
+            Window.Current.SizeChanged -= Window_SizeChanged;
             base.OnNavigatedFrom(e);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+#if WINDOWS_APP
+            SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
+#endif
+            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
+            Window.Current.SizeChanged += Window_SizeChanged;
+
 #if WINDOWS_PHONE_APP
 
             if (AppSettings.EnableSingleVerticalLayoutPhone81)
