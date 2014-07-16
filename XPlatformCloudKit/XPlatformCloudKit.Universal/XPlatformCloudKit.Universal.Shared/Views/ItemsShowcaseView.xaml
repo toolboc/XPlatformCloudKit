@@ -191,7 +191,7 @@
                 </SemanticZoom>
             </Grid>
         </Grid>
-        <ProgressBar IsIndeterminate="True" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" />
         <Grid x:Name="TrialBlocker" Grid.RowSpan="2" Opacity=".7" Background="Black" Visibility="Collapsed" Tapped="TrialBlocker_Tapped" />
     </Grid>
 
