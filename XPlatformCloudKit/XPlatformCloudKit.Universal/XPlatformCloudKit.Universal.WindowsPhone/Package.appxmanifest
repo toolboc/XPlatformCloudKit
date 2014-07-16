@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="WINCODERLLC.TestingXPCK" Publisher="CN=51304BDA-DDC5-4B15-8732-B52D6C6D6455" Version="1.1.0.1" />
-  <mp:PhoneIdentity PhoneProductId="4baa2acb-2820-4f72-8612-9752acc2b9b4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="4baa2acb-2820-4f72-8612-9752acc2b9b4" Publisher="CN=pdecarlo" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="9f2d8ae0-de6a-423e-a715-ef324fba5463" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>TestingXPCK</DisplayName>
+    <DisplayName>XPlatformCloudKit.Phone81</DisplayName>
     <PublisherDisplayName>WINCODER LLC</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
