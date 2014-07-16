@@ -74,8 +74,13 @@ namespace XPlatformCloudKit.Views
                 ShowcaseGrid.Background.Opacity = .5;
             }
 
-            if(!AppSettings.EnableSingleVerticalLayoutPhone81)
+            if (!AppSettings.EnableSingleVerticalLayoutPhone81)
+            {
                 titlePanel.Margin = new Thickness(0, 30, 0, 0);
+                ZoomedOutGroupGridView.Margin =  new Thickness(12);
+                ZoomedOutGroupGridView.Background = (SolidColorBrush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"];
+
+            }
 #endif
 
             if (AppSettings.EnableAppPromoRatingReminder)
