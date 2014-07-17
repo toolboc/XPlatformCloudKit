@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Controls;
 
-namespace XPlatformCloudKit.Universal.Controls
+namespace XPlatformCloudKit.Controls
 {
     public class DynamicGridView : GridView
     {

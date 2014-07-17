@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="380463a8-098f-4a8a-9466-658efb1e2a93" Publisher="CN=pdecarlo" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>XPlatformCloudKit.Universal.Windows</DisplayName>
+    <DisplayName>XPlatformCloudKit.Win81</DisplayName>
     <PublisherDisplayName>pdecarlo</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="XPlatformCloudKit.Universal.Windows.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="XPlatformCloudKit.Win81.App">
       <Extensions>
         <Extension Category="windows.protocol">
           <Protocol Name="xplatformcloudkitu" />
