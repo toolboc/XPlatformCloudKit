@@ -104,14 +104,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lib\Microsoft.Advertising.Mobile.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="lib\Microsoft.Advertising.Mobile.UI.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="lib\Microsoft.Advertising.Mobile.UI.xml" />
-    <Content Include="lib\Microsoft.Advertising.Mobile.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AppPromo">
