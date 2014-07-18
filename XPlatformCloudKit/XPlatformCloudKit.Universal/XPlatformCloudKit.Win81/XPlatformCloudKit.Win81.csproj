@@ -127,6 +127,7 @@
     <None Include="Microsoft.Advertising.WinRT.UI\Microsoft.Advertising.WinRT.UI.winmd" />
     <None Include="Microsoft.Advertising.WinRT.UI\MicrosoftAdvertising.winmd" />
     <None Include="packages.config" />
+    <None Include="XPlatformCloudKit.Win81_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\XPlatformCloudKit.Win8\LocalItemsFile.xml">
