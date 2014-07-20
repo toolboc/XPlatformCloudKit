@@ -40,7 +40,7 @@ You will then want to open the XPlatformCloudKit.sln located in the XPlatformClo
 
 Follow along with the XPlatformCloudKit.pptx lab located in the root of the XPlatformCloudKit-master folder.
 
-Windows Phone 8.1 and Windows 8.1 Universal project requirments:
+Windows Phone 8.1 and Windows 8.1 Universal project requirements:
 ----------------------------------------------------------------------------
 * [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
 * [Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8.1 development
