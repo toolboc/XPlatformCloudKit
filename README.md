@@ -2,10 +2,12 @@ XPlatformCloudKit
 =================
 
 A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. Simply follow along with the included Powerpoint file located in the root of the project.
-The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone, Windows 8, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
+The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone 8.X, Windows 8.X, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
 
-Video Tutorials
+Video Tutorials 
 ---------------
+(Note: Content may not match current state of the framework)
+
 * [Part 1 - Installing Prereqs from Dreamspark and Building for the First Time](http://www.youtube.com/watch?v=yKGPE95etYM)
 * [Part 2 - Use Youtube Playlists to create a Video App (Legend of Zelda - Video Strategy Guide)](http://www.youtube.com/watch?v=gnMgM1z0EHg)
 * [Part 3 - Use Local File to create an app with custom data (Microsoft Gaming - Information and News)](http://www.youtube.com/watch?v=hDEmKFSNQwI)
@@ -38,8 +40,14 @@ You will then want to open the XPlatformCloudKit.sln located in the XPlatformClo
 
 Follow along with the XPlatformCloudKit.pptx lab located in the root of the XPlatformCloudKit-master folder.
 
-Prerequisites for all projects
-------------------------------
+Windows Phone 8.1 and Windows 8.1 Universal project requirments:
+----------------------------------------------------------------------------
+* [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
+* [Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8.1 development
+*  [Visual Studio 2013 Update 2](http://www.microsoft.com/en-us/download/details.aspx?id=42666)
+
+Windows 8.0 project requirements:
+--------------------------------
 
 * [Windows 8 Pro](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
 * [Visual Studio 2012 Professional](http://www.microsoft.com/en-us/download/details.aspx?id=30682) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](http://support.microsoft.com/kb/2872520/en-us) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
@@ -47,17 +55,19 @@ OR
 [Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8 development
 
 
-Notes on getting Windows Phone 8 project to run:
+Windows Phone 8.0 project requirements:
 -----------------------------------------------
 
-* Requires [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
-* Requires installation of [Windows Phone 8 SDK](http://aka.ms/phonesdk-cr) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-Phone-8-App-Development.aspx)
+* [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
+* [Visual Studio 2012 Professional](http://www.microsoft.com/en-us/download/details.aspx?id=30682) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](http://support.microsoft.com/kb/2872520/en-us) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
+OR  
+[Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8 development
 
-Notes on getting Android Project to run
+
+Android project requirements
 ---------------------------------------
 
 - To build in Visual Studio will require a [Xamarin Business License](https://store.xamarin.com/).
-- You may need to apply the [Xamarin hotfix](http://forums.xamarin.com/discussion/5507/using-system-linq-expressions-in-a-pcl-method-causes-typeloadexpressio.n-mono-android-4-7-10024). This fixes an issue in the `System.Linq.Expressions.dll` facade used by Xamarin.
 
 Examples of Applications Built with the XPlatformCloudKit
 ---------------------------------------------------------
