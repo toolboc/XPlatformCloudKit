@@ -23,7 +23,7 @@ namespace XPlatformCloudKit.Tests
 
         public static int loadingOfDataSourcesTimeOutInMilliseconds = 30000;
         public static AutoResetEvent waitHandle = new AutoResetEvent(false);
-        public static ItemsShowcaseViewModel.LoadCompletedEventHandler eventHandler = delegate (object sender, EventArgs e)
+        public static ItemsShowcaseViewModel.LoadCompletedEventHandler eventHandler = delegate(object sender, EventArgs e)
         {
             waitHandle.Set(); // signal that the finished event was raised
         };
@@ -40,6 +40,7 @@ namespace XPlatformCloudKit.Tests
 
             itemsShowcaseViewModel = new ItemsShowcaseViewModel();
             MonitorLoadingItems();
+            Debug.WriteLine("Initial DataSources Loaded " + DateTime.Now.ToString());
         }
 
         [TestMethod]
@@ -50,31 +51,44 @@ namespace XPlatformCloudKit.Tests
             Dictionary<string, DateTime> initialRefreshTimes = new Dictionary<string, DateTime>();
             var enabledDataServices = DataServiceFactory.GetCurrentDataService();
 
+            //Obtain Cached refresh times if available
             foreach (IDataService dataService in enabledDataServices)
             {
                 string initialRefreshText;
-                fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out initialRefreshText);
-                var initialRefreshTime = DateTime.Parse(initialRefreshText);
-                initialRefreshTimes.Add(dataService.GetType().ToString(), initialRefreshTime);
+                if (fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out initialRefreshText))
+                {
+                    var initialRefreshTime = DateTime.Parse(initialRefreshText);
+                    initialRefreshTimes.Add(dataService.GetType().ToString(), initialRefreshTime);
+                }
             }
 
+            //Ensure the method is called without error
             itemsShowcaseViewModel.RefreshCommand.Execute(null);
             MonitorLoadingItems();
+            Debug.WriteLine("DataSources Refreshed " + DateTime.Now.ToString());
 
-            foreach (IDataService dataService in enabledDataServices)
+            //If Cached refreshtimes exist, validate them
+            if (initialRefreshTimes.Count > 0)
             {
-                string lastRefreshText;
-                fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText);
-                var lastRefreshTime = DateTime.Parse(lastRefreshText);
-                Assert.IsTrue(lastRefreshTime > initialRefreshTimes[dataService.GetType().ToString()]);
+                foreach (IDataService dataService in enabledDataServices)
+                {
+                    string lastRefreshText;
+                    fileStore.TryReadTextFile("LastRefresh-" + dataService.GetType().ToString(), out lastRefreshText);
+                    var lastRefreshTime = DateTime.Parse(lastRefreshText);
+                    Assert.IsTrue(lastRefreshTime > initialRefreshTimes[dataService.GetType().ToString()]);
+                }
+
+                Debug.WriteLine("Verfied Cache Updated after Refresh");
             }
+            else
+                Assert.Fail("Cache Data was not found or unitialized");
         }
 
         [TestMethod]
         public void ValidateCache()
         {
             var enabledDataServices = DataServiceFactory.GetCurrentDataService();
-            foreach(IDataService dataService in enabledDataServices)
+            foreach (IDataService dataService in enabledDataServices)
             {
                 var fileStore = Mvx.Resolve<IMvxFileStore>();
 
@@ -94,8 +108,6 @@ namespace XPlatformCloudKit.Tests
             }
 
             itemsShowcaseViewModel.LoadCompleted -= eventHandler;
-
-            Debug.WriteLine("DataSources Loaded");
         }
     }
 }
