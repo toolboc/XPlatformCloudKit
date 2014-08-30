@@ -80,6 +80,10 @@ namespace XPlatformCloudKit.ViewModels
                                                select new Group<Item>(grp.Key, grp)).ToList();
 
             IsBusy = false;
+
+            if (LoadCompleted != null)
+                LoadCompleted(this, EventArgs.Empty);
+
         }
 
         private Task DoFetchDataServices(List<IDataService> enabledDataServices, bool overrideCache = false)
@@ -91,7 +95,7 @@ namespace XPlatformCloudKit.ViewModels
                 tasks.Add(
                     Task.Run(async () => await LoadDataService(dataService, overrideCache)));
             }
-
+            
             return Task.WhenAll(tasks.ToArray());
         }
 
@@ -351,5 +355,10 @@ namespace XPlatformCloudKit.ViewModels
         private string tempApplicationName;
 
         #endregion //Commands
+
+        #region Events
+        public delegate void LoadCompletedEventHandler(object sender, EventArgs e);
+        public event LoadCompletedEventHandler LoadCompleted;
+        #endregion
     }
 }
