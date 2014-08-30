@@ -62,6 +62,9 @@ namespace XPlatformCloudKit.Tests
                 }
             }
 
+            //Initiate Delay
+            Thread.Sleep(500);
+
             //Ensure the method is called without error
             itemsShowcaseViewModel.RefreshCommand.Execute(null);
             MonitorLoadingItems();
