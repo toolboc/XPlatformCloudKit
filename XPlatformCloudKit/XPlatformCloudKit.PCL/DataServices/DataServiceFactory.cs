@@ -12,7 +12,7 @@ namespace XPlatformCloudKit.DataServices
 {
     public static class DataServiceFactory
     {
-        internal static List<IDataService> GetCurrentDataService()
+        public static List<IDataService> GetCurrentDataService()
         {
             var enabledDataServices = new List<IDataService>();
 
