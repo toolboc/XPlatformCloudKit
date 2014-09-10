@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22013.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Phone8", "XPlatformCloudKit.Phone8\XPlatformCloudKit.Phone8.csproj", "{EB23386F-8607-4836-9670-A7FB49C4D42C}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Win81", "XPlatformCloudKit.Universal\XPlatformCloudKit.Win81\XPlatformCloudKit.Win81.csproj", "{A33CC8F8-3122-499C-846F-911819B69C03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Phone81", "XPlatformCloudKit.Universal\XPlatformCloudKit.Phone81\XPlatformCloudKit.Phone81.csproj", "{020C4F4B-608D-44AF-9A73-FD294B6B875E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPlatformCloudKit.Tests", "XPlatformCloudKit.Tests\XPlatformCloudKit.Tests.csproj", "{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -158,6 +160,16 @@ Global
 		{020C4F4B-608D-44AF-9A73-FD294B6B875E}.Release|x86.ActiveCfg = Release|x86
 		{020C4F4B-608D-44AF-9A73-FD294B6B875E}.Release|x86.Build.0 = Release|x86
 		{020C4F4B-608D-44AF-9A73-FD294B6B875E}.Release|x86.Deploy.0 = Release|x86
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Release|x64.ActiveCfg = Release|Any CPU
+		{DDC1503D-2D86-4360-B8A2-33A47AB8E9CD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
