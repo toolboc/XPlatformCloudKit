@@ -151,6 +151,17 @@ namespace XPlatformCloudKit.Views
 #endif
         }
 
+#if WINDOWS_PHONE_APP
+        void browser_ScriptNotify(object sender, NotifyEventArgs e)
+        {
+            if (e.Value.StartsWith("launchPhoneCall:"))
+            {
+                string phoneNumber = e.Value.Remove(0, 16);
+                Windows.ApplicationModel.Calls.PhoneCallManager.ShowPhoneCallUI(phoneNumber, AppSettings.ApplicationName);
+            }
+        }
+#endif
+
         private void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
@@ -254,7 +265,9 @@ namespace XPlatformCloudKit.Views
         private void WireUpWebBrowser(object sender, RoutedEventArgs e)
         {
             var browser = sender as WebView;
-            
+#if WINDOWS_PHONE_APP
+            browser.ScriptNotify += browser_ScriptNotify;
+#endif
             browser.Loaded -= WireUpWebBrowser;
             GC.Collect();
 
