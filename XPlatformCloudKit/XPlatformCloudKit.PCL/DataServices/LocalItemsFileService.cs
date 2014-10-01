@@ -23,20 +23,19 @@ namespace XPlatformCloudKit.DataServices
         public async Task<List<Item>> GetItems()
         {
             LocalItems = new List<Item>();
-            if (AppSettings.EnableLocalItemsFileService == true)
+
+            string localItemsXML = await ServiceLocator.ResourceFileService.ReadFileFromInstallPath("LocalItemsFile.xml");
+
+
+            try
             {
-                string localItemsXML = await ServiceLocator.ResourceFileService.ReadFileFromInstallPath("LocalItemsFile.xml");
-
-
-                try
-                {
-                    await Parse(localItemsXML);
-                }
-                catch
-                {
-                    ServiceLocator.MessageService.ShowErrorAsync("Error when Parsing Items from LocalItemsFile.xml", "Application Error");
-                }
+                await Parse(localItemsXML);
             }
+            catch
+            {
+                ServiceLocator.MessageService.ShowErrorAsync("Error when Parsing Items from LocalItemsFile.xml", "Application Error");
+            }
+            
 
             if (!String.IsNullOrEmpty(AppSettings.RemoteItemFileService))
             {
@@ -48,11 +47,11 @@ namespace XPlatformCloudKit.DataServices
                     url = Misc.CacheBusterUrl(url);
 
 
-                string localItemsXML = await httpClient.GetStringAsync(url);
+                string remoteItemsXML = await httpClient.GetStringAsync(url);
 
                 try
                 {
-                    await Parse(localItemsXML);
+                    await Parse(remoteItemsXML);
                 }
                 catch
                 {
