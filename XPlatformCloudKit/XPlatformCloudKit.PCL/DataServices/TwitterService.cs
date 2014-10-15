@@ -31,7 +31,7 @@ namespace XPlatformCloudKit.DataServices
                     await Parse(twitterSource);
                 }
             }
-            catch
+            catch(Exception e)
             {
                 ServiceLocator.MessageService.ShowErrorAsync("Error when retrieving items from TwitterService", "Application Error");
             }
