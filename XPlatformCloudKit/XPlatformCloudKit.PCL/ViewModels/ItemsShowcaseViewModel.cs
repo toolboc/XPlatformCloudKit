@@ -39,6 +39,13 @@ namespace XPlatformCloudKit.ViewModels
             LoadItems(Debugger.IsAttached);
         }
 
+        public ItemsShowcaseViewModel(bool overrideCache)
+        {
+            //  If overrideCache is true, tell LoadItems() to ignore the cache, else if false, use the
+            //  cache. This allows for direct control of cache availability during testing.
+            LoadItems(overrideCache);
+        }
+
         #endregion // Constructors
 
         #region Internal Methods
