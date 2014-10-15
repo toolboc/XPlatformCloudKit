@@ -17,13 +17,14 @@ namespace XPlatformCloudKit.Tests
             AppSettings.RssAddressCollection = 
                 new UrlSource[] {
                                     new UrlSource() { Url = "http://reddit.com/.rss", Group = "Reddit" },
-                                    new UrlSource() { Url = "http://reddit.com/r/technology/.rss", Group = "Reddit Technology" }
+                                    new UrlSource() { Url = "http://reddit.com/r/technology/.rss", Group = "Reddit Technology" },
+                                    new UrlSource() { Url = "http://www.bing.com/search?q=tesla&format=rss", Group = "Bing example"}
             };
             var rssService = new RssService();
 
             var items = await rssService.GetItems();
-
-            Assert.AreEqual(50, items.Count);
+            
+            Assert.IsTrue(items.Count > 0, "Error: Zero items retrieved from RSS Service");
         }
     }
 }
