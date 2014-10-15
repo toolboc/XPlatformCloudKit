@@ -26,14 +26,14 @@ namespace XPlatformCloudKit.Tests
         {
             ServiceLocator.MessageService = new TestMessageService();
             //Created @ https://apps.twitter.com, found under "manage api keys"
-            AppSettings.TwitterConsumerKey = "";
-            AppSettings.TwitterConsumerSecret = "";
+            AppSettings.TwitterConsumerKey = "F4OL4vtT0PidHiWuBaWePDEj8";
+            AppSettings.TwitterConsumerSecret = "GC7hETzCvSsGkCPgqN1fEVCBUsszk9wgZ5wt8kn8Dg2TWw05bE";
             //In "manage api keys" scroll down to create access tokens
-            AppSettings.TwitterAccessToken = "";
-            AppSettings.TwitterAccessSecret = "";
+            AppSettings.TwitterAccessToken = "1395095078-OJQnXgyLvLAPOYwTP4r13yDMRK2lcWDZXouCZBd";
+            AppSettings.TwitterAccessSecret = "7Hb4bChKQNOXhYwKJtQq3X8Vt9NZeRbZAKr1R9UFwcpjx";
             AppSettings.TwitterAddressCollection = new UrlSource[]  
             {
-                 new UrlSource {Url = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=pjdecarlo", Group = "PJDeCarlo"}
+                new UrlSource {Url = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=pjdecarlo", Group = "PJDeCarlo"}
             };
             var twitterService = new TwitterService();
 
