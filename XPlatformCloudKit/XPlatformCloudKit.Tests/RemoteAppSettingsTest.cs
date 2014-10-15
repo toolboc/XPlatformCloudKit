@@ -35,7 +35,7 @@ namespace XPlatformCloudKit.Tests
         }
 
         [TestMethod]
-        public void ValidateRemoteAppSettingsServiceTest()
+        public void ValidateRemoteAppSettingsService()
         {
             Debug.WriteLine("Initial App Name = " + AppSettings.ApplicationName);
             Assert.IsFalse(AppSettings.ApplicationName.Contains("Remote Application"), "Application currently uses an inconclusive name of " + AppSettings.ApplicationName);
@@ -43,12 +43,13 @@ namespace XPlatformCloudKit.Tests
             AppSettings.EnableRemoteAppSettings = true;
             AppSettings.RemoteAppSettingsService = "http://pjdecarlo.com/playground/XPCKSampleRemoteAppSettings/AppSettings.html";
 
-            var itemsShowcaseViewModel = new ItemsShowcaseViewModel();
+            var itemsShowcaseViewModel = new ItemsShowcaseViewModel(true); // Ignore cache to retrieve AppSettings file from remote source
             MonitorLoadingItems(itemsShowcaseViewModel);
             Debug.WriteLine("Initial DataSources Loaded " + DateTime.Now.ToString());
 
             Debug.WriteLine("Final App Name = " + AppSettings.ApplicationName);
-            Assert.IsTrue(AppSettings.ApplicationName.Contains("Remote Application"), "Expected Remote Application Identifier not found");
+            Assert.IsTrue(AppSettings.ApplicationName.Contains("Remote Application"),
+                "Expected Remote Application Identifier not found."); // Will fail if invalid or no AppSettings file was retrieved
         }
 
         public static void MonitorLoadingItems(ItemsShowcaseViewModel itemsShowcaseViewModel)
