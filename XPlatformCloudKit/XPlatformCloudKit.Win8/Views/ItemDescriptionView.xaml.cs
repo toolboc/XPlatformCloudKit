@@ -84,6 +84,7 @@ namespace XPlatformCloudKit.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted -= searchPane_QuerySubmitted;
+            DataTransferManager.GetForCurrentView().DataRequested -= ShareLinkHandler;
             base.OnNavigatedFrom(e);
         }
 

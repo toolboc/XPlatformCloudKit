@@ -44,7 +44,6 @@ namespace XPlatformCloudKit.Views
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
             this.InitializeComponent();
             SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
-            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemsShowcaseView_Loaded;
 
             if (AppSettings.EnableBackgroundWin8X == true)
@@ -166,5 +165,16 @@ namespace XPlatformCloudKit.Views
             }
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            DataTransferManager.GetForCurrentView().DataRequested -= ShareLinkHandler;
+            base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
+            base.OnNavigatedTo(e);
+        }
     }
 }
