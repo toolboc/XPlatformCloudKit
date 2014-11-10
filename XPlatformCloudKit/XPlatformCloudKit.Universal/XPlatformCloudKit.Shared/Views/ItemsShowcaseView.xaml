@@ -1,0 +1,204 @@
+﻿<views:MvxWindowsPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+    xmlns:local="using:XPlatformCloudKit.Views"
+    xmlns:common="using:XPlatformCloudKit.Common"
+    xmlns:sampleData="using:XPlatformCloudKit.SampleData"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:XPlatformCloudKit.ViewModels"
+    xmlns:controls="using:XPlatformCloudKit.Controls"
+    x:Name="pageRoot"
+    x:Class="XPlatformCloudKit.Views.ItemsShowcaseView"
+    mc:Ignorable="d">
+    
+    <views:MvxWindowsPage.Resources>
+
+    <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+    <DataTemplate x:Key="GroupedItemVariableGridView">
+        <controls:DynamicGridView ItemsSource="{Binding}" 
+                VirtualizingStackPanel.VirtualizationMode="Recycling"
+                ItemTemplate="{StaticResource GridItemTemplate}"
+                ScrollViewer.IsHorizontalScrollChainingEnabled="True"
+                SelectionMode="None"
+			    IsSwipeEnabled="false" IsItemClickEnabled="True"  
+                Tapped="ListViewTapped"
+                >
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VariableSizedWrapGrid ItemWidth="1" ItemHeight="1" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+        </controls:DynamicGridView>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupedItemGridView">
+            <controls:DynamicGridView ItemsSource="{Binding}" 
+            ItemTemplate="{StaticResource GridItemTemplate}"
+            ScrollViewer.IsHorizontalScrollChainingEnabled="True"
+            SelectionMode="None"
+			IsSwipeEnabled="false" IsItemClickEnabled="True"  
+            Tapped="ListViewTapped"
+            >
+            </controls:DynamicGridView>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupedItemListView">
+        <ListView ItemsSource="{Binding}" 
+                ItemTemplate="{StaticResource ListItemTemplate}"
+                Tapped="ListViewTapped"/>
+    </DataTemplate>
+
+        <!--
+            Collection of grouped items displayed by this page, bound to a subset
+            of the complete item list because items in groups cannot be virtualized
+        -->
+        <!--Replace d:Source... with the following to obtain data from the actual Azure Service-->
+        <!--Source="{Binding ItemGroups, Source={d:DesignInstance IsDesignTimeCreatable=True, Type=ViewModels:ItemsShowcaseViewModel}}"-->
+        <CollectionViewSource
+            x:Name="groupedItemsViewSource"
+            Source="{Binding ItemGroups}"
+            d:Source="{Binding ItemGroups, Source={d:DesignInstance IsDesignTimeCreatable=True, Type=sampleData:ItemsShowcaseSampleData}}"
+            IsSourceGrouped="True"
+            />
+    </views:MvxWindowsPage.Resources>
+
+    <Grid x:Name="ShowcaseGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          d:DataContext="{Binding , Source={d:DesignInstance Type=sampleData:ItemsShowcaseSampleData, IsDesignTimeCreatable=True}}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Default"/>
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SnappedLayoutRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="HubControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <SemanticZoom x:Name="Zoom">
+            <SemanticZoom.ZoomedInView>
+
+                <Hub x:Name="HubControl">
+                    <Hub.Header>
+                        <!-- Back button and page title -->
+                        <Grid Name="BackButtonAndPageTitleGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button  x:Name="backButton" Visibility="Collapsed" Style="{StaticResource NavigationBackButtonNormalStyle}"
+                                VerticalAlignment="Center"       
+                                Click="backButton_Click"
+                                AutomationProperties.Name="Back"
+                                AutomationProperties.AutomationId="BackButton"
+                                AutomationProperties.ItemType="Navigation Button" />
+                            <StackPanel Name="titlePanel" Grid.ColumnSpan="2">
+                                <TextBox x:Name="SearchBox" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="pageTitle" x:Uid="Header" Text="{Binding ApplicationName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                                VerticalAlignment="Top" IsHitTestVisible="false" TextWrapping="NoWrap" />
+                            </StackPanel>
+                        </Grid>
+                    </Hub.Header>
+                </Hub>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView x:Name="ZoomedOutGroupGridView"
+                          VerticalAlignment="Center" 
+                          Margin="200,0,0,0" >
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel >
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding}" Style="{StaticResource SubheaderTextBlockStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Margin" Value="4" />
+                            <Setter Property="Padding" Value="5" />
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </GridView.ItemContainerStyle>
+
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid ItemWidth="400" ItemHeight="70" Orientation="Horizontal" VerticalChildrenAlignment="Center" MaximumRowsOrColumns="3"></WrapGrid>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+
+            </SemanticZoom.ZoomedOutView>
+
+
+        </SemanticZoom>
+
+        <Grid x:Name="SnappedLayoutRoot" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- TitlePanel -->
+            <StackPanel Grid.Row="0"
+                    Margin="19,12,0,25">
+                <TextBox x:Name="SearchBoxSnapped" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                <TextBlock Text="{Binding ApplicationName}"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Typography.Capitals="SmallCaps" />
+            </StackPanel>
+
+            <!--TODO: Content should be placed within the following grid-->
+            <Grid Grid.Row="1"
+              x:Name="ContentRoot">
+                <SemanticZoom Style="{StaticResource GenericJumpListStyle}"
+                          Margin="19,0,0,0">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView Name="ZoomedInListView" 
+                                  SelectionMode="None"
+                                  Tapped="ListViewTapped"
+                                  ItemsSource="{Binding groupedItemsViewSource.View}"
+                                  ItemTemplate="{StaticResource ListItemTemplate}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource GenericGroupHeaderTemplate}"
+                                        HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                        HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <ListView Name="ZoomedOutListView" ItemsSource="{Binding groupedItemsViewSource.View.CollectionGroups}"
+                              Style="{StaticResource GenericJumpListPickerStyle}">
+                        </ListView>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </Grid>
+        </Grid>
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" />
+        <Grid x:Name="TrialBlocker" Grid.RowSpan="2" Opacity=".7" Background="Black" Visibility="Collapsed" Tapped="TrialBlocker_Tapped" />
+    </Grid>
+
+    <views:MvxWindowsPage.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Refresh" Label="refresh" Command="{Binding RefreshCommand, Mode=OneWay}" />
+            <AppBarButton Name="SearchButton" Icon="Find" Label="search" Click="SearchButton_Click"  />
+        </CommandBar>
+    </views:MvxWindowsPage.BottomAppBar>
+</views:MvxWindowsPage>

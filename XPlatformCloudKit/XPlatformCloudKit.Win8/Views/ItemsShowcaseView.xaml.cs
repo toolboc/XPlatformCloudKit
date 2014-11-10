@@ -47,7 +47,7 @@ namespace XPlatformCloudKit.Views
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Loaded += ItemsShowcaseView_Loaded;
 
-            if (AppSettings.EnableWin8Background == true)
+            if (AppSettings.EnableBackgroundWin8X == true)
             {
                 ShowcaseGrid.Background = Application.Current.Resources["WallPaperBrush"] as ImageBrush;
             }
@@ -72,7 +72,7 @@ namespace XPlatformCloudKit.Views
             var deferral = request.GetDeferral();
             request.Data.Properties.Title = AppSettings.ApplicationName;
             request.Data.SetText("Check out this awesome app in the Windows Store!");
-            //request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
+            request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Logo.png")));
             deferral.Complete();
         }
 
@@ -105,7 +105,7 @@ namespace XPlatformCloudKit.Views
             if (groupedItemsViewSource.View != null && groupedItemsViewSource.View.CollectionGroups != null)
                 ZoomedOutGroupGridView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
 
-            if (!AppState.Windows8ItemsShowcaseViewInitialized)
+            if (!AppState.ItemsShowcaseViewInitialized)
             {
                 ((ItemsShowcaseViewModel)DataContext).PropertyChanged += vm_PropertyChanged;
 
@@ -137,7 +137,7 @@ namespace XPlatformCloudKit.Views
                 }
 
                 Window.Current.SizeChanged += Window_SizeChanged;
-                AppState.Windows8ItemsShowcaseViewInitialized = true;
+                AppState.ItemsShowcaseViewInitialized = true;
             }
         }
 
@@ -150,7 +150,7 @@ namespace XPlatformCloudKit.Views
         {
             if (e.Size.Width == 320)//snapped
             {
-                if (AppSettings.EnableWin8Background == true)
+                if (AppSettings.EnableBackgroundWin8X == true)
                 {
                     ShowcaseGrid.Background.Opacity = .5;
                 }

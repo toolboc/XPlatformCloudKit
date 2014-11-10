@@ -52,6 +52,8 @@ namespace XPlatformCloudKit.DataServices
                 //Fix issue #27 - Search unable to handle NULL Azure database table value
                 foreach(var item in Items)
                 {
+                    item.UrlSource = new UrlSource { Url = AppSettings.MobileServiceAddress, Group = item.Group, Type = "AzureMobileService" };
+
                     Type type = item.GetType();
 
                     if (type != typeof(string))

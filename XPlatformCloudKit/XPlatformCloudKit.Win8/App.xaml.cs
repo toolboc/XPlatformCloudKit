@@ -42,7 +42,7 @@ namespace XPlatformCloudKit.Win8
         /// </summary>
         public App()
         {
-            if (AppSettings.UseLightThemeForWindows8)
+            if (AppSettings.UseLightThemeForWindows8X)
                 this.RequestedTheme = ApplicationTheme.Light;
             else
                 this.RequestedTheme = ApplicationTheme.Dark;
@@ -68,7 +68,7 @@ namespace XPlatformCloudKit.Win8
             ServiceLocator.ResourceFileService = new ResourceFileService();
 
             //Using MVVM Cross Container
-            var iocProvider = MvxSimpleIoCContainer.Initialise();
+            var iocProvider = MvxSimpleIoCContainer.Initialize();
             Mvx.RegisterSingleton<IMvxFileStore>(new MvxWindowsStoreBlockingFileStore());
 
             //Oauth Init

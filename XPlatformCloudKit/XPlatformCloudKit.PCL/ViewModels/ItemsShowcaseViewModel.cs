@@ -11,14 +11,14 @@ using XPlatformCloudKit.DataServices;
 using XPlatformCloudKit.Models;
 using XPlatformCloudKit.Services;
 using XPlatformCloudKit.Helpers;
-using Cirrious.CrossCore;
+using Cirrious.MvvmCross;
 using Cirrious.MvvmCross.Plugins.File;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Plugins.Json;
 using System.Diagnostics;
 using System.Threading;
-
+using Cirrious.CrossCore;
 namespace XPlatformCloudKit.ViewModels
 {
     public class ItemsShowcaseViewModel : MvxViewModel
@@ -37,6 +37,13 @@ namespace XPlatformCloudKit.ViewModels
             //  the RSS feeds or other content elements.  This way we are sure to see the desired content
             //  when iterating program changes in the debugger.
             LoadItems(Debugger.IsAttached);
+        }
+
+        public ItemsShowcaseViewModel(bool overrideCache)
+        {
+            //  If overrideCache is true, tell LoadItems() to ignore the cache, else if false, use the
+            //  cache. This allows for direct control of cache availability during testing.
+            LoadItems(overrideCache);
         }
 
         #endregion // Constructors
@@ -80,6 +87,10 @@ namespace XPlatformCloudKit.ViewModels
                                                select new Group<Item>(grp.Key, grp)).ToList();
 
             IsBusy = false;
+
+            if (LoadCompleted != null)
+                LoadCompleted(this, EventArgs.Empty);
+
         }
 
         private Task DoFetchDataServices(List<IDataService> enabledDataServices, bool overrideCache = false)
@@ -91,7 +102,7 @@ namespace XPlatformCloudKit.ViewModels
                 tasks.Add(
                     Task.Run(async () => await LoadDataService(dataService, overrideCache)));
             }
-
+            
             return Task.WhenAll(tasks.ToArray());
         }
 
@@ -330,7 +341,10 @@ namespace XPlatformCloudKit.ViewModels
                                 }
                                 ItemGroups = itemgroup;
                                 if (itemgroup.Count == 0)
+                                {
                                     ServiceLocator.MessageService.ShowErrorAsync("We didn't find any results. Please try another query.", "No Results Found");
+                                    ItemGroups = temp;
+                                }
                             }
                             else if (tempApplicationName != null)
                             {
@@ -348,5 +362,10 @@ namespace XPlatformCloudKit.ViewModels
         private string tempApplicationName;
 
         #endregion //Commands
+
+        #region Events
+        public delegate void LoadCompletedEventHandler(object sender, EventArgs e);
+        public event LoadCompletedEventHandler LoadCompleted;
+        #endregion
     }
 }

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>741171e8-2458-4152-89bc-6b6b4c74813d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>XPlatformCloudKit.Universal</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanNegationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DynamicGridView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DebugTrace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DispatcherHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ItemClickCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ItemsShowcaseViewItemGroupDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LiveTileNotifyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ResourceFileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Setup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemDescriptionView.xaml.cs">
+      <DependentUpon>ItemDescriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsShowcaseView.xaml.cs">
+      <DependentUpon>ItemsShowcaseView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ItemDescriptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ItemsShowcaseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo44px.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo71px.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallLogo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WallpaperHorizontal.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WallpaperVertical.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WideLogo.png" />
+  </ItemGroup>
+</Project>

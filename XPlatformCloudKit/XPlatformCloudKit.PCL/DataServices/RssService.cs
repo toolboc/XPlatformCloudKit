@@ -94,7 +94,9 @@ namespace XPlatformCloudKit.DataServices
                 if (rssSource.Url.StartsWith("http://gdata.youtube.com/feeds/api/playlists/"))  //parse Youtube Playlist RSS 
                 {
                     //0 is link, 1 is image, 2 is title, 3 is description
-                    string youtubeHtmlTemplate = "<p><a href=\"{0}\"><img src=\"{1}\" alt=\"\" width=300></a></p><p><a style=\"font-size: 15px; font-weight: bold; font-decoration: none;\" href=\"{0}\">{2}</a></p><p>{3}</p>";
+                    string youtubeHtmlTemplate = "<p><iframe back width=\"315\" height=\"177\" src=\"{0}\" frameBorder=\"0\"> </iframe></p><p><a style=\"font-size: 15px; font-weight: bold; font-decoration: none;\" href=\"{0}\">{2}</a></p><p>{3}</p>";
+
+                    //string youtubeHtmlTemplate = "<iframe back width=\"315\" height=\"177\" src=\"{0}\" frameBorder=\"0\"> </iframe>";
 
                     items = from item in Feed.Descendants("item")
                             select new Item()
@@ -144,7 +146,7 @@ namespace XPlatformCloudKit.DataServices
                     foreach (var item in items)
                     {
                         if (item.Image == null) //Attempt to parse an image out of the description if one is not returned in the RSS
-                            item.Image = Regex.Match(item.Description, "(https?:)?//?[^'\"<>]+?.(jpg|jpeg|gif|png)").Value;
+                            item.Image = Regex.Match(item.Description, @"(https?:)?//?[^'""<>]+?\.(jpg|jpeg|gif|png)").Value;
 
                         if (item.Image == string.Empty) //Unable to locate any image, so fallback to logo
                             item.Image = "/Assets/Logo.png";
@@ -160,6 +162,16 @@ namespace XPlatformCloudKit.DataServices
                         // Fix "shortcut" urls
                         item.Description = item.Description.Replace("src=\"//", "src=\"http://");
                         item.Description = item.Description.Replace("src='//", "src='http://");
+
+                        // Facebook Data
+                        if (item.UrlSource.Url.StartsWith("https://www.facebook.com/feeds/page.php?"))
+                        {
+                            //Payload comes back HTML encoded and begins with a space
+                            item.Title = XPlatformCloudKit.Helpers.HttpUtility.HtmlDecode(item.Title).TrimStart(' ');
+
+                            //Use normal image instead of small
+                            item.Image = item.Image.Replace("_s.", "_n.");
+                        }
 
                         RssData.Add(item);
                     };

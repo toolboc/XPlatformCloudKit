@@ -90,6 +90,13 @@ namespace XPlatformCloudKit.Models
         /// <summary>
         /// Contains the UrlSource where exists for the Item - YoutubeSource, RssSource, TwitterSource etc.
         /// </summary>
-        public UrlSource UrlSource { get; set; }
+        [DataMember(Name = "urlSource", EmitDefaultValue=false)]
+        public virtual UrlSource UrlSource { get; set; }
+
+        ///These allow for setting variable width and height on VariableGridView Item DataTemplates in Windows 8.1 project
+        ///See: http://blog.jerrynixon.com/2012/08/windows-8-beauty-tip-using.html
+        public int ColSpan;
+        public int RowSpan;
+        ///
     }
 }
