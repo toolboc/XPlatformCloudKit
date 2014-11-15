@@ -41,8 +41,7 @@ namespace XPlatformCloudKit.Views
 
         public ItemDescriptionView()
         {
-            this.InitializeComponent();
-            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
+            this.InitializeComponent();            
             Loaded += ItemDescriptionView_Loaded;
             //DataContext = new ItemDescriptionViewModel(); MVVMCross does not need to set DataContext!
             if (AppSettings.EnableBackgroundWin8X == true)
@@ -78,6 +77,7 @@ namespace XPlatformCloudKit.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
             Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted += searchPane_QuerySubmitted;
             base.OnNavigatedTo(e);
         }
