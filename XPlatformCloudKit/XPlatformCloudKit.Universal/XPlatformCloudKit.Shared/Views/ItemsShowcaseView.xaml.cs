@@ -368,6 +368,7 @@ namespace XPlatformCloudKit.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_APP
+            SettingsPane.GetForCurrentView().CommandsRequested -= ShowPrivacyPolicy;
             SettingsPane.GetForCurrentView().CommandsRequested += ShowPrivacyPolicy;
             DataTransferManager.GetForCurrentView().DataRequested += ShareLinkHandler;
 #endif
