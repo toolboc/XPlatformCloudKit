@@ -73,7 +73,8 @@ namespace XPlatformCloudKit.DataServices
             foreach (var youtubeItem in jsonItems)
             {
                 var description = youtubeItem["snippet"]["description"].ToString();
-                if(description != "This video is private.")
+                if(description != "This video is private." && description != "This video is unavailable.")
+
                 YoutubeData.Add(new Item
                 {
                     Title = youtubeItem["snippet"]["title"].ToString(),
