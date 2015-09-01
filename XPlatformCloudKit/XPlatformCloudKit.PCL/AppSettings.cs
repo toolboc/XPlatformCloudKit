@@ -69,7 +69,7 @@ namespace XPlatformCloudKit
             //NOTE: Youtube public RSS APIs *may* work but are not guaranteed longterm, offical deprecation announced on March 4, 2014
             //More info @ https://developers.google.com/youtube/2.0/developers_guide_protocol_deprecated
             //Highly suggested to use 
-            new UrlSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=1", Group = "Youtube Playlist Example"},
+            //new UrlSource{Url = "http://gdata.youtube.com/feeds/api/playlists/PL976D5FEB096858B1?alt=rss&max-results=50&start-index=1", Group = "Youtube Playlist Example"},
             //new UrlSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&q=xbox%20one", Group = "Youtube query example"},
             //new UrlSource{Url = "http://gdata.youtube.com/feeds/base/videos?alt=rss&author=thewindotnet", Group = "Youtube author example"},
 
