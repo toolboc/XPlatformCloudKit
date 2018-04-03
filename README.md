@@ -1,7 +1,7 @@
 XPlatformCloudKit
 =================
 
-A Hands-on lab for creating your very own multi-platform app with Azure Mobile Services as a backend. Simply follow along with the included Powerpoint file located in the root of the project.
+A framework for creating your very own multi-platform app with Azure Mobile Services as a backend. Get started by following the included Powerpoint file located in the root of the project.
 The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone 8.X, Windows 8.X, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
 
 Video Tutorials 
@@ -24,10 +24,10 @@ Blog Articles featuring XPCK
 
 Related Content
 ---------------
-* [Build Once for Windows 8 and Phone 8 (Learn more about the patterns, architecture, and design concepts behind XPCK)] (http://aka.ms/buildonce)
-* [Marketing and Monetization Materials (Learn how to create monetary success off of your published applications)] (http://aka.ms/monetization)
-* [App Marketing 101 (Real-World Examples of successful apps built with XPCK)] (http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop/Part-4-App-Marketing-101-Real-World-Examples)
-* [App Marketing Virtual Workshop (5 part series marketing seminar for developers, by developers)] (http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop)
+* [Build Once for Windows 8 and Phone 8 (Learn more about the patterns, architecture, and design concepts behind XPCK)](http://aka.ms/buildonce)
+* [Marketing and Monetization Materials (Learn how to create income with your published application)](http://aka.ms/monetization)
+* [App Marketing 101 (Real-World Examples of successful apps built with XPCK)](http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop/Part-4-App-Marketing-101-Real-World-Examples)
+* [App Marketing Virtual Workshop (5 part series marketing seminar for developers, by developers)](http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop)
 
 Getting Started
 ---------------
