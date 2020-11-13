@@ -2,7 +2,7 @@ XPlatformCloudKit
 =================
 
 A framework for creating your very own multi-platform app with Azure Mobile Services as a backend. Get started by following the included Powerpoint file located in the root of the project.
-The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone 8.X, Windows 8.X, and Android application by means of [Portable Class Libraries](http://msdn.microsoft.com/en-us/library/gg597391.aspx), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
+The XPlatformCloudKit supports displaying grouped items retrieved from an Azure Mobile Service, Rss Data Services, and/or Local file.  It can aesthetically organize grouped objects of Type Item with property of Title, Subtitle, Description, Image, and Group to produce a Windows Phone 8.X, Windows 8.X, and Android application by means of [Portable Class Libraries](https://msdn.microsoft.com/library/gg597391.aspx?WT.mc_id=iot-0000-pdecarlo), [Xamarin Studio](https://store.xamarin.com/), and [MVVMCross](https://github.com/MvvmCross/MvvmCross).  The value of the Description property is rendered as HTML, meaning you can do some rather interesting things.  Check out the videos below to see how easy it is to get started!
 
 Video Tutorials 
 ---------------
@@ -17,17 +17,17 @@ Video Tutorials
 Blog Articles featuring XPCK
 ----------------------------
 * [Stuart Lodge's Blog (Author of MVVMCross)](http://slodge.blogspot.co.uk/2014/03/the-awesome-xplatformcloudkit.html)
-* [Microsoft Dev Radio](http://channel9.msdn.com/Blogs/DevRadio/Microsoft-DevRadio-Creating-Multi-Platform-apps-with-the-XPlatformCloudkit-SDK-and-Windows-Azure)
+* [Microsoft Dev Radio](https://channel9.msdn.com/Blogs/DevRadio/Microsoft-DevRadio-Creating-Multi-Platform-apps-with-the-XPlatformCloudkit-SDK-and-Windows-Azure?WT.mc_id=iot-0000-pdecarlo)
 * [Awesome Apps Built with XPCK](http://pjdecarlo.com/2013/12/awesome-apps-for-windows-phone-and-windows-8-built-with-xpck.html)
-* [Channel 9 / Coding4Fun](http://channel9.msdn.com/coding4fun/blog/One-kit-three-platforms-the-XPlatformCloudKit)
+* [Channel 9 / Coding4Fun](https://channel9.msdn.com/coding4fun/blog/One-kit-three-platforms-the-XPlatformCloudKit?WT.mc_id=iot-0000-pdecarlo)
 * [B2Codigo Blog](http://www.b2codigo.com/)
 
 Related Content
 ---------------
 * [Build Once for Windows 8 and Phone 8 (Learn more about the patterns, architecture, and design concepts behind XPCK)](http://aka.ms/buildonce)
 * [Marketing and Monetization Materials (Learn how to create income with your published application)](http://aka.ms/monetization)
-* [App Marketing 101 (Real-World Examples of successful apps built with XPCK)](http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop/Part-4-App-Marketing-101-Real-World-Examples)
-* [App Marketing Virtual Workshop (5 part series marketing seminar for developers, by developers)](http://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop)
+* [App Marketing 101 (Real-World Examples of successful apps built with XPCK)](https://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop/Part-4-App-Marketing-101-Real-World-Examples?WT.mc_id=iot-0000-pdecarlo)
+* [App Marketing Virtual Workshop (5 part series marketing seminar for developers, by developers)](https://channel9.msdn.com/Series/App-Marketing-Virtual-Workshop?WT.mc_id=iot-0000-pdecarlo)
 
 Getting Started
 ---------------
@@ -42,26 +42,26 @@ Follow along with the XPlatformCloudKit.pptx lab located in the root of the XPla
 
 Windows Phone 8.1 and Windows 8.1 Universal project requirements:
 ----------------------------------------------------------------------------
-* [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
-* [Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8.1 development
-*  [Visual Studio 2013 Update 2](http://www.microsoft.com/en-us/download/details.aspx?id=42666)
+* [Windows 8 Pro - 64 bit](https://windows.microsoft.com/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light&WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
+* [Visual Studio 2013 Professional](https://www.microsoft.com/visualstudio/eng/products/visual-studio-overview?WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](https://windows.microsoft.com/windows-8/update-from-windows-8-tutorial?WT.mc_id=iot-0000-pdecarlo) for Windows 8.1 development
+*  [Visual Studio 2013 Update 2](https://www.microsoft.com/download/details.aspx?id=42666&WT.mc_id=iot-0000-pdecarlo)
 
 Windows 8.0 project requirements:
 --------------------------------
 
-* [Windows 8 Pro](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
-* [Visual Studio 2012 Professional](http://www.microsoft.com/en-us/download/details.aspx?id=30682) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](http://support.microsoft.com/kb/2872520/en-us) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
+* [Windows 8 Pro](https://windows.microsoft.com/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light&WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
+* [Visual Studio 2012 Professional](https://www.microsoft.com/download/details.aspx?id=30682&WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](https://support.microsoft.com/kb/2872520/en-us?WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
 OR  
-[Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8 development
+[Visual Studio 2013 Professional](https://www.microsoft.com/visualstudio/eng/products/visual-studio-overview?WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](https://windows.microsoft.com/windows-8/update-from-windows-8-tutorial?WT.mc_id=iot-0000-pdecarlo) for Windows 8 development
 
 
 Windows Phone 8.0 project requirements:
 -----------------------------------------------
 
-* [Windows 8 Pro - 64 bit](http://windows.microsoft.com/en-us/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
-* [Visual Studio 2012 Professional](http://www.microsoft.com/en-us/download/details.aspx?id=30682) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](http://support.microsoft.com/kb/2872520/en-us) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
+* [Windows 8 Pro - 64 bit](https://windows.microsoft.com/windows/buy?ocid=GA8_O_WOL_DIS_ShopHP_FPP_Light&WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/student/Windows-8-App-Development.aspx)
+* [Visual Studio 2012 Professional](https://www.microsoft.com/download/details.aspx?id=30682&WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=44) or above + [Visual Studio 2012 Update 4](https://support.microsoft.com/kb/2872520/en-us?WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=51)  
 OR  
-[Visual Studio 2013 Professional](http://www.microsoft.com/visualstudio/eng/products/visual-studio-overview) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](http://windows.microsoft.com/en-us/windows-8/update-from-windows-8-tutorial) for Windows 8 development
+[Visual Studio 2013 Professional](https://www.microsoft.com/visualstudio/eng/products/visual-studio-overview?WT.mc_id=iot-0000-pdecarlo) - [(DreamSpark Link)](https://www.dreamspark.com/Product/Product.aspx?productid=72) or above + [Windows 8.1 update](https://windows.microsoft.com/windows-8/update-from-windows-8-tutorial?WT.mc_id=iot-0000-pdecarlo) for Windows 8 development
 
 
 Android project requirements
@@ -77,9 +77,9 @@ Examples of Applications Built with the XPlatformCloudKit
 * To see latest Windows Phone 8 apps built with XPCK:  
   View this [link](http://marketplaceedgeservice.windowsphone.com/v8/catalog/apps?os=8.0.10211.0&cc=US&lang=en-US&hw=520170499&dm=RM-820_nam_att_100&oemId=NOKIA&moId=att-us&chunkSize=50&orderBy=GlobalRank&tag=phone%2Eprotocol%2Explatformcloudkit) in Internet Explorer  
 
-* Starbucks Menu [Windows 8](http://apps.microsoft.com/windows/en-us/app/starbucks-menu/ad9e782f-9f89-46b9-ae5d-fcc296e43118)  
+* Starbucks Menu [Windows 8](https://apps.microsoft.com/windows/en-us/app/starbucks-menu/ad9e782f-9f89-46b9-ae5d-fcc296e43118?WT.mc_id=iot-0000-pdecarlo)  
   ![Windows 8 Screenshot](http://i.imgur.com/7KaRX8t.gif)
-* Super Street Fighter 2 - Strategy Guide [Windows 8](http://apps.microsoft.com/windows/en-us/app/655e0b21-6a5f-455e-bc7f-01845c1198f9) | [Windows Phone 8](http://www.windowsphone.com/en-us/store/app/super-street-fighter-2/fe3dbbce-7770-4a41-b395-f42e3819141d)
+* Super Street Fighter 2 - Strategy Guide [Windows 8](https://apps.microsoft.com/windows/en-us/app/655e0b21-6a5f-455e-bc7f-01845c1198f9?WT.mc_id=iot-0000-pdecarlo) | [Windows Phone 8](http://www.windowsphone.com/en-us/store/app/super-street-fighter-2/fe3dbbce-7770-4a41-b395-f42e3819141d)
   ![Windows 8 Screenshot](http://i.imgur.com/vSnRm1s.gif)
   ![Windows Phone 8 Screenshot1](http://cdn.marketplaceimages.windowsphone.com/v8/images/9cbb40b5-3d50-4939-a9b9-0447ba9112fb?imageType=ws_screenshot_large&rotation=0)
   ![Windows Phone 8 Screenshot2](http://cdn.marketplaceimages.windowsphone.com/v8/images/0ae1006f-2878-4ad9-8665-0d9872dba128?imageType=ws_screenshot_large&rotation=0)
